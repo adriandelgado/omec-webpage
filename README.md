@@ -1,38 +1,43 @@
-# sv
+# OMEC webpage
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project is a complete rewrite of the official [Olimpiada Matemática Ecuatoriana (OMEC)](https://omec-mat.org/) website. The goal is to replace the existing WordPress site with a modern, type-safe, and highly performant web application built to serve the Ecuadorian mathematical community.
 
-## Creating a project
+## 🚀 Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** [SvelteKit 5](https://svelte.dev/) (using Runes)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Authentication:** [Better-Auth](https://www.better-auth.com/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
+- **UI Components:** [Bits UI](https://www.bits-ui.com/) & [Lucide Svelte](https://lucide.dev/)
+- **Validation:** [Valibot](https://valibot.dev/)
+- **Build Tool:** [Vite 7](https://vitejs.dev/)
 
-```sh
-# create a new project in the current directory
-npx sv create
+## 🛠️ Coding Standards
 
-# create a new project in my-app
-npx sv create my-app
-```
+To maintain consistency across the codebase, we adhere to the following naming conventions:
+- **Variables & Functions:** Always use `snake_case` (e.g., `get_user_data`, `const national_results = []`).
+- **Files & Directories:** Always use `kebab-case` (e.g., `auth-handler.ts`, `components/nav-bar.svelte`).
+- **Commits:** We follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add student registration form`).
 
-## Developing
+## Prerequisites
+- [Node.js](https://nodejs.org/) (v20 or higher)
+- [Docker](https://www.docker.com/) (for local database)
+- [pnpm](https://pnpm.io/)
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Scripts
 
-```sh
-npm run dev
+- `pnpm dev`: Starts the Vite development server.
+- `pnpm build`: Builds the application for production using `@sveltejs/adapter-node`.
+- `pnpm check`: Runs Svelte-Check for type validation.
+- `pnpm format`: Formats code using Prettier.
+- `pnpm db:push`: Synchronizes the Drizzle schema with the database.
+- `pnpm db:studio`: Opens a GUI to explore your local database.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Deployment
 
-## Building
+The application is configured to be hosted on a **VPS** using the Node.js adapter. Ensure your server environment has the variables defined in `.env.example` set up before running the production build.
 
-To create a production version of your app:
+## License
 
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
