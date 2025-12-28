@@ -2,7 +2,7 @@
 
 This project is a complete rewrite of the official [Olimpiada Matemática Ecuatoriana (OMEC)](https://omec-mat.org/) website. The goal is to replace the existing WordPress site with a modern, type-safe, and highly performant web application built to serve the Ecuadorian mathematical community.
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Framework:** [SvelteKit 5](https://svelte.dev/) (using Runes)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
@@ -13,14 +13,16 @@ This project is a complete rewrite of the official [Olimpiada Matemática Ecuato
 - **Validation:** [Valibot](https://valibot.dev/)
 - **Build Tool:** [Vite 7](https://vitejs.dev/)
 
-## 🛠️ Coding Standards
+## Coding Standards
 
 To maintain consistency across the codebase, we adhere to the following naming conventions:
+
 - **Variables & Functions:** Always use `snake_case` (e.g., `get_user_data`, `const national_results = []`).
 - **Files & Directories:** Always use `kebab-case` (e.g., `auth-handler.ts`, `components/nav-bar.svelte`).
 - **Commits:** We follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add student registration form`).
 
 ## Prerequisites
+
 - [Node.js](https://nodejs.org/) (v20 or higher)
 - [Docker](https://www.docker.com/) (for local database)
 - [pnpm](https://pnpm.io/)
