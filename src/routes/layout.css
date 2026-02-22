@@ -1,3 +1,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
+
+@theme {
+	--color-foreground: rgba(246, 250, 255, 1);
+	--color-background: rgba(220, 239, 254, 1);
+}
+
+@layer base {
+	body {
+		@apply bg-background;
+	}
+}
