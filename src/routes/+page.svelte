@@ -11,6 +11,8 @@
 	import egmo_knot from "$lib/assets/egmo-knot.png";
 	import pagmo_geometry from "$lib/assets/pagmo-geometry.png";
 	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.png";
+	import SectionHeading from "$lib/components/section-heading.svelte";
+	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
 	const training_cards = [
 		{
@@ -118,7 +120,7 @@
 
 <section class="border-b border-line px-4 py-8 lg:px-6">
 	<div class="mx-auto max-w-270">
-		<h2 class="text-[22px] leading-none font-medium text-copy">Programas de Entrenamiento</h2>
+		<SectionHeading title="Programas de Entrenamiento" />
 
 		<div class="mt-4 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
 			<p class="max-w-150 text-[12px] leading-[1.6] text-copy/75">
@@ -132,21 +134,7 @@
 
 		<div class="mt-7 grid gap-5 lg:grid-cols-3">
 			{#each training_cards as card (card.title)}
-				<article class="rounded-md border border-primary bg-white p-4 shadow-[4px_4px_0_0_#2d67ff]">
-					<img src={card.icon} alt={card.icon_alt} class="h-6 w-6" />
-					<h3 class="mt-3 max-w-[14ch] text-[15px] leading-tight font-medium text-copy">
-						{card.title}
-					</h3>
-					<p class="mt-2.5 text-[11px] leading-[1.6] text-copy/70">{card.description}</p>
-					<ul class="mt-3.5 space-y-1.5 text-[11px] leading-normal text-copy/80">
-						{#each card.bullets as bullet (bullet)}
-							<li class="flex items-start gap-2">
-								<span class="mt-1.75 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
-								<span>{bullet}</span>
-							</li>
-						{/each}
-					</ul>
-				</article>
+				<TrainingProgramCard {...card} />
 			{/each}
 		</div>
 
@@ -156,7 +144,7 @@
 
 <section class="border-b border-line px-4 py-8 lg:px-6">
 	<div class="mx-auto max-w-270">
-		<h2 class="text-[22px] leading-none font-medium text-copy">Calendario Olímpico</h2>
+		<SectionHeading title="Calendario Olímpico" />
 
 		<div class="mt-5 grid gap-4 lg:grid-cols-3">
 			{#each olympic_editions as edition (edition)}
@@ -205,7 +193,7 @@
 
 <section class="border-b border-line px-4 py-8 lg:px-6">
 	<div class="mx-auto max-w-270">
-		<h2 class="text-[22px] leading-none font-medium text-copy">Logros Internacionales</h2>
+		<SectionHeading title="Logros Internacionales" />
 
 		<div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 			{#each international_achievements as achievement (achievement.id)}
@@ -245,7 +233,7 @@
 
 <section class="px-4 py-8 lg:px-6 lg:pb-10">
 	<div class="mx-auto max-w-270">
-		<h2 class="text-[22px] leading-none font-medium text-copy">Galería de eventos</h2>
+		<SectionHeading title="Galería de eventos" />
 
 		<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 			{#each gallery_events as event (event.id)}
