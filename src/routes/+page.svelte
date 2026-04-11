@@ -133,22 +133,23 @@
 						<h3 class="text-sm/6 font-semibold text-gray-900">Solutions</h3>
 						<ul role="list" class="mt-6 space-y-4">
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Hosting</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Hosting</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Data services</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Data services</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Uptime monitoring</a
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900"
+									>Uptime monitoring</a
 								>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900"
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900"
 									>Enterprise services</a
 								>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Analytics</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Analytics</a>
 							</li>
 						</ul>
 					</div>
@@ -156,13 +157,13 @@
 						<h3 class="text-sm/6 font-semibold text-gray-900">Support</h3>
 						<ul role="list" class="mt-6 space-y-4">
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Submit ticket</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Submit ticket</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Documentation</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Documentation</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Guides</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Guides</a>
 							</li>
 						</ul>
 					</div>
@@ -172,16 +173,16 @@
 						<h3 class="text-sm/6 font-semibold text-gray-900">Company</h3>
 						<ul role="list" class="mt-6 space-y-4">
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">About</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">About</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Blog</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Blog</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Jobs</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Jobs</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Press</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Press</a>
 							</li>
 						</ul>
 					</div>
@@ -189,13 +190,14 @@
 						<h3 class="text-sm/6 font-semibold text-gray-900">Legal</h3>
 						<ul role="list" class="mt-6 space-y-4">
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Terms of service</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Terms of service</a
+								>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">Privacy policy</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">Privacy policy</a>
 							</li>
 							<li>
-								<a href="#" class="text-sm/6 text-gray-600 hover:text-gray-900">License</a>
+								<a href="##" class="text-sm/6 text-gray-600 hover:text-gray-900">License</a>
 							</li>
 						</ul>
 					</div>
