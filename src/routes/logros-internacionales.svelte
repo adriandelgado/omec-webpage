@@ -1,8 +1,8 @@
 <script lang="ts">
-	import imo_classic from "$lib/assets/imo-classic.svg";
-	import imo_knot from "$lib/assets/imo-knot.svg";
-	import imo_geometry from "$lib/assets/imo-geometry.svg";
-	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
+	import imo_classic from "$lib/assets/imo-classic.png";
+	import egmo_knot from "$lib/assets/egmo-knot.png";
+	import pagmo_geometry from "$lib/assets/pagmo-geometry.png";
+	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.png";
 
 	const international_achievements = [
 		{
@@ -17,7 +17,7 @@
 		},
 		{
 			id: "knot",
-			image: imo_knot,
+			image: egmo_knot,
 			title: "IMO – Olimpiada Mundial",
 			description: "Participación y medallistas a nivel global",
 			stats: [
@@ -27,7 +27,7 @@
 		},
 		{
 			id: "geometry",
-			image: imo_geometry,
+			image: pagmo_geometry,
 			title: "IMO – Olimpiada Mundial",
 			description: "Participación y medallistas a nivel global",
 			stats: [
