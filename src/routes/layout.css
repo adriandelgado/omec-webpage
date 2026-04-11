@@ -3,6 +3,12 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--color-foreground: rgba(246, 250, 255, 1);
-	--color-background: rgba(220, 239, 254, 1);
+	--color-foreground: #f9fbff;
+	--color-background: #dceefd;
+	--color-sheet: #f7fbff;
+	--color-line: rgba(61, 120, 255, 0.16);
+	--color-primary: #2d67ff;
+	--color-primary-dark: #1f57e6;
+	--color-copy: #243447;
+	--font-sans: "Avenir Next", "Nunito Sans", "Segoe UI", sans-serif;
 }

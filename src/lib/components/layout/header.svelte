@@ -4,12 +4,12 @@
 	import { ROUTES } from "$lib/constants";
 </script>
 
-<header class="absolute inset-x-0 top-0 z-50">
-	<nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
-		<div class="flex lg:flex-1">
-			<a href={resolve("/")} class="-m-1.5 p-1.5">
+<header class="sticky top-0 z-50 border-b border-line bg-sheet/95 backdrop-blur-sm">
+	<nav aria-label="Global" class="mx-auto flex max-w-270 items-center justify-between px-4 py-3">
+		<div class="flex flex-1">
+			<a href={resolve("/")} class="-m-1 p-1">
 				<span class="sr-only">OMEC</span>
-				<img src={logo_omec} alt="" class="h-8 w-auto" />
+				<img src={logo_omec} alt="" class="h-9 w-auto" />
 			</a>
 		</div>
 		<div class="flex lg:hidden">
@@ -37,12 +37,15 @@
 				</svg>
 			</button>
 		</div>
-		<div class="hidden lg:flex lg:gap-x-12">
+		<div class="hidden items-center gap-x-8 lg:flex">
 			{#each ROUTES as link (link.href)}
-				<a href={resolve(link.href)} class="text-sm/6 font-semibold text-gray-900">{link.text}</a>
+				<a
+					href={resolve(link.href)}
+					class="text-[13px] font-medium tracking-[0.01em] text-copy transition-colors hover:text-primary"
+					>{link.text}</a
+				>
 			{/each}
 		</div>
-		<!-- TODO: quitar esto -->
 		<div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
 	</nav>
 	<div>
@@ -52,9 +55,9 @@
 					class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
 				>
 					<div class="flex items-center justify-between">
-						<a href={resolve("/")} class="-m-1.5 p-1.5">
+						<a href={resolve("/")} class="-m-1 p-1">
 							<span class="sr-only">OMEC</span>
-							<img src={logo_omec} alt="" class="h-8 w-auto" />
+							<img src={logo_omec} alt="" class="h-9 w-auto" />
 						</a>
 						<button
 							type="button"

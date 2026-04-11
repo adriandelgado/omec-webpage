@@ -1,13 +1,265 @@
 <script lang="ts">
-	import Hero from "./hero.svelte";
-	import ProgramasEntrenamiento from "./programas-entrenamiento.svelte";
-	import CalendarioOlimpico from "./calendario-olimpico.svelte";
-	import LogrosInternacionales from "./logros-internacionales.svelte";
-	import GaleriaEventos from "./galeria-eventos.svelte";
+	import { resolve } from "$app/paths";
+	import hero_image from "$lib/assets/hero.png";
+	import blocks from "$lib/assets/blocks.svg";
+	import triangle_center_gravity from "$lib/assets/triangle-center-gravity.svg";
+	import hexagon from "$lib/assets/hexagon.svg";
+	import triangle from "$lib/assets/triangle.svg";
+	import circle from "$lib/assets/circle.svg";
+	import sine from "$lib/assets/sine.svg";
+	import imo_classic from "$lib/assets/imo-classic.png";
+	import egmo_knot from "$lib/assets/egmo-knot.png";
+	import pagmo_geometry from "$lib/assets/pagmo-geometry.png";
+	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.png";
+
+	const training_cards = [
+		{
+			title: "Entrenamiento Presencial",
+			description:
+				"Sesiones semanales guiadas por exolímpicos y docentes con experiencia en preparación competitiva.",
+			icon: hexagon,
+			icon_alt: "Ícono de hexágono",
+			bullets: ["Clases semanales", "Material didáctico", "Problemas resueltos"],
+		},
+		{
+			title: "Entrenamiento Personal",
+			description:
+				"Seguimiento cercano para estudiantes que necesitan fortalecer técnicas de demostración y estrategia.",
+			icon: triangle,
+			icon_alt: "Ícono de triángulo",
+			bullets: ["Mentoría individual", "Retroalimentación", "Rutas por nivel"],
+		},
+		{
+			title: "Programa Virtual",
+			description:
+				"Acceso remoto a clases en vivo, recursos grabados y acompañamiento continuo durante la temporada.",
+			icon: circle,
+			icon_alt: "Ícono de círculo",
+			bullets: ["Clases en línea", "Biblioteca virtual", "Evaluaciones periódicas"],
+		},
+	] as const;
+
+	const olympic_stages = [
+		["Inscripciones", "Enero - Febrero"],
+		["Fase Regional", "Marzo"],
+		["Fase Nacional", "Mayo"],
+		["IMO", "Julio"],
+	] as const;
+
+	const olympic_editions = [1, 2, 3] as const;
+
+	const international_achievements = [
+		{
+			id: "imo_classic",
+			image: imo_classic,
+			title: "IMO - Olimpiada Mundial",
+			description: "Participación y medallistas a nivel mundial",
+		},
+		{
+			id: "egmo_knot",
+			image: egmo_knot,
+			title: "IMO - Olimpiada Mundial",
+			description: "Participación y medallistas a nivel mundial",
+		},
+		{
+			id: "pagmo_geometry",
+			image: pagmo_geometry,
+			title: "IMO - Olimpiada Mundial",
+			description: "Participación y medallistas a nivel mundial",
+		},
+		{
+			id: "olimpiada_de_mayo",
+			image: olimpiada_de_mayo,
+			title: "IMO - Olimpiada Mundial",
+			description: "Participación y medallistas a nivel mundial",
+		},
+	] as const;
+
+	const gallery_events = Array.from({ length: 8 }, (_, index) => ({
+		id: `evento-${index + 1}`,
+		title: `Evento ${index + 1}`,
+		image: imo_classic,
+		image_alt: "Participantes de una actividad de la olimpiada matemática",
+	}));
 </script>
 
-<Hero />
-<ProgramasEntrenamiento />
-<CalendarioOlimpico />
-<LogrosInternacionales />
-<GaleriaEventos />
+<svelte:head>
+	<title>OMEC</title>
+</svelte:head>
+
+<section class="border-b border-line px-4 pt-8 pb-8 lg:px-6 lg:pt-10 lg:pb-10">
+	<div class="mx-auto grid max-w-270 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+		<div class="max-w-[320px]">
+			<h1
+				class="text-[40px] leading-[0.92] font-semibold tracking-[-0.04em] text-copy lg:text-[52px]"
+			>
+				<span class="block">Olimpiada</span>
+				<span class="block">Matemática</span>
+				<span class="block text-primary">Ecuatoriana</span>
+			</h1>
+
+			<p class="mt-4 max-w-67.5 text-[13px] leading-[1.45] text-copy/75 lg:max-w-75">
+				Desarrollando el talento matemático de los estudiantes ecuatorianos y potenciando la
+				excelencia académica.
+			</p>
+		</div>
+
+		<div
+			class="relative overflow-hidden rounded-3xl border border-line bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
+		>
+			<img
+				src={hero_image}
+				alt="Problema de geometría olímpica"
+				class="mx-auto h-auto w-full max-w-130 object-contain"
+			/>
+		</div>
+	</div>
+</section>
+
+<section class="border-b border-line px-4 py-8 lg:px-6">
+	<div class="mx-auto max-w-270">
+		<h2 class="text-[22px] leading-none font-medium text-copy">Programas de Entrenamiento</h2>
+
+		<div class="mt-4 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
+			<p class="max-w-150 text-[12px] leading-[1.6] text-copy/75">
+				Ofrecemos programas de entrenamiento diseñados para desarrollar las capacidades matemáticas
+				desde etapas iniciales hasta niveles de alta competencia. Nuestros entrenadores combinan
+				experiencia olímpica y formación universitaria.
+			</p>
+
+			<img src={blocks} alt="" class="w-18 justify-self-end lg:w-24" />
+		</div>
+
+		<div class="mt-7 grid gap-5 lg:grid-cols-3">
+			{#each training_cards as card (card.title)}
+				<article class="rounded-md border border-primary bg-white p-4 shadow-[4px_4px_0_0_#2d67ff]">
+					<img src={card.icon} alt={card.icon_alt} class="h-6 w-6" />
+					<h3 class="mt-3 max-w-[14ch] text-[15px] leading-tight font-medium text-copy">
+						{card.title}
+					</h3>
+					<p class="mt-2.5 text-[11px] leading-[1.6] text-copy/70">{card.description}</p>
+					<ul class="mt-3.5 space-y-1.5 text-[11px] leading-normal text-copy/80">
+						{#each card.bullets as bullet (bullet)}
+							<li class="flex items-start gap-2">
+								<span class="mt-1.75 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+								<span>{bullet}</span>
+							</li>
+						{/each}
+					</ul>
+				</article>
+			{/each}
+		</div>
+
+		<img src={triangle_center_gravity} alt="" class="mt-6 w-14 lg:w-20" />
+	</div>
+</section>
+
+<section class="border-b border-line px-4 py-8 lg:px-6">
+	<div class="mx-auto max-w-270">
+		<h2 class="text-[22px] leading-none font-medium text-copy">Calendario Olímpico</h2>
+
+		<div class="mt-5 grid gap-4 lg:grid-cols-3">
+			{#each olympic_editions as edition (edition)}
+				<article class="overflow-hidden rounded-sm border border-line bg-white">
+					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
+						<h3 class="text-[13px] font-medium">Olimpiada Nacional</h3>
+						<p class="text-[11px] tracking-[0.2em] uppercase opacity-70">fase {edition}</p>
+					</div>
+
+					<div class="grid gap-2 px-4 py-4 text-[11px] text-copy">
+						{#each olympic_stages as [label, date] (label)}
+							<div class="grid grid-cols-[1fr_auto] gap-3">
+								<p>{label}</p>
+								<p>{date}</p>
+							</div>
+						{/each}
+					</div>
+				</article>
+			{/each}
+		</div>
+
+		<div
+			class="relative mt-5 overflow-hidden rounded-md bg-primary px-5 py-4 text-white lg:grid lg:grid-cols-[1fr_auto] lg:items-center"
+		>
+			<div>
+				<h3 class="text-lg font-medium">Inscripciones Abiertas</h3>
+				<p class="mt-1 text-[12px] text-white/85">
+					Regístrate ahora para la temporada 2026 de las Olimpiadas Matemáticas.
+				</p>
+			</div>
+
+			<img
+				src={sine}
+				alt=""
+				class="pointer-events-none absolute top-1/2 right-8 hidden w-44 -translate-y-1/2 opacity-50 lg:block"
+			/>
+
+			<a
+				href={resolve("/informacion")}
+				class="relative mt-4 inline-flex h-9 items-center justify-center rounded-sm bg-white px-5 text-[13px] font-medium text-primary lg:mt-0"
+				>Inscríbete Ahora</a
+			>
+		</div>
+	</div>
+</section>
+
+<section class="border-b border-line px-4 py-8 lg:px-6">
+	<div class="mx-auto max-w-270">
+		<h2 class="text-[22px] leading-none font-medium text-copy">Logros Internacionales</h2>
+
+		<div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+			{#each international_achievements as achievement (achievement.id)}
+				<article class="rounded-sm border border-line bg-white px-4 py-4">
+					<div class="flex h-20 items-center justify-center">
+						<img src={achievement.image} alt="" class="max-h-16 w-auto object-contain" />
+					</div>
+
+					<div class="mt-4 text-center">
+						<h3 class="text-[13px] leading-tight font-medium text-primary">{achievement.title}</h3>
+						<p class="mt-2 text-[10px] leading-normal text-copy/70">{achievement.description}</p>
+					</div>
+
+					<div class="mt-3 flex items-end justify-center gap-5 text-center">
+						<div>
+							<div
+								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#d18934] text-[11px] font-semibold text-white"
+							>
+								1
+							</div>
+							<p class="mt-1 text-[9px] text-copy/70">Bronce</p>
+						</div>
+						<div>
+							<div
+								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#e7e9ef] text-[11px] font-semibold text-copy"
+							>
+								10
+							</div>
+							<p class="mt-1 text-[9px] text-copy/70">HM</p>
+						</div>
+					</div>
+				</article>
+			{/each}
+		</div>
+	</div>
+</section>
+
+<section class="px-4 py-8 lg:px-6 lg:pb-10">
+	<div class="mx-auto max-w-270">
+		<h2 class="text-[22px] leading-none font-medium text-copy">Galería de eventos</h2>
+
+		<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+			{#each gallery_events as event (event.id)}
+				<article>
+					<div class="overflow-hidden border border-line bg-white">
+						<img
+							src={event.image}
+							alt={event.image_alt}
+							class="aspect-[4/2.7] w-full object-cover"
+						/>
+					</div>
+					<p class="mt-2 text-xs text-copy/70">{event.title}</p>
+				</article>
+			{/each}
+		</div>
+	</div>
+</section>

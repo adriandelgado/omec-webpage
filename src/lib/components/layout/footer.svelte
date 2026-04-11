@@ -56,26 +56,24 @@
 	} as const;
 </script>
 
-<footer class="mt-24 text-[#2460ff]">
-	<div class="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
-		<div class="grid gap-12 lg:grid-cols-[1.35fr_0.8fr_0.95fr_1fr] lg:gap-10">
-			<div class="max-w-sm">
-				<a href={resolve("/")} class="inline-flex items-start gap-5">
-					<img src={logo_omec} alt="OMEC" class="h-36 w-auto shrink-0 sm:h-40" />
-					<div class="pt-2">
-						<p class="text-[2rem] leading-none font-semibold">OMEC</p>
-						<p class="mt-1 text-lg leading-tight font-semibold">Olimpiadas Matemáticas</p>
-						<p class="mt-6 text-[1.9rem] leading-[1.3] text-[#2460ff]">
-							Desarrollando el talento matemático de los estudiantes ecuatorianos desde hace más de
-							25 años.
+<footer class="border-t border-line bg-sheet text-primary">
+	<div class="mx-auto max-w-270 px-4 py-8">
+		<div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.85fr_0.9fr] lg:gap-8">
+			<div class="max-w-xs">
+				<a href={resolve("/")} class="inline-flex items-start gap-3">
+					<img src={logo_omec} alt="OMEC" class="h-14 w-auto shrink-0" />
+					<div class="pt-1">
+						<p class="text-sm font-semibold">OMEC</p>
+						<p class="mt-1 text-xs leading-tight">
+							Desarrollando el talento matemático de los estudiantes ecuatorianos.
 						</p>
 					</div>
 				</a>
 			</div>
 
 			<div>
-				<h2 class="text-[2rem] leading-none font-medium">Enlaces Rápidos</h2>
-				<ul class="mt-8 space-y-5 text-[1.9rem] leading-none">
+				<h2 class="text-sm font-semibold">Enlaces Rápidos</h2>
+				<ul class="mt-3 space-y-2 text-xs leading-relaxed">
 					{#each quick_links as link (link.href)}
 						<li>
 							<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}
@@ -87,10 +85,11 @@
 			</div>
 
 			<div>
-				<h2 class="text-[2rem] leading-none font-medium">Recursos</h2>
-				<ul class="mt-8 space-y-5 text-[1.9rem] leading-none">
+				<h2 class="text-sm font-semibold">Recursos</h2>
+				<ul class="mt-3 space-y-2 text-xs leading-relaxed">
 					{#each resource_links as link (link.text)}
 						<li>
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 							<a class="transition-opacity hover:opacity-70" href={get_href(link.href)}
 								>{link.text}</a
 							>
@@ -100,10 +99,11 @@
 			</div>
 
 			<div>
-				<h2 class="text-[2rem] leading-none font-medium">Contacto</h2>
-				<ul class="mt-8 space-y-6 text-[1.9rem] leading-none">
+				<h2 class="text-sm font-semibold">Contacto</h2>
+				<ul class="mt-3 space-y-3 text-xs leading-relaxed">
 					{#each contact_links as link (link.text)}
 						<li>
+							<!-- eslint-disable svelte/no-navigation-without-resolve -->
 							<a
 								class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
 								href={get_href(link.href)}
@@ -115,28 +115,28 @@
 									fill="none"
 									stroke="currentColor"
 									stroke-width="1.8"
-									class="size-8 shrink-0"
+									class="size-4 shrink-0"
 									aria-hidden="true"
 								>
 									<path d={icon_paths[link.label]} stroke-linecap="round" stroke-linejoin="round" />
 								</svg>
 								<span>{link.text}</span>
 							</a>
+							<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						</li>
 					{/each}
 				</ul>
 			</div>
 		</div>
 
-		<div class="mt-14 border-t border-[#5d6e87] pt-8">
-			<div
-				class="flex flex-col gap-6 text-[1.75rem] leading-[1.35] md:flex-row md:items-start md:justify-between"
-			>
+		<div class="mt-8 border-t border-line pt-4">
+			<div class="flex flex-col gap-3 text-[11px] leading-relaxed md:flex-row md:justify-between">
 				<p class="max-w-2xl">
 					© 2026 Olimpiadas Matemáticas del Ecuador. Todos los derechos reservados.
 				</p>
-				<div class="flex flex-col gap-4 md:flex-row md:gap-10">
+				<div class="flex flex-wrap gap-4">
 					{#each legal_links as link (link.text)}
+						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 						<a class="transition-opacity hover:opacity-70" href={get_href(link.href)}>{link.text}</a
 						>
 					{/each}
