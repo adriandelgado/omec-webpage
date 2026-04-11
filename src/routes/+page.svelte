@@ -3,9 +3,11 @@
 	import ProgramasEntrenamiento from "./programas-entrenamiento.svelte";
 	import CalendarioOlimpico from "./calendario-olimpico.svelte";
 	import LogrosInternacionales from "./logros-internacionales.svelte";
+	import GaleriaEventos from "./galeria-eventos.svelte";
 </script>
 
 <Hero />
 <ProgramasEntrenamiento />
 <CalendarioOlimpico />
 <LogrosInternacionales />
+<GaleriaEventos />
