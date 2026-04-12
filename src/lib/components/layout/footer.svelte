@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import logo_omec from "$lib/assets/logo-omec.png";
+	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";
 
 	const quick_links = ROUTES;
