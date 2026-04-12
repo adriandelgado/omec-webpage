@@ -10,4 +10,7 @@
 	},
 	"workers_dev": true,
 	"preview_urls": true,
+	"vars": {
+		"ORIGIN": "https://omec-mat.org",
+	},
 }
