@@ -1,15 +1,11 @@
 export const ROUTES = [
 	{
-		text: "Acerca de",
-		href: "/acerca",
+		text: "Nosotros",
+		href: "/nosotros",
 	},
 	{
 		text: "Entrenamiento",
 		href: "/entrenamiento",
-	},
-	{
-		text: "Informacion",
-		href: "/informacion",
 	},
 	{
 		text: "Olimpiadas Anteriores",

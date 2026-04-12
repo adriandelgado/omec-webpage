@@ -152,7 +152,7 @@
 					</div>
 
 					<a
-						href={resolve("/informacion")}
+						href={resolve("/nosotros")}
 						class="mt-8 inline-flex h-10 w-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
 						aria-label={`Ver material ${card.title}`}
 					>
@@ -202,7 +202,7 @@
 				mejores entrenadores del país.
 			</p>
 			<a
-				href={resolve("/informacion")}
+				href={resolve("/nosotros")}
 				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-[13px] font-medium text-primary transition-colors hover:bg-white/90"
 			>
 				Inscribirse Ahora

@@ -183,7 +183,7 @@
 			/>
 
 			<a
-				href={resolve("/informacion")}
+				href={resolve("/nosotros")}
 				class="relative mt-4 inline-flex h-9 items-center justify-center rounded-sm bg-white px-5 text-[13px] font-medium text-primary lg:mt-0"
 				>Inscríbete Ahora</a
 			>
