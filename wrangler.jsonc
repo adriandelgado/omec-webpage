@@ -11,7 +11,8 @@
 	"workers_dev": true,
 	"preview_urls": true,
 	"vars": {
-		"ORIGIN": "https://omec-mat.org",
+		"ORIGIN": "https://www.omec-mat.org",
+		"DATABASE_URL": "libsql://omec-webpage-adriandelgado.aws-us-east-1.turso.io",
 	},
 	"observability": {
 		"logs": {
