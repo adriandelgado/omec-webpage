@@ -13,4 +13,10 @@
 	"vars": {
 		"ORIGIN": "https://omec-mat.org",
 	},
+	"observability": {
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true,
+		},
+	},
 }
