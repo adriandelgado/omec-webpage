@@ -89,6 +89,7 @@
 													href={card.links[index]}
 													class="block break-all transition-colors hover:text-primary">{line}</a
 												>
+												<!-- eslint-enable svelte/no-navigation-without-resolve -->
 											{/each}
 										</div>
 									</div>
@@ -102,7 +103,7 @@
 
 						<div class="mt-4 flex items-center gap-3">
 							{#each social_links as social_link (social_link.label)}
-								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+								<!-- eslint-disable svelte/no-navigation-without-resolve -->
 								<a
 									href={social_link.href}
 									target="_blank"
@@ -114,6 +115,7 @@
 										<path d={social_link.path}></path>
 									</svg>
 								</a>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 							{/each}
 						</div>
 

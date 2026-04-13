@@ -131,7 +131,7 @@
 		<div class="mt-8 border-t border-line pt-4">
 			<div class="flex flex-col gap-3 text-[11px] leading-relaxed md:flex-row md:justify-between">
 				<p class="max-w-2xl">
-					© 2026 Olimpiadas Matemáticas del Ecuador. Todos los derechos reservados.
+					© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.
 				</p>
 				<div class="flex flex-wrap gap-4">
 					{#each legal_links as link (link.text)}
