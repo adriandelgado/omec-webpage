@@ -4,9 +4,9 @@
 	import triangle from "$lib/assets/triangle.svg";
 	import circle from "$lib/assets/circle.svg";
 	import hero_image from "$lib/assets/hero.png";
-	import imo_classic from "$lib/assets/imo-classic.png";
-	import egmo_knot from "$lib/assets/egmo-knot.png";
-	import pagmo_geometry from "$lib/assets/pagmo-geometry.png";
+	import logo_imo from "$lib/assets/logo-imo.svg";
+	import logo_egmo from "$lib/assets/logo-egmo.png";
+	import logo_pagmo from "$lib/assets/logo-pagmo.png";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
@@ -72,14 +72,14 @@
 			id: "coach-marty-2",
 			name: "Marty Mauser",
 			role: "Jefe de Entrenamiento",
-			image: imo_classic,
+			image: logo_imo,
 			image_alt: "Retrato del entrenador Marty Mauser",
 		},
 		{
 			id: "coach-willy",
 			name: "Willy Wonka",
 			role: "Entrenador Básico",
-			image: egmo_knot,
+			image: logo_egmo,
 			image_alt: "Retrato del entrenador Willy Wonka",
 		},
 	] as const;
@@ -137,11 +137,7 @@
 						<div
 							class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
 						>
-							<img
-								src={pagmo_geometry}
-								alt=""
-								class="h-7 w-7 rounded-full object-cover opacity-80"
-							/>
+							<img src={logo_pagmo} alt="" class="h-7 w-7 rounded-full object-cover opacity-80" />
 						</div>
 						<h3
 							class="mt-6 max-w-[12ch] text-[28px] leading-[0.88] font-semibold tracking-[-0.05em] text-primary"

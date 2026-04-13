@@ -1,5 +1,5 @@
 <script lang="ts">
-	import imo_classic from "$lib/assets/imo-classic.png";
+	import logo_imo from "$lib/assets/logo-imo.svg";
 
 	const medal_summary = [
 		{
@@ -80,7 +80,7 @@
 		>
 			<div class="border-b border-line bg-primary/5 p-3">
 				<img
-					src={imo_classic}
+					src={logo_imo}
 					alt="Delegación ecuatoriana en una competencia internacional de matemática"
 					class="h-56 w-full rounded-[18px] object-cover"
 				/>

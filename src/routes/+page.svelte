@@ -7,10 +7,10 @@
 	import triangle from "$lib/assets/triangle.svg";
 	import circle from "$lib/assets/circle.svg";
 	import sine from "$lib/assets/sine.svg";
-	import imo_classic from "$lib/assets/imo-classic.png";
-	import egmo_knot from "$lib/assets/egmo-knot.png";
-	import pagmo_geometry from "$lib/assets/pagmo-geometry.png";
-	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.png";
+	import logo_imo from "$lib/assets/logo-imo.svg";
+	import logo_egmo from "$lib/assets/logo-egmo.png";
+	import logo_pagmo from "$lib/assets/logo-pagmo.png";
+	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
@@ -52,20 +52,20 @@
 
 	const international_achievements = [
 		{
-			id: "imo_classic",
-			image: imo_classic,
+			id: "logo_imo",
+			image: logo_imo,
 			title: "IMO - Olimpiada Mundial",
 			description: "Participación y medallistas a nivel mundial",
 		},
 		{
-			id: "egmo_knot",
-			image: egmo_knot,
+			id: "logo_egmo",
+			image: logo_egmo,
 			title: "IMO - Olimpiada Mundial",
 			description: "Participación y medallistas a nivel mundial",
 		},
 		{
-			id: "pagmo_geometry",
-			image: pagmo_geometry,
+			id: "logo_pagmo",
+			image: logo_pagmo,
 			title: "IMO - Olimpiada Mundial",
 			description: "Participación y medallistas a nivel mundial",
 		},
@@ -80,7 +80,7 @@
 	const gallery_events = Array.from({ length: 8 }, (_, index) => ({
 		id: `evento-${index + 1}`,
 		title: `Evento ${index + 1}`,
-		image: imo_classic,
+		image: logo_imo,
 		image_alt: "Participantes de una actividad de la olimpiada matemática",
 	}));
 </script>
