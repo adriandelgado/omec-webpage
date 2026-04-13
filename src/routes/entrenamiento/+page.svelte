@@ -7,8 +7,11 @@
 	import logo_imo from "$lib/assets/logo-imo.svg";
 	import logo_egmo from "$lib/assets/logo-egmo.png";
 	import logo_pagmo from "$lib/assets/logo-pagmo.png";
+	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
+
+	const title = "Entrenamientos";
 
 	const training_programs = [
 		{
@@ -85,15 +88,16 @@
 	] as const;
 </script>
 
-<svelte:head>
-	<title>Entrenamiento | OMEC</title>
-</svelte:head>
+<Seo
+	{title}
+	description="Programas de entrenamiento de OMEC para fortalecer resolución de problemas, demostración y preparación olímpica desde nivel básico hasta competencia internacional."
+/>
 
 <section class="border-b border-line px-4 pt-8 pb-9 lg:px-6 lg:pt-10 lg:pb-10">
 	<div class="mx-auto max-w-270">
 		<div class="max-w-150">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-primary lg:text-5xl">
-				Entrenamientos
+				{title}
 			</h1>
 			<p class="mt-4 max-w-120 text-sm leading-6 text-copy/75">
 				Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta

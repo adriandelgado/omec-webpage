@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { Mail, MapPin, Phone, Send } from "@lucide/svelte";
+	import Seo from "$lib/components/seo.svelte";
 	import { contact_form_schema } from "./contact-form";
 	import { send_contact_message } from "./contacto.remote";
+
+	const title = "Contáctanos";
 
 	// TODO: consolidate the info in a constants.ts file
 	const contact_cards = [
@@ -41,16 +44,17 @@
 	] as const;
 </script>
 
-<svelte:head>
-	<title>Contacto | OMEC</title>
-</svelte:head>
+<Seo
+	{title}
+	description="Contáctate con OMEC para resolver dudas sobre olimpiadas matemáticas, inscripciones, entrenamiento y participación estudiantil en Ecuador."
+/>
 
 <section class="border-b border-line px-4 pt-9 pb-10 lg:px-6 lg:pt-11 lg:pb-12">
 	<div class="mx-auto max-w-270">
 		<div class="max-w-185">
 			<p class="text-xs font-medium tracking-[0.22em] text-primary uppercase">Contacto</p>
 			<h1 class="mt-3 text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
-				Contáctanos
+				{title}
 			</h1>
 			<p class="mt-4 max-w-170 text-sm leading-7 text-copy/72">
 				¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de

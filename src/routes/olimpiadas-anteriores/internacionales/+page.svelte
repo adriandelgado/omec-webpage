@@ -1,5 +1,6 @@
 <script lang="ts">
 	import logo_imo from "$lib/assets/logo-imo.svg";
+	import Seo from "$lib/components/seo.svelte";
 
 	const medal_summary = [
 		{
@@ -33,6 +34,11 @@
 
 	const medallero_columns = ["Olimpiada", "🥇 Oro", "🥈 Plata", "🥉 Bronce", "Menciones"] as const;
 </script>
+
+<Seo
+	title="Olimpiadas Anteriores Internacionales"
+	description="Revisa la participación internacional de Ecuador en olimpiadas matemáticas, con medallero, resultados históricos y resumen de competencias."
+/>
 
 <div class="space-y-8">
 	<section>

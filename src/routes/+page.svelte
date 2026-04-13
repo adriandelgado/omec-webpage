@@ -11,8 +11,11 @@
 	import logo_egmo from "$lib/assets/logo-egmo.png";
 	import logo_pagmo from "$lib/assets/logo-pagmo.png";
 	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
+	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
+
+	const title = "Olimpiada Matemática Ecuatoriana";
 
 	const training_cards = [
 		{
@@ -85,17 +88,16 @@
 	}));
 </script>
 
-<svelte:head>
-	<title>OMEC</title>
-</svelte:head>
+<Seo
+	{title}
+	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
+/>
 
 <section class="border-b border-line px-4 pt-8 pb-8 lg:px-6 lg:pt-10 lg:pb-10">
 	<div class="mx-auto grid max-w-270 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-80">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
-				<span class="block">Olimpiada</span>
-				<span class="block">Matemática</span>
-				<span class="block text-primary">Ecuatoriana</span>
+				{title}
 			</h1>
 
 			<p class="mt-4 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">

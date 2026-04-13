@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Seo from "$lib/components/seo.svelte";
+
 	const national_results = [
 		{
 			participant: "Paul Atreides",
@@ -133,6 +135,11 @@
 		"Menciones",
 	] as const;
 </script>
+
+<Seo
+	title="Olimpiadas Anteriores Nacionales"
+	description="Consulta resultados históricos de olimpiadas matemáticas nacionales de Ecuador, incluyendo participantes, puntajes, niveles y medallas."
+/>
 
 <div class="space-y-5">
 	<p class="text-xs tracking-wider text-copy/45 uppercase">

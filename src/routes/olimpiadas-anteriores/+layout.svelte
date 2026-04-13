@@ -17,10 +17,6 @@
 	] as const;
 </script>
 
-<svelte:head>
-	<title>Olimpiadas Anteriores | OMEC</title>
-</svelte:head>
-
 <section class="border-b border-line px-4 pt-8 pb-8 lg:px-6 lg:pt-10 lg:pb-10">
 	<div class="mx-auto max-w-270">
 		<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
