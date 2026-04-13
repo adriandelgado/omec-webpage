@@ -3,12 +3,13 @@
 	import { contact_form_schema } from "./contact-form";
 	import { send_contact_message } from "./contacto.remote";
 
+	// TODO: consolidate the info in a constants.ts file
 	const contact_cards = [
 		{
 			title: "Correo Electrónico",
 			icon: Mail,
-			lines: ["info@ome-ecuador.org", "inscripciones@ome-ecuador.org"],
-			links: ["mailto:info@ome-ecuador.org", "mailto:inscripciones@ome-ecuador.org"],
+			lines: ["info@omec-mat.org"],
+			links: ["mailto:info@omec-mat.org"],
 		},
 		{
 			title: "Teléfono",
@@ -131,7 +132,7 @@
 							</div>
 							<div>
 								<p class="text-[12px] font-semibold text-copy">Ubicación</p>
-								<p class="mt-1 text-[13px] leading-[1.6] text-copy/72">Quito, Ecuador</p>
+								<p class="mt-1 text-[13px] leading-[1.6] text-copy/72">Guayaquil, Ecuador</p>
 							</div>
 						</div>
 					</div>

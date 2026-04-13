@@ -3,8 +3,6 @@
 	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";
 
-	const quick_links = ROUTES;
-
 	const resource_links = [
 		{ text: "Problemas de Práctica", href: "#" },
 		{ text: "Exámenes Anteriores", href: "#" },
@@ -13,10 +11,11 @@
 		{ text: "Preguntas Frecuentes", href: "#" },
 	] as const;
 
+	// TODO: consolidate the info in a constants.ts file
 	const contact_links = [
 		{
-			text: "info@ome-ecuador.org",
-			href: "mailto:info@ome-ecuador.org",
+			text: "info@omec-mat.org",
+			href: "mailto:info@omec-mat.org",
 			label: "Correo electrónico",
 		},
 		{
@@ -25,8 +24,8 @@
 			label: "Teléfono",
 		},
 		{
-			text: "Quito, Ecuador",
-			href: "https://maps.google.com/?q=Quito,Ecuador",
+			text: "Guayaquil, Ecuador",
+			href: "https://maps.google.com/?q=Guayaquil,Ecuador",
 			label: "Ubicación",
 		},
 	] as const;
@@ -37,13 +36,13 @@
 	] as const;
 
 	type footer_href =
-		| (typeof quick_links)[number]["href"]
+		| (typeof ROUTES)[number]["href"]
 		| (typeof resource_links)[number]["href"]
 		| (typeof contact_links)[number]["href"]
 		| (typeof legal_links)[number]["href"];
 
 	function get_href(href: footer_href) {
-		return href.startsWith("/") ? resolve(href as (typeof quick_links)[number]["href"]) : href;
+		return href.startsWith("/") ? resolve(href as (typeof ROUTES)[number]["href"]) : href;
 	}
 
 	const icon_paths = {
@@ -74,7 +73,7 @@
 			<div>
 				<h2 class="text-sm font-semibold">Enlaces Rápidos</h2>
 				<ul class="mt-3 space-y-2 text-xs leading-relaxed">
-					{#each quick_links as link (link.href)}
+					{#each ROUTES as link (link.href)}
 						<li>
 							<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}
 								>{link.text}</a
