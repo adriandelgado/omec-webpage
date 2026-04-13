@@ -7,7 +7,9 @@
 	const home_href = resolve("/");
 </script>
 
-<header class="sticky top-0 z-50 border-b border-line bg-sheet/95 px-4 backdrop-blur-sm lg:px-6">
+<header
+	class="sticky top-0 z-50 border-b border-line bg-foreground/95 px-4 backdrop-blur-sm lg:px-6"
+>
 	<nav
 		aria-label="Global"
 		class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
