@@ -54,26 +54,26 @@
 		{
 			id: "logo_imo",
 			image: logo_imo,
-			title: "IMO - Olimpiada Mundial",
-			description: "Participación y medallistas a nivel mundial",
+			title: "IMO - Olimpiada Internacional de Matemática",
+			description: "Participación y medallistas a nivel mundial.",
 		},
 		{
 			id: "logo_egmo",
 			image: logo_egmo,
-			title: "IMO - Olimpiada Mundial",
-			description: "Participación y medallistas a nivel mundial",
+			title: "EGMO - Olimpiada Europea Femenina de Matemática",
+			description: "Participación y medallistas en la competencia europea.",
 		},
 		{
 			id: "logo_pagmo",
 			image: logo_pagmo,
-			title: "IMO - Olimpiada Mundial",
-			description: "Participación y medallistas a nivel mundial",
+			title: "PAGMO - Olimpiada Panamericana Femenina de Matemática",
+			description: "Participación y medallistas a nivel panamericano.",
 		},
 		{
 			id: "olimpiada_de_mayo",
 			image: olimpiada_de_mayo,
-			title: "IMO - Olimpiada Mundial",
-			description: "Participación y medallistas a nivel mundial",
+			title: "Olimpiada de Mayo",
+			description: "Competencia matemática juvenil a nivel iberoamericano.",
 		},
 	] as const;
 
