@@ -15,8 +15,6 @@
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
-	const title = "Olimpiada Matemática Ecuatoriana";
-
 	const training_cards = [
 		{
 			title: "Entrenamiento Presencial",
@@ -89,7 +87,7 @@
 </script>
 
 <Seo
-	{title}
+	title=""
 	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
 />
 
@@ -97,7 +95,8 @@
 	<div class="mx-auto grid max-w-270 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-80">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
-				{title}
+				Olimpiada Matemática
+				<span class="text-primary">Ecuatoriana</span>
 			</h1>
 
 			<p class="mt-4 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">

@@ -2,7 +2,7 @@
 	import { page } from "$app/state";
 
 	type SeoProps = {
-		title?: string;
+		title: string;
 		description?: string;
 		type?: string;
 		image?: string;
@@ -13,7 +13,6 @@
 	};
 
 	const default_seo = {
-		title: "OMEC",
 		description:
 			"Olimpiada Matemática Ecuatoriana. Impulsamos el talento matemático de estudiantes ecuatorianos con competencias, entrenamiento y participación internacional.",
 		type: "website",
@@ -24,7 +23,7 @@
 	} as const;
 
 	let {
-		title = default_seo.title,
+		title,
 		description = default_seo.description,
 		type = default_seo.type,
 		image = default_seo.image,
@@ -35,9 +34,7 @@
 	}: SeoProps = $props();
 
 	let resolved_canonical_url = $derived(canonical_url ?? `${page.url.origin}${page.url.pathname}`);
-	let resolved_title = $derived(
-		title === default_seo.title ? title : `${title} - ${default_seo.title}`,
-	);
+	let resolved_title = $derived(title ? "OMEC" : `${title} - OMEC`);
 	let name_tags = $derived([
 		["description", description],
 		["twitter:title", resolved_title],
