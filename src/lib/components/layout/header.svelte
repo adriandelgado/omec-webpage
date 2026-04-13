@@ -1,18 +1,19 @@
 <script lang="ts">
+	import { Menu, X } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
 	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";
+
+	const home_href = resolve("/");
 </script>
 
 <header class="sticky top-0 z-50 border-b border-line bg-sheet/95 backdrop-blur-sm">
 	<div class="px-4 lg:px-6">
 		<nav aria-label="Global" class="mx-auto flex max-w-270 items-center justify-between py-3">
-			<div class="flex flex-1">
-				<a href={resolve("/")} class="-m-1 p-1">
-					<span class="sr-only">OMEC</span>
-					<img src={logo_omec} alt="" class="h-9 w-auto" />
-				</a>
-			</div>
+			<a href={home_href} class="-m-1 flex flex-1 p-1">
+				<span class="sr-only">OMEC</span>
+				<img src={logo_omec} alt="" class="h-9 w-auto" />
+			</a>
 			<div class="flex lg:hidden">
 				<button
 					type="button"
@@ -21,21 +22,7 @@
 					class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
 				>
 					<span class="sr-only">Open main menu</span>
-					<svg
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.5"
-						data-slot="icon"
-						aria-hidden="true"
-						class="size-6"
-					>
-						<path
-							d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
+					<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
 				</button>
 			</div>
 			<div class="hidden items-center gap-x-8 lg:flex">
@@ -50,52 +37,38 @@
 			<div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
 		</nav>
 	</div>
-	<div>
-		<dialog id="mobile-menu" class="m-0 p-0 backdrop:bg-transparent lg:hidden">
-			<div class="fixed inset-0 focus:outline-0">
-				<div
-					class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-				>
-					<div class="flex items-center justify-between">
-						<a href={resolve("/")} class="-m-1 p-1">
-							<span class="sr-only">OMEC</span>
-							<img src={logo_omec} alt="" class="h-9 w-auto" />
-						</a>
-						<button
-							type="button"
-							command="close"
-							commandfor="mobile-menu"
-							class="-m-2.5 rounded-md p-2.5 text-gray-700"
+
+	<dialog id="mobile-menu" class="m-0 p-0 backdrop:bg-transparent lg:hidden">
+		<div class="fixed inset-0 focus:outline-0">
+			<div
+				class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+			>
+				<div class="flex items-center justify-between">
+					<a href={home_href} class="-m-1 p-1">
+						<span class="sr-only">OMEC</span>
+						<img src={logo_omec} alt="" class="h-9 w-auto" />
+					</a>
+					<button
+						type="button"
+						command="close"
+						commandfor="mobile-menu"
+						class="-m-2.5 rounded-md p-2.5 text-gray-700"
+					>
+						<span class="sr-only">Close menu</span>
+						<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
+					</button>
+				</div>
+
+				<div class="mt-6 space-y-2 py-6">
+					{#each ROUTES as link (link.href)}
+						<a
+							href={resolve(link.href)}
+							class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+							>{link.text}</a
 						>
-							<span class="sr-only">Close menu</span>
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="1.5"
-								data-slot="icon"
-								aria-hidden="true"
-								class="size-6"
-							>
-								<path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-							</svg>
-						</button>
-					</div>
-					<div class="mt-6 flow-root">
-						<div class="-my-6 divide-y divide-gray-500/10">
-							<div class="space-y-2 py-6">
-								{#each ROUTES as link (link.href)}
-									<a
-										href={resolve(link.href)}
-										class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-										>{link.text}</a
-									>
-								{/each}
-							</div>
-						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
-		</dialog>
-	</div>
+		</div>
+	</dialog>
 </header>
