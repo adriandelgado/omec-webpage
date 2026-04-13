@@ -30,7 +30,7 @@
 			<span class="block text-primary">Anteriores</span>
 		</h1>
 
-		<p class="mt-4 max-w-175 text-[13px] leading-[1.55] text-copy/75">
+		<p class="mt-4 max-w-175 text-[15px] leading-[1.55] text-copy/75">
 			Histórico completo de participaciones ecuatorianas en olimpiadas matemáticas nacionales e
 			internacionales, incluyendo resultados, medallas y menciones honoríficas desde 1988.
 		</p>
@@ -43,7 +43,7 @@
 			<SectionHeading title="Históricos" />
 
 			<nav aria-label="Históricos de olimpiadas" class="mt-5 border-b border-line/80">
-				<div class="flex flex-wrap gap-5 text-[12px] font-medium">
+				<div class="flex flex-wrap gap-5 text-[14px] font-medium">
 					{#each historical_routes as route (route.href)}
 						<a
 							href={resolve(route.href)}

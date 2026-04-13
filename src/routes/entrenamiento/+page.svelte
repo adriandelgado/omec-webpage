@@ -97,7 +97,7 @@
 			>
 				Entrenamientos
 			</h1>
-			<p class="mt-4 max-w-120 text-[13px] leading-[1.55] text-copy/75">
+			<p class="mt-4 max-w-120 text-[15px] leading-[1.55] text-copy/75">
 				Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta
 				competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores
 				universitarios con amplia experiencia.
@@ -144,7 +144,7 @@
 						>
 							{card.title}
 						</h3>
-						<p class="mt-4 max-w-42 text-[11px] leading-[1.55] text-copy/70">{card.description}</p>
+						<p class="mt-4 max-w-42 text-[13px] leading-[1.55] text-copy/70">{card.description}</p>
 					</div>
 
 					<a
@@ -179,7 +179,7 @@
 						<h3 class="text-[24px] leading-[0.95] font-semibold tracking-[-0.04em] text-primary">
 							{coach.name}
 						</h3>
-						<p class="mt-1 text-[12px] leading-normal text-copy/70">{coach.role}</p>
+						<p class="mt-1 text-[13px] leading-normal text-copy/70">{coach.role}</p>
 					</div>
 				</article>
 			{/each}
@@ -193,13 +193,13 @@
 			<h2 class="text-[28px] leading-[0.95] font-semibold tracking-[-0.04em]">
 				¿Listo para comenzar tu camino matemático?
 			</h2>
-			<p class="mx-auto mt-4 max-w-130 text-[12px] leading-[1.7] text-white/82">
+			<p class="mx-auto mt-4 max-w-130 text-[14px] leading-[1.7] text-white/82">
 				Inscríbete en uno de nuestros programas y comienza a desarrollar tu potencial junto a los
 				mejores entrenadores del país.
 			</p>
 			<a
 				href={resolve("/nosotros")}
-				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-[13px] font-medium text-primary transition-colors hover:bg-white/90"
+				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-[14px] font-medium text-primary transition-colors hover:bg-white/90"
 			>
 				Inscribirse Ahora
 			</a>

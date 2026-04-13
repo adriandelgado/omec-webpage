@@ -62,8 +62,8 @@
 				<a href={resolve("/")} class="inline-flex items-start gap-3">
 					<img src={logo_omec} alt="OMEC" class="h-14 w-auto shrink-0" />
 					<div class="pt-1">
-						<p class="text-sm font-semibold">OMEC</p>
-						<p class="mt-1 text-xs leading-tight">
+						<p class="text-base font-semibold">OMEC</p>
+						<p class="mt-1 text-sm leading-tight">
 							Desarrollando el talento matemático de los estudiantes ecuatorianos.
 						</p>
 					</div>
@@ -71,8 +71,8 @@
 			</div>
 
 			<div>
-				<h2 class="text-sm font-semibold">Enlaces Rápidos</h2>
-				<ul class="mt-3 space-y-2 text-xs leading-relaxed">
+				<h2 class="text-base font-semibold">Enlaces Rápidos</h2>
+				<ul class="mt-3 space-y-2 text-sm leading-relaxed">
 					{#each ROUTES as link (link.href)}
 						<li>
 							<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}
@@ -84,8 +84,8 @@
 			</div>
 
 			<div>
-				<h2 class="text-sm font-semibold">Recursos</h2>
-				<ul class="mt-3 space-y-2 text-xs leading-relaxed">
+				<h2 class="text-base font-semibold">Recursos</h2>
+				<ul class="mt-3 space-y-2 text-sm leading-relaxed">
 					{#each resource_links as link (link.text)}
 						<li>
 							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
@@ -98,8 +98,8 @@
 			</div>
 
 			<div>
-				<h2 class="text-sm font-semibold">Contacto</h2>
-				<ul class="mt-3 space-y-3 text-xs leading-relaxed">
+				<h2 class="text-base font-semibold">Contacto</h2>
+				<ul class="mt-3 space-y-3 text-sm leading-relaxed">
 					{#each contact_links as link (link.text)}
 						<li>
 							<!-- eslint-disable svelte/no-navigation-without-resolve -->
@@ -129,7 +129,7 @@
 		</div>
 
 		<div class="mt-8 border-t border-line pt-4">
-			<div class="flex flex-col gap-3 text-[11px] leading-relaxed md:flex-row md:justify-between">
+			<div class="flex flex-col gap-3 text-[12px] leading-relaxed md:flex-row md:justify-between">
 				<p class="max-w-2xl">
 					© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.
 				</p>

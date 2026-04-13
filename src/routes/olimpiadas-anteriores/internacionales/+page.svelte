@@ -42,9 +42,9 @@
 
 		<div class="mt-5 overflow-hidden rounded-2xl border border-line bg-white">
 			<div class="overflow-x-auto">
-				<table class="min-w-full text-left text-[12px] text-copy">
+				<table class="min-w-full text-left text-[13px] text-copy">
 					<thead
-						class="bg-primary/8 text-[11px] font-semibold tracking-[0.08em] text-primary uppercase"
+						class="bg-primary/8 text-[12px] font-semibold tracking-[0.08em] text-primary uppercase"
 					>
 						<tr>
 							{#each medallero_columns as column (column)}
@@ -58,7 +58,7 @@
 							<tr class="align-top transition-colors hover:bg-primary/4">
 								<td class="px-4 py-3">
 									<p class="font-medium text-copy">{olympiad.olympiad}</p>
-									<p class="mt-1 text-[11px] text-copy/55">
+									<p class="mt-1 text-[12px] text-copy/55">
 										{olympiad.years} • {olympiad.participants} participaciones
 									</p>
 								</td>
@@ -93,10 +93,10 @@
 				<p class="mt-1 text-[18px] leading-tight font-medium text-primary">
 					Olimpiada Internacional de Matemática
 				</p>
-				<p class="mt-3 text-[11px] tracking-[0.12em] text-copy/45 uppercase">
+				<p class="mt-3 text-[12px] tracking-[0.12em] text-copy/45 uppercase">
 					2001-2025 • 24 participaciones
 				</p>
-				<p class="mt-4 max-w-85 text-[12px] leading-[1.6] text-copy/75">
+				<p class="mt-4 max-w-85 text-[14px] leading-[1.6] text-copy/75">
 					La olimpiada internacional de matemáticas es el certamen mundial en el que participan
 					alrededor de 100 países de todos los continentes del mundo.
 				</p>
@@ -107,7 +107,7 @@
 			<h2 class="text-[30px] leading-none font-medium tracking-[-0.03em] text-primary">
 				Conoce las olimpiadas
 			</h2>
-			<p class="mt-4 max-w-120 text-[12px] leading-[1.65] text-copy/75">
+			<p class="mt-4 max-w-120 text-[14px] leading-[1.65] text-copy/75">
 				Estas son algunas de las olimpiadas en las que Ecuador participa a nivel internacional. Los
 				ganadores de la ONM del año previo son convocados a los selectivos de estas competencias y
 				tendrán una oportunidad de formar parte de la delegación de Ecuador en esas olimpiadas,
