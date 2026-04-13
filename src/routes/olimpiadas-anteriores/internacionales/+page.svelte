@@ -36,16 +36,14 @@
 
 <div class="space-y-8">
 	<section>
-		<h2 class="text-center text-[28px] leading-none font-medium tracking-[-0.03em] text-primary">
+		<h2 class="text-center text-3xl leading-none font-medium tracking-tight text-primary">
 			Medallero
 		</h2>
 
 		<div class="mt-5 overflow-hidden rounded-2xl border border-line bg-white">
 			<div class="overflow-x-auto">
-				<table class="min-w-full text-left text-[13px] text-copy">
-					<thead
-						class="bg-primary/8 text-[12px] font-semibold tracking-[0.08em] text-primary uppercase"
-					>
+				<table class="min-w-full text-left text-sm text-copy">
+					<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
 						<tr>
 							{#each medallero_columns as column (column)}
 								<th class="px-4 py-3">{column}</th>
@@ -58,7 +56,7 @@
 							<tr class="align-top transition-colors hover:bg-primary/4">
 								<td class="px-4 py-3">
 									<p class="font-medium text-copy">{olympiad.olympiad}</p>
-									<p class="mt-1 text-[12px] text-copy/55">
+									<p class="mt-1 text-xs text-copy/55">
 										{olympiad.years} • {olympiad.participants} participaciones
 									</p>
 								</td>
@@ -75,28 +73,24 @@
 	</section>
 
 	<section class="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<article
-			class="overflow-hidden rounded-3xl border border-line bg-white shadow-[0_18px_40px_rgba(45,103,255,0.08)]"
-		>
+		<article class="overflow-hidden rounded-3xl border border-line bg-white shadow-xl">
 			<div class="border-b border-line bg-primary/5 p-3">
 				<img
 					src={logo_imo}
 					alt="Delegación ecuatoriana en una competencia internacional de matemática"
-					class="h-56 w-full rounded-[18px] object-cover"
+					class="h-56 w-full rounded-2xl object-cover"
 				/>
 			</div>
 
 			<div class="p-5">
-				<h3 class="text-[26px] leading-[0.95] font-semibold tracking-[-0.04em] text-primary">
-					IMO
-				</h3>
-				<p class="mt-1 text-[18px] leading-tight font-medium text-primary">
+				<h3 class="text-3xl leading-none font-semibold tracking-tighter text-primary">IMO</h3>
+				<p class="mt-1 text-lg leading-tight font-medium text-primary">
 					Olimpiada Internacional de Matemática
 				</p>
-				<p class="mt-3 text-[12px] tracking-[0.12em] text-copy/45 uppercase">
+				<p class="mt-3 text-xs tracking-wider text-copy/45 uppercase">
 					2001-2025 • 24 participaciones
 				</p>
-				<p class="mt-4 max-w-85 text-[14px] leading-[1.6] text-copy/75">
+				<p class="mt-4 max-w-85 text-sm leading-relaxed text-copy/75">
 					La olimpiada internacional de matemáticas es el certamen mundial en el que participan
 					alrededor de 100 países de todos los continentes del mundo.
 				</p>
@@ -104,10 +98,10 @@
 		</article>
 
 		<div class="pt-1">
-			<h2 class="text-[30px] leading-none font-medium tracking-[-0.03em] text-primary">
+			<h2 class="text-3xl leading-none font-medium tracking-tight text-primary">
 				Conoce las olimpiadas
 			</h2>
-			<p class="mt-4 max-w-120 text-[14px] leading-[1.65] text-copy/75">
+			<p class="mt-4 max-w-120 text-sm leading-relaxed text-copy/75">
 				Estas son algunas de las olimpiadas en las que Ecuador participa a nivel internacional. Los
 				ganadores de la ONM del año previo son convocados a los selectivos de estas competencias y
 				tendrán una oportunidad de formar parte de la delegación de Ecuador en esas olimpiadas,

@@ -91,16 +91,14 @@
 
 <section class="border-b border-line px-4 pt-8 pb-8 lg:px-6 lg:pt-10 lg:pb-10">
 	<div class="mx-auto grid max-w-270 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-		<div class="max-w-[320px]">
-			<h1
-				class="text-[40px] leading-[0.92] font-semibold tracking-[-0.04em] text-copy lg:text-[52px]"
-			>
+		<div class="max-w-80">
+			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
 				<span class="block">Olimpiada</span>
 				<span class="block">Matemática</span>
 				<span class="block text-primary">Ecuatoriana</span>
 			</h1>
 
-			<p class="mt-4 max-w-67.5 text-[15px] leading-[1.45] text-copy/75 lg:max-w-75">
+			<p class="mt-4 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">
 				Desarrollando el talento matemático de los estudiantes ecuatorianos y potenciando la
 				excelencia académica.
 			</p>
@@ -123,7 +121,7 @@
 		<SectionHeading title="Programas de Entrenamiento" />
 
 		<div class="mt-4 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
-			<p class="max-w-150 text-[14px] leading-[1.6] text-copy/75">
+			<p class="max-w-150 text-sm leading-relaxed text-copy/75">
 				Ofrecemos programas de entrenamiento diseñados para desarrollar las capacidades matemáticas
 				desde etapas iniciales hasta niveles de alta competencia. Nuestros entrenadores combinan
 				experiencia olímpica y formación universitaria.
@@ -150,11 +148,11 @@
 			{#each olympic_editions as edition (edition)}
 				<article class="overflow-hidden rounded-sm border border-line bg-white">
 					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
-						<h3 class="text-[14px] font-medium">Olimpiada Nacional</h3>
-						<p class="text-[12px] tracking-[0.2em] uppercase opacity-70">fase {edition}</p>
+						<h3 class="text-sm font-medium">Olimpiada Nacional</h3>
+						<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
 					</div>
 
-					<div class="grid gap-2 px-4 py-4 text-[13px] text-copy">
+					<div class="grid gap-2 px-4 py-4 text-sm text-copy">
 						{#each olympic_stages as [label, date] (label)}
 							<div class="grid grid-cols-[1fr_auto] gap-3">
 								<p>{label}</p>
@@ -171,7 +169,7 @@
 		>
 			<div>
 				<h3 class="text-lg font-medium">Inscripciones Abiertas</h3>
-				<p class="mt-1 text-[14px] text-white/85">
+				<p class="mt-1 text-sm text-white/85">
 					Regístrate ahora para la temporada 2026 de las Olimpiadas Matemáticas.
 				</p>
 			</div>
@@ -184,7 +182,7 @@
 
 			<a
 				href={resolve("/nosotros")}
-				class="relative mt-4 inline-flex h-9 items-center justify-center rounded-sm bg-white px-5 text-[14px] font-medium text-primary lg:mt-0"
+				class="relative mt-4 inline-flex h-9 items-center justify-center rounded-sm bg-white px-5 text-sm font-medium text-primary lg:mt-0"
 				>Inscríbete Ahora</a
 			>
 		</div>
@@ -203,26 +201,26 @@
 					</div>
 
 					<div class="mt-4 text-center">
-						<h3 class="text-[14px] leading-tight font-medium text-primary">{achievement.title}</h3>
-						<p class="mt-2 text-[12px] leading-normal text-copy/70">{achievement.description}</p>
+						<h3 class="text-sm leading-tight font-medium text-primary">{achievement.title}</h3>
+						<p class="mt-2 text-xs leading-normal text-copy/70">{achievement.description}</p>
 					</div>
 
 					<div class="mt-3 flex items-end justify-center gap-5 text-center">
 						<div>
 							<div
-								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#d18934] text-[12px] font-semibold text-white"
+								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-amber-600 text-xs font-semibold text-white"
 							>
 								1
 							</div>
-							<p class="mt-1 text-[11px] text-copy/70">Bronce</p>
+							<p class="mt-1 text-xs text-copy/70">Bronce</p>
 						</div>
 						<div>
 							<div
-								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#e7e9ef] text-[12px] font-semibold text-copy"
+								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-xs font-semibold text-copy"
 							>
 								10
 							</div>
-							<p class="mt-1 text-[11px] text-copy/70">HM</p>
+							<p class="mt-1 text-xs text-copy/70">HM</p>
 						</div>
 					</div>
 				</article>

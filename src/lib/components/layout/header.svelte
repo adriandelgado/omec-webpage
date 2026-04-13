@@ -41,8 +41,7 @@
 			{#each ROUTES as link (link.href)}
 				<a
 					href={resolve(link.href)}
-					class="text-[14px] font-medium tracking-[0.01em] text-copy transition-colors hover:text-primary"
-					>{link.text}</a
+					class="text-sm font-medium text-copy transition-colors hover:text-primary">{link.text}</a
 				>
 			{/each}
 		</div>

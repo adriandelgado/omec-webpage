@@ -135,16 +135,14 @@
 </script>
 
 <div class="space-y-5">
-	<p class="text-[12px] tracking-[0.12em] text-copy/45 uppercase">
+	<p class="text-xs tracking-wider text-copy/45 uppercase">
 		Max puntaje: 42 pts • Participantes: {national_results.length}
 	</p>
 
 	<div class="overflow-hidden rounded-2xl border border-line bg-white">
 		<div class="overflow-x-auto">
-			<table class="min-w-full text-left text-[13px] text-copy">
-				<thead
-					class="bg-primary/8 text-[12px] font-semibold tracking-[0.08em] text-primary uppercase"
-				>
+			<table class="min-w-full text-left text-sm text-copy">
+				<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
 					<tr>
 						{#each national_columns as column (column)}
 							<th class="px-4 py-3">{column}</th>

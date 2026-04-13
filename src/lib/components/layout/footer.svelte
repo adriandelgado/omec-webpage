@@ -129,7 +129,7 @@
 		</div>
 
 		<div class="mt-8 border-t border-line pt-4">
-			<div class="flex flex-col gap-3 text-[12px] leading-relaxed md:flex-row md:justify-between">
+			<div class="flex flex-col gap-3 text-xs leading-relaxed md:flex-row md:justify-between">
 				<p class="max-w-2xl">
 					© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.
 				</p>

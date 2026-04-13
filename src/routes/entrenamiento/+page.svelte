@@ -92,12 +92,10 @@
 <section class="border-b border-line px-4 pt-8 pb-9 lg:px-6 lg:pt-10 lg:pb-10">
 	<div class="mx-auto max-w-270">
 		<div class="max-w-150">
-			<h1
-				class="text-[36px] leading-[0.96] font-semibold tracking-[-0.04em] text-primary lg:text-[48px]"
-			>
+			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-primary lg:text-5xl">
 				Entrenamientos
 			</h1>
-			<p class="mt-4 max-w-120 text-[15px] leading-[1.55] text-copy/75">
+			<p class="mt-4 max-w-120 text-sm leading-6 text-copy/75">
 				Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta
 				competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores
 				universitarios con amplia experiencia.
@@ -140,11 +138,11 @@
 							<img src={logo_pagmo} alt="" class="h-7 w-7 rounded-full object-cover opacity-80" />
 						</div>
 						<h3
-							class="mt-6 max-w-[12ch] text-[28px] leading-[0.88] font-semibold tracking-[-0.05em] text-primary"
+							class="mt-6 max-w-[12ch] text-3xl leading-none font-semibold tracking-tighter text-primary"
 						>
 							{card.title}
 						</h3>
-						<p class="mt-4 max-w-42 text-[13px] leading-[1.55] text-copy/70">{card.description}</p>
+						<p class="mt-4 max-w-42 text-sm leading-6 text-copy/70">{card.description}</p>
 					</div>
 
 					<a
@@ -176,10 +174,10 @@
 						class="h-18 w-18 rounded-full border border-line object-cover"
 					/>
 					<div>
-						<h3 class="text-[24px] leading-[0.95] font-semibold tracking-[-0.04em] text-primary">
+						<h3 class="text-2xl leading-none font-semibold tracking-tighter text-primary">
 							{coach.name}
 						</h3>
-						<p class="mt-1 text-[13px] leading-normal text-copy/70">{coach.role}</p>
+						<p class="mt-1 text-sm leading-normal text-copy/70">{coach.role}</p>
 					</div>
 				</article>
 			{/each}
@@ -190,16 +188,16 @@
 <section class="px-4 py-0 lg:px-0">
 	<div class="bg-primary px-4 py-9 text-center text-white lg:px-6 lg:py-11">
 		<div class="mx-auto max-w-170">
-			<h2 class="text-[28px] leading-[0.95] font-semibold tracking-[-0.04em]">
+			<h2 class="text-3xl leading-none font-semibold tracking-tighter">
 				¿Listo para comenzar tu camino matemático?
 			</h2>
-			<p class="mx-auto mt-4 max-w-130 text-[14px] leading-[1.7] text-white/82">
+			<p class="mx-auto mt-4 max-w-130 text-sm leading-7 text-white/82">
 				Inscríbete en uno de nuestros programas y comienza a desarrollar tu potencial junto a los
 				mejores entrenadores del país.
 			</p>
 			<a
 				href={resolve("/nosotros")}
-				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-[14px] font-medium text-primary transition-colors hover:bg-white/90"
+				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-sm font-medium text-primary transition-colors hover:bg-white/90"
 			>
 				Inscribirse Ahora
 			</a>
