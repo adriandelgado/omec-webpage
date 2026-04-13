@@ -5,48 +5,51 @@
 </script>
 
 <header class="sticky top-0 z-50 border-b border-line bg-sheet/95 backdrop-blur-sm">
-	<nav aria-label="Global" class="mx-auto flex max-w-270 items-center justify-between px-4 py-3">
-		<div class="flex flex-1">
-			<a href={resolve("/")} class="-m-1 p-1">
-				<span class="sr-only">OMEC</span>
-				<img src={logo_omec} alt="" class="h-9 w-auto" />
-			</a>
-		</div>
-		<div class="flex lg:hidden">
-			<button
-				type="button"
-				command="show-modal"
-				commandfor="mobile-menu"
-				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-			>
-				<span class="sr-only">Open main menu</span>
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					data-slot="icon"
-					aria-hidden="true"
-					class="size-6"
+	<div class="px-4 lg:px-6">
+		<nav aria-label="Global" class="mx-auto flex max-w-270 items-center justify-between py-3">
+			<div class="flex flex-1">
+				<a href={resolve("/")} class="-m-1 p-1">
+					<span class="sr-only">OMEC</span>
+					<img src={logo_omec} alt="" class="h-9 w-auto" />
+				</a>
+			</div>
+			<div class="flex lg:hidden">
+				<button
+					type="button"
+					command="show-modal"
+					commandfor="mobile-menu"
+					class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
 				>
-					<path
-						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</button>
-		</div>
-		<div class="hidden items-center gap-x-8 lg:flex">
-			{#each ROUTES as link (link.href)}
-				<a
-					href={resolve(link.href)}
-					class="text-sm font-medium text-copy transition-colors hover:text-primary">{link.text}</a
-				>
-			{/each}
-		</div>
-		<div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
-	</nav>
+					<span class="sr-only">Open main menu</span>
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						data-slot="icon"
+						aria-hidden="true"
+						class="size-6"
+					>
+						<path
+							d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
+			</div>
+			<div class="hidden items-center gap-x-8 lg:flex">
+				{#each ROUTES as link (link.href)}
+					<a
+						href={resolve(link.href)}
+						class="text-sm font-medium text-copy transition-colors hover:text-primary"
+						>{link.text}</a
+					>
+				{/each}
+			</div>
+			<div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
+		</nav>
+	</div>
 	<div>
 		<dialog id="mobile-menu" class="m-0 p-0 backdrop:bg-transparent lg:hidden">
 			<div class="fixed inset-0 focus:outline-0">
