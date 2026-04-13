@@ -2,6 +2,7 @@
 	import { page } from "$app/state";
 	import { resolve } from "$app/paths";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageIntro from "$lib/components/page-intro.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 
 	let { children } = $props();
@@ -19,15 +20,10 @@
 </script>
 
 <ContentSection class="border-b border-line pt-8 pb-8 lg:pt-10 lg:pb-10">
-	<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
-		<span class="block">Olimpiadas</span>
-		<span class="block text-primary">Anteriores</span>
-	</h1>
-
-	<p class="mt-4 max-w-175 text-sm leading-6 text-copy/75">
-		Histórico completo de participaciones ecuatorianas en olimpiadas matemáticas nacionales e
-		internacionales, incluyendo resultados, medallas y menciones honoríficas desde 1988.
-	</p>
+	<PageIntro
+		title_lines={[{ text: "Olimpiadas" }, { text: "Anteriores", class: "text-primary" }]}
+		description="Histórico completo de participaciones ecuatorianas en olimpiadas matemáticas nacionales e internacionales, incluyendo resultados, medallas y menciones honoríficas desde 1988."
+	/>
 </ContentSection>
 
 <ContentSection class="py-8 lg:pb-10">

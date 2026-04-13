@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Mail, MapPin, Phone, Send } from "@lucide/svelte";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import { contact_form_schema } from "./contact-form";
 	import { send_contact_message } from "./contacto.remote";
@@ -50,17 +51,11 @@
 	description="Contáctate con OMEC para resolver dudas sobre olimpiadas matemáticas, inscripciones, entrenamiento y participación estudiantil en Ecuador."
 />
 
-<ContentSection class="border-b border-line pt-9 pb-10 lg:pt-11 lg:pb-12">
-	<div class="max-w-185">
-		<p class="text-xs font-medium tracking-[0.22em] text-primary uppercase">Contacto</p>
-		<h1 class="mt-3 text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
-			{title}
-		</h1>
-		<p class="mt-4 max-w-170 text-sm leading-7 text-copy/72">
-			¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de
-			entrenamiento? Estamos aquí para ayudarte.
-		</p>
-	</div>
+<ContentSection class="border-b border-line pt-8 pb-9 lg:pt-10 lg:pb-10">
+	<PageIntro
+		title_lines={[{ text: title }]}
+		description="¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de entrenamiento? Estamos aquí para ayudarte."
+	/>
 
 	<div class="mt-8 border-t border-line pt-6 lg:pt-7">
 		<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">

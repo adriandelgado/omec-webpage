@@ -8,6 +8,7 @@
 	import logo_egmo from "$lib/assets/logo-egmo.png";
 	import logo_pagmo from "$lib/assets/logo-pagmo.png";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
@@ -95,16 +96,10 @@
 />
 
 <ContentSection class="border-b border-line pt-8 pb-9 lg:pt-10 lg:pb-10">
-	<div class="max-w-150">
-		<h1 class="text-4xl leading-none font-semibold tracking-tighter text-primary lg:text-5xl">
-			{title}
-		</h1>
-		<p class="mt-4 max-w-120 text-sm leading-6 text-copy/75">
-			Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta
-			competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores
-			universitarios con amplia experiencia.
-		</p>
-	</div>
+	<PageIntro
+		title_lines={[{ text: title, class: "text-primary" }]}
+		description="Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores universitarios con amplia experiencia."
+	/>
 </ContentSection>
 
 <ContentSection class="border-b border-line py-8">
