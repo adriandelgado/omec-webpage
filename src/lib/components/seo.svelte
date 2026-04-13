@@ -13,6 +13,7 @@
 	};
 
 	const default_seo = {
+		// TODO: move to constants.ts
 		description:
 			"Olimpiada Matemática Ecuatoriana. Impulsamos el talento matemático de estudiantes ecuatorianos con competencias, entrenamiento y participación internacional.",
 		type: "website",
@@ -34,7 +35,7 @@
 	}: SeoProps = $props();
 
 	let resolved_canonical_url = $derived(canonical_url ?? `${page.url.origin}${page.url.pathname}`);
-	let resolved_title = $derived(title ? "OMEC" : `${title} - OMEC`);
+	let resolved_title = $derived(title ? `${title} - OMEC` : "OMEC");
 	let name_tags = $derived([
 		["description", description],
 		["twitter:title", resolved_title],
