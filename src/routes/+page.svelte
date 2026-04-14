@@ -9,7 +9,7 @@
 	import sine from "$lib/assets/sine.svg";
 	import logo_imo from "$lib/assets/logo-imo.svg";
 	import logo_egmo from "$lib/assets/logo-egmo.svg";
-	import logo_pagmo from "$lib/assets/logo-pagmo.png";
+	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
 	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import Seo from "$lib/components/seo.svelte";
