@@ -5,7 +5,7 @@
 	import circle from "$lib/assets/circle.svg";
 	import hero_image from "$lib/assets/hero.png";
 	import logo_imo from "$lib/assets/logo-imo.svg";
-	import logo_egmo from "$lib/assets/logo-egmo.png";
+	import logo_egmo from "$lib/assets/logo-egmo.svg";
 	import logo_pagmo from "$lib/assets/logo-pagmo.png";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
