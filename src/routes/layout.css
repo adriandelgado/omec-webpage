@@ -12,3 +12,13 @@
 	--color-primary-dark: oklch(0.5178 0.2239 263.83);
 	--color-copy: oklch(0.3199 0.0402 253.23);
 }
+
+@layer base {
+	html {
+		scrollbar-gutter: stable;
+	}
+
+	body {
+		@apply bg-background;
+	}
+}
