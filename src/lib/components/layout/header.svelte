@@ -1,74 +1,74 @@
 <script lang="ts">
+	import { Dialog } from "bits-ui";
 	import { Menu, X } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
 	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";
 
 	const home_href = resolve("/");
+	let is_mobile_menu_open = $state(false);
 </script>
 
 <header
 	class="sticky top-0 z-50 border-b border-line bg-foreground/95 px-4 backdrop-blur-sm lg:px-6"
 >
-	<nav
-		aria-label="Global"
-		class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
-	>
-		<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
-			<span class="sr-only">OMEC</span>
-			<img src={logo_omec} alt="" class="h-9 w-auto" />
-		</a>
-		<button
-			type="button"
-			command="show-modal"
-			commandfor="mobile-menu"
-			class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 lg:hidden"
+	<Dialog.Root bind:open={is_mobile_menu_open}>
+		<nav
+			aria-label="Global"
+			class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
 		>
-			<span class="sr-only">Open main menu</span>
-			<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
-		</button>
-		<div class="hidden items-center gap-x-8 lg:col-start-2 lg:flex">
-			{#each ROUTES as link (link.href)}
-				<a
-					href={resolve(link.href)}
-					class="text-sm font-medium text-copy transition-colors hover:text-primary">{link.text}</a
-				>
-			{/each}
-		</div>
-	</nav>
-
-	<dialog
-		id="mobile-menu"
-		class="fixed inset-0 m-0 max-h-none max-w-none bg-transparent p-0 backdrop:bg-transparent lg:hidden"
-	>
-		<div
-			class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 focus:outline-0 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-		>
-			<div class="flex items-center justify-between">
-				<a href={home_href} class="-m-1 p-1">
-					<span class="sr-only">OMEC</span>
-					<img src={logo_omec} alt="" class="h-9 w-auto" />
-				</a>
-				<button
-					type="button"
-					command="close"
-					commandfor="mobile-menu"
-					class="-m-2.5 rounded-md p-2.5 text-gray-700"
-				>
-					<span class="sr-only">Close menu</span>
-					<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
-				</button>
-			</div>
-
-			<div class="mt-6 space-y-2 py-6">
+			<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
+				<span class="sr-only">OMEC</span>
+				<img src={logo_omec} alt="" class="h-9 w-auto" />
+			</a>
+			<Dialog.Trigger
+				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-copy transition-colors hover:text-primary lg:hidden"
+			>
+				<span class="sr-only">Open main menu</span>
+				<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
+			</Dialog.Trigger>
+			<div class="hidden items-center gap-x-8 lg:col-start-2 lg:flex">
 				{#each ROUTES as link (link.href)}
 					<a
 						href={resolve(link.href)}
-						class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+						class="text-sm font-medium text-copy transition-colors hover:text-primary"
 						>{link.text}</a
 					>
 				{/each}
 			</div>
-		</div>
-	</dialog>
+		</nav>
+
+		<Dialog.Portal>
+			<Dialog.Overlay class="fixed inset-0 z-60 bg-copy/20 backdrop-blur-xs lg:hidden" />
+			<Dialog.Content
+				class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-line bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
+			>
+				<Dialog.Title class="sr-only">Main menu</Dialog.Title>
+				<div class="flex items-center justify-between">
+					<a href={home_href} class="-m-1 p-1">
+						<span class="sr-only">OMEC</span>
+						<img src={logo_omec} alt="" class="h-9 w-auto" />
+					</a>
+					<Dialog.Close
+						class="-m-2.5 rounded-md p-2.5 text-copy transition-colors hover:text-primary"
+					>
+						<span class="sr-only">Close menu</span>
+						<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
+					</Dialog.Close>
+				</div>
+
+				<div class="mt-6 space-y-2 py-6">
+					{#each ROUTES as link (link.href)}
+						<a
+							href={resolve(link.href)}
+							onclick={() => (is_mobile_menu_open = false)}
+							class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-copy transition-colors hover:bg-background hover:text-primary"
+						>
+							{link.text}
+						</a>
+					{/each}
+				</div>
+			</Dialog.Content>
+		</Dialog.Portal>
+	</Dialog.Root>
 </header>
