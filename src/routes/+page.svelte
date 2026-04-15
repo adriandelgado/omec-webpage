@@ -80,11 +80,14 @@
 		},
 	] as const;
 
+	const gallery_image =
+		"https://images.unsplash.com/photo-1706174757544-3fb254ec54fd?auto=format&fit=crop&w=1170&q=80";
+
 	const gallery_events = Array.from({ length: 8 }, (_, index) => ({
 		id: `evento-${index + 1}`,
 		title: `Evento ${index + 1}`,
-		image: logo_imo,
-		image_alt: "Participantes de una actividad de la olimpiada matemática",
+		image: gallery_image,
+		image_alt: "Estudiantes con toga y birrete durante una ceremonia académica al aire libre",
 	}));
 </script>
 
