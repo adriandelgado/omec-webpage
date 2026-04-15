@@ -109,7 +109,7 @@
 	</div>
 
 	<div
-		class="relative overflow-hidden rounded-3xl border border-primary bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
+		class="relative overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
 	>
 		<img
 			src={hero_image}
@@ -193,7 +193,7 @@
 
 	<div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 		{#each international_achievements as achievement (achievement.id)}
-			<article class="rounded-sm border border-primary bg-white px-4 py-4">
+			<article class="rounded-sm border-x border-t-6 border-b border-primary bg-white p-4">
 				<div class="flex h-20 items-center justify-center">
 					<img src={achievement.image} alt="" class="max-h-16 w-auto object-contain" />
 				</div>
@@ -232,7 +232,7 @@
 	<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 		{#each gallery_events as event (event.id)}
 			<article>
-				<div class="overflow-hidden border border-primary bg-white">
+				<div class="overflow-hidden border border-primary/25 bg-white">
 					<img src={event.image} alt={event.image_alt} class="aspect-[4/2.7] w-full object-cover" />
 				</div>
 				<p class="mt-2 text-sm text-copy/70">{event.title}</p>

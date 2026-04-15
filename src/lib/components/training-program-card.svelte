@@ -10,7 +10,9 @@
 	let { title, description, bullets, icon, icon_alt }: Props = $props();
 </script>
 
-<article class="rounded-md border border-primary bg-white p-4 shadow-[4px_4px_0_0_#2d67ff]">
+<article
+	class="rounded-md border border-primary bg-white p-4 shadow-[4px_4px_0_0_var(--color-primary)]"
+>
 	<img src={icon} alt={icon_alt} class="h-6 w-6" />
 	<h3 class="mt-3 max-w-[14ch] text-base leading-tight font-medium text-copy">{title}</h3>
 	<p class="mt-2.5 text-sm leading-relaxed text-copy/70">{description}</p>
