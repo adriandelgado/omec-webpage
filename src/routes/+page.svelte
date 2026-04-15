@@ -152,7 +152,7 @@
 					<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
 				</div>
 
-				<div class="grid gap-2 px-4 py-4 text-sm text-copy">
+				<div class="grid gap-2 p-4 text-sm text-copy">
 					{#each olympic_stages as [label, date] (label)}
 						<div class="grid grid-cols-[1fr_auto] gap-3">
 							<p>{label}</p>

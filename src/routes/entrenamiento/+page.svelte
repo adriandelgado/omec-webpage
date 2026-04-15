@@ -123,9 +123,7 @@
 
 	<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
 		{#each material_cards as card (card.id)}
-			<article
-				class="flex min-h-60 flex-col justify-between border border-primary bg-white px-5 py-5"
-			>
+			<article class="flex min-h-60 flex-col justify-between border border-primary bg-white p-5">
 				<div>
 					<div
 						class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"

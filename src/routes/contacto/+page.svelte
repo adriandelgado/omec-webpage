@@ -16,12 +16,6 @@
 			lines: ["info@omec-mat.org"],
 			links: ["mailto:info@omec-mat.org"],
 		},
-		{
-			title: "Teléfono",
-			icon: Phone,
-			lines: ["+593 2 234-5678", "+593 98 765-4321"],
-			links: ["tel:+59322345678", "tel:+593987654321"],
-		},
 	] as const;
 
 	const social_links = [
@@ -57,14 +51,14 @@
 		description="¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de entrenamiento? Estamos aquí para ayudarte."
 	/>
 
-	<div class="mt-8 border-t border-primary pt-6 lg:pt-7">
+	<div class="mt-8 border-t border-primary/40 pt-6 lg:pt-7">
 		<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
 			<div class="max-w-110">
 				<h2 class="text-base font-medium text-copy">Información de Contacto</h2>
 
 				<div class="mt-5 space-y-3.5">
 					{#each contact_cards as card (card.title)}
-						<div class="rounded-2xl border border-primary/35 bg-white/80 px-4 py-4 shadow-lg">
+						<div class="rounded-2xl border border-primary bg-white/80 p-4">
 							<div class="flex items-start gap-3">
 								<div
 									class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
@@ -116,27 +110,13 @@
 						Mantente al día con nuestras últimas noticias, eventos y logros en nuestras redes
 						sociales.
 					</p>
-
-					<div
-						class="mt-6 flex items-start gap-3 rounded-2xl border border-primary bg-white/70 px-4 py-4"
-					>
-						<div
-							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
-						>
-							<MapPin class="h-4 w-4" aria-hidden="true" />
-						</div>
-						<div>
-							<p class="text-sm font-semibold text-copy">Ubicación</p>
-							<p class="mt-1 text-sm leading-relaxed text-copy/72">Guayaquil, Ecuador</p>
-						</div>
-					</div>
 				</div>
 			</div>
 
 			<div class="lg:justify-self-end lg:pt-1">
 				<form
 					{...send_contact_message.preflight(contact_form_schema)}
-					class="rounded-3xl border border-primary/35 bg-white/88 px-5 py-5 shadow-xl lg:w-116 lg:px-6 lg:py-6"
+					class="rounded-3xl border border-primary bg-white/88 p-5 lg:w-116 lg:p-6"
 				>
 					<div class="flex items-start justify-between gap-4">
 						<div>
@@ -175,7 +155,7 @@
 								id="full_name"
 								placeholder="Tu nombre"
 								{...send_contact_message.fields.full_name.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.full_name.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -190,7 +170,7 @@
 								id="email"
 								placeholder="tu@email.com"
 								{...send_contact_message.fields.email.as("email")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.email.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -205,7 +185,7 @@
 								id="institution"
 								placeholder="tu colegio"
 								{...send_contact_message.fields.institution.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.institution.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -220,7 +200,7 @@
 								id="subject"
 								placeholder="¿Sobre qué quieres escribirnos?"
 								{...send_contact_message.fields.subject.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.subject.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -236,7 +216,7 @@
 								rows="6"
 								placeholder="Escribe tu mensaje aquí..."
 								{...send_contact_message.fields.message.as("text")}
-								class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-primary bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-primary/40 bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							></textarea>
 							<div class="mt-2 flex items-center justify-between gap-4">
 								{#if send_contact_message.fields.message.issues()?.[0]}

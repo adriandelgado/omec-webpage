@@ -20,18 +20,6 @@
 			label: "Correo electrónico",
 			icon: Mail,
 		},
-		{
-			text: "+593 2 234-5678",
-			href: "tel:+59322345678",
-			label: "Teléfono",
-			icon: Phone,
-		},
-		{
-			text: "Guayaquil, Ecuador",
-			href: "https://maps.google.com/?q=Guayaquil,Ecuador",
-			label: "Ubicación",
-			icon: MapPin,
-		},
 	] as const;
 
 	const legal_links = [
@@ -93,8 +81,6 @@
 							<a
 								class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
 								href={get_href(link.href)}
-								target={link.label === "Ubicación" ? "_blank" : undefined}
-								rel={link.label === "Ubicación" ? "noreferrer" : undefined}
 							>
 								<link.icon class="size-4 shrink-0" aria-hidden="true" strokeWidth={1.8} />
 								<span>{link.text}</span>
