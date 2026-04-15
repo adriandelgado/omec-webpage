@@ -93,7 +93,7 @@
 />
 
 <ContentSection
-	class="border-b border-line pt-8 pb-8 lg:pt-10 lg:pb-10"
+	class="pt-8 pb-8 lg:pt-10 lg:pb-10"
 	container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"
 >
 	<div class="max-w-80">
@@ -109,7 +109,7 @@
 	</div>
 
 	<div
-		class="relative overflow-hidden rounded-3xl border border-line bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
+		class="relative overflow-hidden rounded-3xl border border-primary bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
 	>
 		<img
 			src={hero_image}
@@ -119,7 +119,7 @@
 	</div>
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading title="Programas de Entrenamiento" />
 
 	<div class="mt-4 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
@@ -141,12 +141,12 @@
 	<img src={triangle_center_gravity} alt="" class="mt-6 w-14 lg:w-20" />
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading title="Calendario Olímpico" />
 
 	<div class="mt-5 grid gap-4 lg:grid-cols-3">
 		{#each olympic_editions as edition (edition)}
-			<article class="overflow-hidden rounded-sm border border-line bg-white">
+			<article class="overflow-hidden rounded-sm border border-primary bg-white">
 				<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
 					<h3 class="text-sm font-medium">Olimpiada Nacional</h3>
 					<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
@@ -188,12 +188,12 @@
 	</div>
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading title="Logros Internacionales" />
 
 	<div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 		{#each international_achievements as achievement (achievement.id)}
-			<article class="rounded-sm border border-line bg-white px-4 py-4">
+			<article class="rounded-sm border border-primary bg-white px-4 py-4">
 				<div class="flex h-20 items-center justify-center">
 					<img src={achievement.image} alt="" class="max-h-16 w-auto object-contain" />
 				</div>
@@ -232,7 +232,7 @@
 	<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 		{#each gallery_events as event (event.id)}
 			<article>
-				<div class="overflow-hidden border border-line bg-white">
+				<div class="overflow-hidden border border-primary bg-white">
 					<img src={event.image} alt={event.image_alt} class="aspect-[4/2.7] w-full object-cover" />
 				</div>
 				<p class="mt-2 text-sm text-copy/70">{event.title}</p>

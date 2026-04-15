@@ -12,11 +12,11 @@
 	<div class="relative py-5">
 		<div
 			aria-hidden="true"
-			class="pointer-events-none absolute top-0 ml-[calc(50%-50vw)] h-px w-screen bg-line"
+			class="pointer-events-none absolute top-0 ml-[calc(50%-50vw)] h-px w-screen bg-primary"
 		></div>
 		<div
 			aria-hidden="true"
-			class="pointer-events-none absolute bottom-0 ml-[calc(50%-50vw)] h-px w-screen bg-line"
+			class="pointer-events-none absolute bottom-0 ml-[calc(50%-50vw)] h-px w-screen bg-primary"
 		></div>
 
 		<div class="relative max-w-150">

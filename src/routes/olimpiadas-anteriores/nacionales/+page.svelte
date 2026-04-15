@@ -146,7 +146,7 @@
 		Max puntaje: 42 pts • Participantes: {national_results.length}
 	</p>
 
-	<div class="overflow-hidden rounded-2xl border border-line bg-white">
+	<div class="overflow-hidden rounded-2xl border border-primary bg-white">
 		<div class="overflow-x-auto">
 			<table class="min-w-full text-left text-sm text-copy">
 				<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
@@ -157,7 +157,7 @@
 					</tr>
 				</thead>
 
-				<tbody class="divide-y divide-line/70">
+				<tbody class="divide-y divide-primary/70">
 					{#each national_results as result (result.participant + result.school)}
 						<tr class="transition-colors hover:bg-primary/4">
 							<td class="px-4 py-3 whitespace-nowrap">{result.participant}</td>

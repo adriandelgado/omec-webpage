@@ -95,14 +95,14 @@
 	description="Programas de entrenamiento de OMEC para fortalecer resolución de problemas, demostración y preparación olímpica desde nivel básico hasta competencia internacional."
 />
 
-<ContentSection class="border-b border-line pt-8 pb-9 lg:pt-10 lg:pb-10">
+<ContentSection class="pt-8 pb-9 lg:pt-10 lg:pb-10">
 	<PageIntro
 		title_lines={[{ text: title, class: "text-primary" }]}
 		description="Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores universitarios con amplia experiencia."
 	/>
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading
 		title="Nuestros Programas"
 		description="Tres modalidades de estudio para adaptarse a las necesidades de cada estudiante, sin importar su ubicación o nivel actual."
@@ -115,7 +115,7 @@
 	</div>
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading
 		title="Material"
 		description="La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. Nuestro banco de problemas podrá ayudarte a practicar con problemas de competencias nacionales e internacionales."
@@ -123,7 +123,9 @@
 
 	<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
 		{#each material_cards as card (card.id)}
-			<article class="flex min-h-60 flex-col justify-between border border-line bg-white px-5 py-5">
+			<article
+				class="flex min-h-60 flex-col justify-between border border-primary bg-white px-5 py-5"
+			>
 				<div>
 					<div
 						class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
@@ -150,7 +152,7 @@
 	</div>
 </ContentSection>
 
-<ContentSection class="border-b border-line py-8">
+<ContentSection class="py-8">
 	<SectionHeading
 		title="Entrenadores"
 		description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
@@ -162,7 +164,7 @@
 				<img
 					src={coach.image}
 					alt={coach.image_alt}
-					class="h-18 w-18 rounded-full border border-line object-cover"
+					class="h-18 w-18 rounded-full border border-primary object-cover"
 				/>
 				<div>
 					<h3 class="text-2xl leading-none font-semibold tracking-tighter text-primary">

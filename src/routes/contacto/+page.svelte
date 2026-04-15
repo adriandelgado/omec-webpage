@@ -51,13 +51,13 @@
 	description="Contáctate con OMEC para resolver dudas sobre olimpiadas matemáticas, inscripciones, entrenamiento y participación estudiantil en Ecuador."
 />
 
-<ContentSection class="border-b border-line pt-8 pb-9 lg:pt-10 lg:pb-10">
+<ContentSection class="pt-8 pb-9 lg:pt-10 lg:pb-10">
 	<PageIntro
 		title_lines={[{ text: title }]}
 		description="¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de entrenamiento? Estamos aquí para ayudarte."
 	/>
 
-	<div class="mt-8 border-t border-line pt-6 lg:pt-7">
+	<div class="mt-8 border-t border-primary pt-6 lg:pt-7">
 		<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
 			<div class="max-w-110">
 				<h2 class="text-base font-medium text-copy">Información de Contacto</h2>
@@ -118,7 +118,7 @@
 					</p>
 
 					<div
-						class="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-white/70 px-4 py-4"
+						class="mt-6 flex items-start gap-3 rounded-2xl border border-primary bg-white/70 px-4 py-4"
 					>
 						<div
 							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
@@ -175,7 +175,7 @@
 								id="full_name"
 								placeholder="Tu nombre"
 								{...send_contact_message.fields.full_name.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.full_name.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -190,7 +190,7 @@
 								id="email"
 								placeholder="tu@email.com"
 								{...send_contact_message.fields.email.as("email")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.email.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -205,7 +205,7 @@
 								id="institution"
 								placeholder="tu colegio"
 								{...send_contact_message.fields.institution.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.institution.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -220,7 +220,7 @@
 								id="subject"
 								placeholder="¿Sobre qué quieres escribirnos?"
 								{...send_contact_message.fields.subject.as("text")}
-								class="mt-2 form-input block h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 form-input block h-11 w-full rounded-xl border border-primary bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							/>
 							{#each send_contact_message.fields.subject.issues() ?? [] as issue (issue.message)}
 								<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
@@ -236,7 +236,7 @@
 								rows="6"
 								placeholder="Escribe tu mensaje aquí..."
 								{...send_contact_message.fields.message.as("text")}
-								class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-line bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+								class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-primary bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
 							></textarea>
 							<div class="mt-2 flex items-center justify-between gap-4">
 								{#if send_contact_message.fields.message.issues()?.[0]}

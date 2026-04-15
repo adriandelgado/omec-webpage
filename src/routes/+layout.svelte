@@ -10,11 +10,9 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <div class="min-h-screen text-copy">
-	<div
-		class="mx-auto flex min-h-screen w-full max-w-295 flex-col border-x border-line bg-foreground"
-	>
+	<div class="mx-auto flex min-h-screen w-full max-w-295 flex-col">
 		<Header />
-		<main class="flex-1">
+		<main class="flex-1 border-x border-primary bg-foreground">
 			{@render children()}
 		</main>
 		<Footer />

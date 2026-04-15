@@ -16,7 +16,7 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 border-b border-line bg-foreground/95 px-4 backdrop-blur-sm lg:px-6"
+	class="sticky top-0 z-50 border-x border-b border-primary bg-foreground/90 px-4 backdrop-blur-sm lg:px-6"
 >
 	<Dialog.Root bind:open={is_mobile_menu_open}>
 		<nav
@@ -54,7 +54,7 @@
 		<Dialog.Portal>
 			<Dialog.Overlay class="fixed inset-0 z-60 bg-copy/20 backdrop-blur-xs lg:hidden" />
 			<Dialog.Content
-				class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-line bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
+				class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
 			>
 				<Dialog.Title class="sr-only">Main menu</Dialog.Title>
 				<div class="flex items-center justify-between">

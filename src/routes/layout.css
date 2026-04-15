@@ -5,12 +5,11 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--color-foreground: oklch(0.987 0.0062 256.21);
-	--color-background: oklch(0.9403 0.0279 243.1);
-	--color-line: oklch(0.61 0.2106 263.58 / 16%);
-	--color-primary: oklch(0.5726 0.2339 264.22);
-	--color-primary-dark: oklch(0.5178 0.2239 263.83);
-	--color-copy: oklch(0.3199 0.0402 253.23);
+	--color-foreground: oklch(0.9835 0.0079 253.85);
+	--color-background: oklch(0.9426 0.0286 241.6);
+	--color-primary: oklch(0.5465 0.2455 262.87);
+	--color-primary-dark: oklch(0.5 0.2455 262.87);
+	--color-copy: oklch(0.2099 0.0341 263.44);
 }
 
 @layer base {

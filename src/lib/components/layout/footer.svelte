@@ -55,7 +55,7 @@
 	] as const;
 </script>
 
-<footer class="border-t border-line bg-foreground px-4 text-primary lg:px-6">
+<footer class="border-t border-primary px-4 text-primary lg:px-6">
 	<div class="mx-auto max-w-270 py-8">
 		<div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.85fr_0.9fr] lg:gap-8">
 			<a href={resolve("/")} class="inline-flex max-w-xs items-start gap-3">
@@ -107,7 +107,7 @@
 		</div>
 
 		<div
-			class="mt-8 flex flex-col gap-3 border-t border-line pt-4 text-xs leading-relaxed md:flex-row md:justify-between"
+			class="mt-8 flex flex-col gap-3 border-t border-primary pt-4 text-xs leading-relaxed md:flex-row md:justify-between"
 		>
 			<p class="max-w-2xl">
 				© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.

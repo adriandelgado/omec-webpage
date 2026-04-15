@@ -46,7 +46,7 @@
 			Medallero
 		</h2>
 
-		<div class="mt-5 overflow-hidden rounded-2xl border border-line bg-white">
+		<div class="mt-5 overflow-hidden rounded-2xl border border-primary bg-white">
 			<div class="overflow-x-auto">
 				<table class="min-w-full text-left text-sm text-copy">
 					<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
@@ -57,7 +57,7 @@
 						</tr>
 					</thead>
 
-					<tbody class="divide-y divide-line/70">
+					<tbody class="divide-y divide-primary/70">
 						{#each medal_summary as olympiad (olympiad.olympiad)}
 							<tr class="align-top transition-colors hover:bg-primary/4">
 								<td class="px-4 py-3">
@@ -79,8 +79,8 @@
 	</section>
 
 	<section class="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<article class="overflow-hidden rounded-3xl border border-line bg-white shadow-xl">
-			<div class="border-b border-line bg-primary/5 p-3">
+		<article class="overflow-hidden rounded-3xl border border-primary bg-white shadow-xl">
+			<div class="border-b border-primary bg-primary/5 p-3">
 				<img
 					src={logo_imo}
 					alt="Delegación ecuatoriana en una competencia internacional de matemática"
