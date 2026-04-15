@@ -40,7 +40,7 @@
 	description="Revisa la participación internacional de Ecuador en olimpiadas matemáticas, con medallero, resultados históricos y resumen de competencias."
 />
 
-<div class="space-y-8">
+<div class="flex flex-col gap-y-8 lg:gap-y-10">
 	<section>
 		<h2 class="text-center text-3xl leading-none font-medium tracking-tight text-primary">
 			Medallero

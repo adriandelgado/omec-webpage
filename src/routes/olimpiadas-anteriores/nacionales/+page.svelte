@@ -141,7 +141,7 @@
 	description="Consulta resultados históricos de olimpiadas matemáticas nacionales de Ecuador, incluyendo participantes, puntajes, niveles y medallas."
 />
 
-<div class="space-y-5">
+<div class="flex flex-col gap-y-8 lg:gap-y-10">
 	<p class="text-xs tracking-wider text-copy/45 uppercase">
 		Max puntaje: 42 pts • Participantes: {national_results.length}
 	</p>

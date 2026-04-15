@@ -96,68 +96,74 @@
 	description="Programas de entrenamiento de OMEC para fortalecer resolución de problemas, demostración y preparación olímpica desde nivel básico hasta competencia internacional."
 />
 
-<ContentSection class="pt-8 pb-9 lg:pt-10 lg:pb-10">
-	<PageIntro
-		title_lines={[{ text: title, class: "text-primary" }]}
-		description="Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores universitarios con amplia experiencia."
-	/>
-</ContentSection>
+<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+	<ContentSection>
+		<PageIntro
+			title_lines={[{ text: title, class: "text-primary" }]}
+			description="Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores universitarios con amplia experiencia."
+		/>
+	</ContentSection>
 
-<ContentSection class="py-8">
-	<SectionHeading
-		title="Nuestros Programas"
-		description="Tres modalidades de estudio para adaptarse a las necesidades de cada estudiante, sin importar su ubicación o nivel actual."
-	/>
+	<ContentSection>
+		<SectionHeading
+			title="Nuestros Programas"
+			description="Tres modalidades de estudio para adaptarse a las necesidades de cada estudiante, sin importar su ubicación o nivel actual."
+		/>
 
-	<div class="mt-7 grid gap-5 lg:grid-cols-3">
-		{#each training_programs as program (program.title)}
-			<TrainingProgramCard {...program} />
-		{/each}
-	</div>
-</ContentSection>
+		<div class="mt-7 grid gap-5 lg:grid-cols-3">
+			{#each training_programs as program (program.title)}
+				<TrainingProgramCard {...program} />
+			{/each}
+		</div>
+	</ContentSection>
 
-<ContentSection class="py-8">
-	<SectionHeading
-		title="Material"
-		description="La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. Nuestro banco de problemas podrá ayudarte a practicar con problemas de competencias nacionales e internacionales."
-	/>
+	<ContentSection>
+		<SectionHeading
+			title="Material"
+			description="La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. Nuestro banco de problemas podrá ayudarte a practicar con problemas de competencias nacionales e internacionales."
+		/>
 
-	<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-		{#each material_cards as card (card.id)}
-			<article class="flex min-h-60 flex-col justify-between border border-primary bg-white p-5">
-				<div>
-					<div
-						class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
-					>
-						<img src={logo_pagmo} alt="" class="h-7 w-7 rounded-full object-cover opacity-80" />
+		<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+			{#each material_cards as card (card.id)}
+				<article class="flex min-h-60 flex-col justify-between border border-primary bg-white p-5">
+					<div>
+						<div
+							class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
+						>
+							<img src={logo_pagmo} alt="" class="h-7 w-7 rounded-full object-cover opacity-80" />
+						</div>
+						<h3
+							class="mt-6 max-w-[12ch] text-3xl leading-none font-semibold tracking-tighter text-primary"
+						>
+							{card.title}
+						</h3>
+						<p class="mt-4 max-w-42 text-sm leading-6 text-copy/70">{card.description}</p>
 					</div>
-					<h3
-						class="mt-6 max-w-[12ch] text-3xl leading-none font-semibold tracking-tighter text-primary"
+
+					<a
+						href={resolve("/nosotros")}
+						class="mt-8 inline-flex h-10 w-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
+						aria-label={`Ver material ${card.title}`}
 					>
-						{card.title}
-					</h3>
-					<p class="mt-4 max-w-42 text-sm leading-6 text-copy/70">{card.description}</p>
-				</div>
+						<span class="text-2xl leading-none">↗</span>
+					</a>
+				</article>
+			{/each}
+		</div>
+	</ContentSection>
 
-				<a
-					href={resolve("/nosotros")}
-					class="mt-8 inline-flex h-10 w-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
-					aria-label={`Ver material ${card.title}`}
-				>
-					<span class="text-2xl leading-none">↗</span>
-				</a>
-			</article>
-		{/each}
-	</div>
-</ContentSection>
+	<ContentSection>
+		<SectionHeading
+			title="Entrenadores"
+			description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
+		/>
 
-<ContentSection class="py-8">
-	<SectionHeading
-		title="Entrenadores"
-		description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
-	/>
-
-	<MembersSection members={coaches} grid_class="sm:grid-cols-2 lg:grid-cols-3" class="py-0 pt-7" />
-</ContentSection>
+		<MembersSection
+			members={coaches}
+			grid_class="sm:grid-cols-2 lg:grid-cols-3"
+			class="py-0 pt-7"
+		/>
+	</ContentSection>
+</div>
 
 <TrainingCtaSection />
