@@ -9,6 +9,7 @@
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
+	import TrainingCtaSection from "$lib/components/training-cta-section.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
 	const title = "Entrenamientos";
@@ -159,22 +160,4 @@
 	<MembersSection members={coaches} grid_class="sm:grid-cols-2 lg:grid-cols-3" class="py-0 pt-7" />
 </ContentSection>
 
-<section class="px-4 py-0 lg:px-0">
-	<div class="bg-primary px-4 py-9 text-center text-white lg:px-6 lg:py-11">
-		<div class="mx-auto max-w-170">
-			<h2 class="text-3xl leading-none font-semibold tracking-tighter">
-				¿Listo para comenzar tu camino matemático?
-			</h2>
-			<p class="mx-auto mt-4 max-w-130 text-sm leading-7 text-white/82">
-				Inscríbete en uno de nuestros programas y comienza a desarrollar tu potencial junto a los
-				mejores entrenadores del país.
-			</p>
-			<a
-				href={resolve("/nosotros")}
-				class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-sm font-medium text-primary transition-colors hover:bg-white/90"
-			>
-				Inscribirse Ahora
-			</a>
-		</div>
-	</div>
-</section>
+<TrainingCtaSection />

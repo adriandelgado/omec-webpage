@@ -5,6 +5,7 @@
 	import MembersSection from "$lib/components/members-section.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
+	import TrainingCtaSection from "$lib/components/training-cta-section.svelte";
 
 	const title = "Nosotros";
 	const member_portrait =
@@ -182,3 +183,5 @@
 	<SectionHeading title="Miembros" />
 	<MembersSection class="pt-7" {members} />
 </ContentSection>
+
+<TrainingCtaSection />
