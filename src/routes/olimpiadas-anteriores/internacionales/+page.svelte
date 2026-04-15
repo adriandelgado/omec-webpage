@@ -80,7 +80,7 @@
 	</section>
 
 	<section class="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<article class="overflow-hidden rounded-3xl border border-primary bg-white shadow-xl">
+		<article class="overflow-hidden rounded-3xl border border-primary bg-white">
 			<div class="border-b border-primary bg-primary/5 p-3">
 				<img
 					src={logo_imo}

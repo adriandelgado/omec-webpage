@@ -98,7 +98,7 @@
 									target="_blank"
 									rel="noreferrer"
 									aria-label={social_link.label}
-									class={`inline-flex h-10 w-10 items-center justify-center rounded-xl shadow-md transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
+									class={`inline-flex h-10 w-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
 								>
 									<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
 										<path d={social_link.path}></path>
