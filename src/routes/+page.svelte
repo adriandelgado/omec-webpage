@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import hero_image from "$lib/assets/hero.png";
+	import hero_image from "$lib/assets/hero.svg";
 	import blocks from "$lib/assets/blocks.svg";
 	import triangle_center_gravity from "$lib/assets/triangle-center-gravity.svg";
 	import hexagon from "$lib/assets/hexagon.svg";
