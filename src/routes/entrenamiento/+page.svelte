@@ -3,17 +3,17 @@
 	import hexagon from "$lib/assets/hexagon.svg";
 	import triangle from "$lib/assets/triangle.svg";
 	import circle from "$lib/assets/circle.svg";
-	import hero_image from "$lib/assets/hero.png";
-	import logo_imo from "$lib/assets/logo-imo.svg";
-	import logo_egmo from "$lib/assets/logo-egmo.svg";
 	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import MembersSection from "$lib/components/members-section.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
 
 	const title = "Entrenamientos";
+	const coach_portrait =
+		"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=320&q=80";
 
 	const training_programs = [
 		{
@@ -70,21 +70,21 @@
 			id: "coach-marty-1",
 			name: "Marty Mauser",
 			role: "Jefe de Entrenamiento",
-			image: hero_image,
+			image: coach_portrait,
 			image_alt: "Retrato del entrenador Marty Mauser",
 		},
 		{
 			id: "coach-marty-2",
 			name: "Marty Mauser",
 			role: "Jefe de Entrenamiento",
-			image: logo_imo,
+			image: coach_portrait,
 			image_alt: "Retrato del entrenador Marty Mauser",
 		},
 		{
 			id: "coach-willy",
 			name: "Willy Wonka",
 			role: "Entrenador Básico",
-			image: logo_egmo,
+			image: coach_portrait,
 			image_alt: "Retrato del entrenador Willy Wonka",
 		},
 	] as const;
@@ -156,23 +156,7 @@
 		description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
 	/>
 
-	<div class="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:max-w-190">
-		{#each coaches as coach (coach.id)}
-			<article class="flex items-center gap-4">
-				<img
-					src={coach.image}
-					alt={coach.image_alt}
-					class="h-18 w-18 rounded-full border border-primary object-cover"
-				/>
-				<div>
-					<h3 class="text-2xl leading-none font-semibold tracking-tighter text-primary">
-						{coach.name}
-					</h3>
-					<p class="mt-1 text-sm leading-normal text-copy/70">{coach.role}</p>
-				</div>
-			</article>
-		{/each}
-	</div>
+	<MembersSection members={coaches} grid_class="sm:grid-cols-2 lg:grid-cols-3" class="py-0 pt-7" />
 </ContentSection>
 
 <section class="px-4 py-0 lg:px-0">

@@ -2,9 +2,13 @@
 	import { Bell, ShieldAlert } from "@lucide/svelte";
 	import imo_2018 from "$lib/assets/imo-2018.jpg";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import MembersSection from "$lib/components/members-section.svelte";
 	import Seo from "$lib/components/seo.svelte";
+	import SectionHeading from "$lib/components/section-heading.svelte";
 
 	const title = "Nosotros";
+	const member_portrait =
+		"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=320&q=80";
 
 	const values_cards = [
 		{
@@ -27,6 +31,51 @@
 			title: "Representar al país con excelencia",
 			description:
 				"Preparamos delegaciones que compiten a nivel nacional e internacional con solidez técnica, trabajo en equipo y responsabilidad.",
+		},
+	] as const;
+
+	const members = [
+		{
+			id: "member-marty-1",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
+		},
+		{
+			id: "member-marty-2",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
+		},
+		{
+			id: "member-marty-3",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
+		},
+		{
+			id: "member-marty-4",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
+		},
+		{
+			id: "member-marty-5",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
+		},
+		{
+			id: "member-marty-6",
+			name: "Marty Mauser",
+			role: "Jefe de Entrenamiento",
+			image: member_portrait,
+			image_alt: "Retrato de Marty Mauser",
 		},
 	] as const;
 </script>
@@ -127,4 +176,9 @@
 			</article>
 		{/each}
 	</div>
+</ContentSection>
+
+<ContentSection class="pb-12 lg:pb-16">
+	<SectionHeading title="Miembros" />
+	<MembersSection class="pt-7" {members} />
 </ContentSection>
