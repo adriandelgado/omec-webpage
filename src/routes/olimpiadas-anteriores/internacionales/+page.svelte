@@ -1,5 +1,6 @@
 <script lang="ts">
 	import logo_imo from "$lib/assets/logo-imo.svg";
+	import Card from "$lib/components/card.svelte";
 	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import Seo from "$lib/components/seo.svelte";
 
@@ -80,7 +81,7 @@
 	</section>
 
 	<section class="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<article class="overflow-hidden rounded-3xl border border-primary bg-white">
+		<Card class="overflow-hidden">
 			<div class="border-b border-primary bg-primary/5 p-3">
 				<img
 					src={logo_imo}
@@ -102,7 +103,7 @@
 					alrededor de 100 países de todos los continentes del mundo.
 				</p>
 			</div>
-		</article>
+		</Card>
 
 		<div class="pt-1">
 			<h2 class="text-3xl leading-none font-medium tracking-tight text-primary">
