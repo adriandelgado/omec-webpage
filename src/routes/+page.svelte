@@ -143,7 +143,7 @@
 	<ContentSection>
 		<SectionHeading title="Calendario Olímpico" />
 
-		<div class="mt-5 grid gap-4 lg:grid-cols-3">
+		<div class="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-3">
 			{#each olympic_editions as edition (edition)}
 				<article class="overflow-hidden rounded-sm border border-primary bg-white">
 					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
@@ -190,7 +190,7 @@
 	<ContentSection>
 		<SectionHeading title="Logros Internacionales" />
 
-		<div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:grid-cols-4">
 			{#each international_achievements as achievement (achievement.id)}
 				<article class="rounded-sm border-x border-t-6 border-b border-primary bg-white p-4">
 					<div class="flex h-20 items-center justify-center">
@@ -228,7 +228,7 @@
 	<ContentSection>
 		<SectionHeading title="Galería de eventos" />
 
-		<div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4">
 			{#each gallery_events as event (event.id)}
 				<article>
 					<div class="overflow-hidden border border-primary/25 bg-white">

@@ -159,11 +159,7 @@
 			description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
 		/>
 
-		<MembersSection
-			members={coaches}
-			grid_class="sm:grid-cols-2 lg:grid-cols-3"
-			class="py-0 pt-7"
-		/>
+		<MembersSection members={coaches} class="mt-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3" />
 	</ContentSection>
 </PageSectionStack>
 

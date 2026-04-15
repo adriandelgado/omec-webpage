@@ -180,7 +180,7 @@
 
 	<ContentSection>
 		<SectionHeading title="Miembros" />
-		<MembersSection class="pt-7" {members} />
+		<MembersSection class="mt-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3" {members} />
 	</ContentSection>
 </PageSectionStack>
 
