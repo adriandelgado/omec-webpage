@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Mail, MapPin, Phone } from "@lucide/svelte";
+	import { Mail } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
 	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";

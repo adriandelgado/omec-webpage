@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Mail, MapPin, Phone, Send } from "@lucide/svelte";
+	import { Mail, Send } from "@lucide/svelte";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
