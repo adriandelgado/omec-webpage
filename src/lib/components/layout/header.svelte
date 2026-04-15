@@ -58,7 +58,7 @@
 			>
 				<Dialog.Title class="sr-only">Main menu</Dialog.Title>
 				<div class="flex items-center justify-between">
-					<a href={home_href} class="-m-1 p-1">
+					<a href={home_href} class="-m-1 p-1" onclick={() => (is_mobile_menu_open = false)}>
 						<span class="sr-only">OMEC</span>
 						<img src={logo_omec} alt="" class="h-9 w-auto" />
 					</a>
