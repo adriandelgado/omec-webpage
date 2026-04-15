@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Mail, Send } from "@lucide/svelte";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import { contact_form_schema } from "./contact-form";
@@ -45,7 +46,7 @@
 	description="Contáctate con OMEC para resolver dudas sobre olimpiadas matemáticas, inscripciones, entrenamiento y participación estudiantil en Ecuador."
 />
 
-<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+<PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
 		<PageIntro
 			title_lines={[{ text: title }]}
@@ -250,4 +251,4 @@
 			</div>
 		</div>
 	</ContentSection>
-</div>
+</PageSectionStack>

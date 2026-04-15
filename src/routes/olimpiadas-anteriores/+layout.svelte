@@ -2,6 +2,7 @@
 	import { page } from "$app/state";
 	import { resolve } from "$app/paths";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 
@@ -19,7 +20,7 @@
 	] as const;
 </script>
 
-<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+<PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
 		<PageIntro
 			title_lines={[{ text: "Olimpiadas" }, { text: "Anteriores", class: "text-primary" }]}
@@ -53,4 +54,4 @@
 			{@render children()}
 		</div>
 	</ContentSection>
-</div>
+</PageSectionStack>

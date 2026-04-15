@@ -6,6 +6,7 @@
 	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import MembersSection from "$lib/components/members-section.svelte";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import PageIntro from "$lib/components/page-intro.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
@@ -96,7 +97,7 @@
 	description="Programas de entrenamiento de OMEC para fortalecer resolución de problemas, demostración y preparación olímpica desde nivel básico hasta competencia internacional."
 />
 
-<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+<PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
 		<PageIntro
 			title_lines={[{ text: title, class: "text-primary" }]}
@@ -164,6 +165,6 @@
 			class="py-0 pt-7"
 		/>
 	</ContentSection>
-</div>
+</PageSectionStack>
 
 <TrainingCtaSection />

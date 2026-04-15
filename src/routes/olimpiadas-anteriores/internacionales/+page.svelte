@@ -1,5 +1,6 @@
 <script lang="ts">
 	import logo_imo from "$lib/assets/logo-imo.svg";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import Seo from "$lib/components/seo.svelte";
 
 	const medal_summary = [
@@ -40,7 +41,7 @@
 	description="Revisa la participación internacional de Ecuador en olimpiadas matemáticas, con medallero, resultados históricos y resumen de competencias."
 />
 
-<div class="flex flex-col gap-y-8 lg:gap-y-10">
+<PageSectionStack>
 	<section>
 		<h2 class="text-center text-3xl leading-none font-medium tracking-tight text-primary">
 			Medallero
@@ -115,4 +116,4 @@
 			</p>
 		</div>
 	</section>
-</div>
+</PageSectionStack>

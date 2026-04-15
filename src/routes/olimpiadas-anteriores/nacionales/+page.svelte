@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import Seo from "$lib/components/seo.svelte";
 
 	const national_results = [
@@ -141,7 +142,7 @@
 	description="Consulta resultados históricos de olimpiadas matemáticas nacionales de Ecuador, incluyendo participantes, puntajes, niveles y medallas."
 />
 
-<div class="flex flex-col gap-y-8 lg:gap-y-10">
+<PageSectionStack>
 	<p class="text-xs tracking-wider text-copy/45 uppercase">
 		Max puntaje: 42 pts • Participantes: {national_results.length}
 	</p>
@@ -174,4 +175,4 @@
 			</table>
 		</div>
 	</div>
-</div>
+</PageSectionStack>

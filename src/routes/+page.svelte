@@ -12,6 +12,7 @@
 	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
 	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
 	import ContentSection from "$lib/components/content-section.svelte";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
@@ -92,7 +93,7 @@
 	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
 />
 
-<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+<PageSectionStack class="py-8 lg:py-10">
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-80">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
@@ -242,4 +243,4 @@
 			{/each}
 		</div>
 	</ContentSection>
-</div>
+</PageSectionStack>

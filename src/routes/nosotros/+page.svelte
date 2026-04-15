@@ -3,6 +3,7 @@
 	import imo_2018 from "$lib/assets/imo-2018.jpg";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import MembersSection from "$lib/components/members-section.svelte";
+	import PageSectionStack from "$lib/components/page-section-stack.svelte";
 	import Seo from "$lib/components/seo.svelte";
 	import SectionHeading from "$lib/components/section-heading.svelte";
 	import TrainingCtaSection from "$lib/components/training-cta-section.svelte";
@@ -86,7 +87,7 @@
 	description="Conoce a OMEC, su misión y el trabajo que realiza para promover la excelencia matemática y las olimpiadas estudiantiles en Ecuador."
 />
 
-<div class="flex flex-col gap-y-8 py-8 lg:gap-y-10 lg:py-10">
+<PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
 		<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
 			{title}
@@ -181,6 +182,6 @@
 		<SectionHeading title="Miembros" />
 		<MembersSection class="pt-7" {members} />
 	</ContentSection>
-</div>
+</PageSectionStack>
 
 <TrainingCtaSection />
