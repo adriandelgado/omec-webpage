@@ -3,7 +3,6 @@
 	import hexagon from "$lib/assets/hexagon.svg";
 	import triangle from "$lib/assets/triangle.svg";
 	import circle from "$lib/assets/circle.svg";
-	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
 	import ContentSection from "$lib/components/content-section.svelte";
 	import MembersSection from "$lib/components/members-section.svelte";
 	import PageSectionStack from "$lib/components/page-section-stack.svelte";
@@ -126,27 +125,26 @@
 
 		<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
 			{#each material_cards as card (card.id)}
-				<article class="flex min-h-60 flex-col justify-between border border-primary bg-white p-5">
+				<article
+					class="relative flex min-h-96 flex-col justify-between overflow-hidden rounded-xl border border-primary bg-white px-6 pt-10 pb-24 sm:px-7"
+				>
 					<div>
-						<div
-							class="flex size-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
-						>
-							<img src={logo_pagmo} alt="" class="size-7 rounded-full object-cover opacity-80" />
-						</div>
 						<h3
-							class="mt-6 max-w-[12ch] text-3xl leading-none font-semibold tracking-tighter text-primary"
+							class="mx-auto max-w-[9ch] text-center text-3xl leading-8 font-semibold tracking-tighter text-primary sm:text-4xl"
 						>
 							{card.title}
 						</h3>
-						<p class="mt-4 max-w-42 text-sm leading-6 text-copy/70">{card.description}</p>
+						<p class="mx-auto mt-10 max-w-[20ch] text-center text-base leading-snug text-copy">
+							{card.description}
+						</p>
 					</div>
 
 					<a
 						href={resolve("/nosotros")}
-						class="mt-8 inline-flex size-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
+						class="absolute bottom-0 left-0 inline-flex size-20 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
 						aria-label={`Ver material ${card.title}`}
 					>
-						<span class="text-2xl leading-none">↗</span>
+						<span class="text-5xl leading-none">↗</span>
 					</a>
 				</article>
 			{/each}
