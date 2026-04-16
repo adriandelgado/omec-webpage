@@ -80,8 +80,20 @@
 		</div>
 	</section>
 
-	<section class="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<Card class="overflow-hidden">
+	<section class="space-y-6">
+		<div>
+			<h2 class="text-3xl leading-none font-medium tracking-tight text-primary">
+				Conoce las olimpiadas
+			</h2>
+			<p class="mt-4 max-w-120 text-sm leading-relaxed text-copy/75">
+				Estas son algunas de las olimpiadas en las que Ecuador participa a nivel internacional. Los
+				ganadores de la ONM del año previo son convocados a los selectivos de estas competencias y
+				tendrán una oportunidad de formar parte de la delegación de Ecuador en esas olimpiadas,
+				dependiendo de su edad y género.
+			</p>
+		</div>
+
+		<Card class="max-w-xl overflow-hidden">
 			<div class="border-b border-primary bg-primary/5 p-3">
 				<img
 					src={logo_imo}
@@ -104,17 +116,5 @@
 				</p>
 			</div>
 		</Card>
-
-		<div class="pt-1">
-			<h2 class="text-3xl leading-none font-medium tracking-tight text-primary">
-				Conoce las olimpiadas
-			</h2>
-			<p class="mt-4 max-w-120 text-sm leading-relaxed text-copy/75">
-				Estas son algunas de las olimpiadas en las que Ecuador participa a nivel internacional. Los
-				ganadores de la ONM del año previo son convocados a los selectivos de estas competencias y
-				tendrán una oportunidad de formar parte de la delegación de Ecuador en esas olimpiadas,
-				dependiendo de su edad y género.
-			</p>
-		</div>
 	</section>
 </PageSectionStack>
