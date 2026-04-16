@@ -63,9 +63,9 @@
 							<div class="rounded-2xl border border-primary bg-white/80 p-4">
 								<div class="flex items-start gap-3">
 									<div
-										class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
+										class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
 									>
-										<card.icon class="h-4 w-4" aria-hidden="true" />
+										<card.icon class="size-4" aria-hidden="true" />
 									</div>
 
 									<div class="min-w-0">
@@ -98,9 +98,9 @@
 									target="_blank"
 									rel="noreferrer"
 									aria-label={social_link.label}
-									class={`inline-flex h-10 w-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
+									class={`inline-flex size-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
 								>
-									<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+									<svg viewBox="0 0 24 24" class="size-4 fill-current" aria-hidden="true">
 										<path d={social_link.path}></path>
 									</svg>
 								</a>
@@ -243,7 +243,7 @@
 							class="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70"
 							disabled={send_contact_message.pending > 0}
 						>
-							<Send class="h-4 w-4" aria-hidden="true" />
+							<Send class="size-4" aria-hidden="true" />
 							{send_contact_message.pending > 0 ? "Enviando..." : "Enviar Mensaje"}
 						</button>
 					</form>

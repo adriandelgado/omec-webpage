@@ -129,9 +129,9 @@
 				<article class="flex min-h-60 flex-col justify-between border border-primary bg-white p-5">
 					<div>
 						<div
-							class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
+							class="flex size-11 items-center justify-center rounded-full border border-primary/25 bg-primary/6"
 						>
-							<img src={logo_pagmo} alt="" class="h-7 w-7 rounded-full object-cover opacity-80" />
+							<img src={logo_pagmo} alt="" class="size-7 rounded-full object-cover opacity-80" />
 						</div>
 						<h3
 							class="mt-6 max-w-[12ch] text-3xl leading-none font-semibold tracking-tighter text-primary"
@@ -143,7 +143,7 @@
 
 					<a
 						href={resolve("/nosotros")}
-						class="mt-8 inline-flex h-10 w-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
+						class="mt-8 inline-flex size-10 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
 						aria-label={`Ver material ${card.title}`}
 					>
 						<span class="text-2xl leading-none">↗</span>

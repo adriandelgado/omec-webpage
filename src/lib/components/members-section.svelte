@@ -21,7 +21,7 @@
 			<img
 				src={member.image}
 				alt={member.image_alt}
-				class="h-24 w-24 shrink-0 rounded-full object-cover"
+				class="size-24 shrink-0 rounded-full object-cover"
 			/>
 
 			<div class="min-w-0">

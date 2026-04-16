@@ -206,7 +206,7 @@
 					<div class="mt-3 flex items-end justify-center gap-5 text-center">
 						<div>
 							<div
-								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-amber-600 text-xs font-semibold text-white"
+								class="mx-auto flex size-7 items-center justify-center rounded-full bg-amber-600 text-xs font-semibold text-white"
 							>
 								1
 							</div>
@@ -214,7 +214,7 @@
 						</div>
 						<div>
 							<div
-								class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-xs font-semibold text-copy"
+								class="mx-auto flex size-7 items-center justify-center rounded-full bg-slate-200 text-xs font-semibold text-copy"
 							>
 								10
 							</div>
