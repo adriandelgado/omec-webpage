@@ -56,7 +56,7 @@
 		<div class="mt-8 border-t border-primary/40 pt-6 lg:pt-7">
 			<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
 				<div class="max-w-110">
-					<h2 class="text-base font-medium text-copy">Información de Contacto</h2>
+					<h2 class="text-base font-medium">Información de Contacto</h2>
 
 					<div class="mt-5 space-y-3.5">
 						{#each contact_cards as card (card.title)}
@@ -69,7 +69,7 @@
 									</div>
 
 									<div class="min-w-0">
-										<p class="text-sm font-semibold text-copy">{card.title}</p>
+										<p class="text-sm font-semibold">{card.title}</p>
 
 										<div class="mt-1.5 space-y-1 text-sm leading-relaxed text-copy/72">
 											{#each card.lines as line, index (line)}
@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="mt-8">
-						<h2 class="text-base font-medium text-copy">Síguenos</h2>
+						<h2 class="text-base font-medium">Síguenos</h2>
 
 						<div class="mt-4 flex items-center gap-3">
 							{#each social_links as social_link (social_link.label)}
@@ -122,7 +122,7 @@
 					>
 						<div class="flex items-start justify-between gap-4">
 							<div>
-								<h2 class="text-xl leading-tight font-semibold text-copy">Envíanos un Mensaje</h2>
+								<h2 class="text-xl leading-tight font-semibold">Envíanos un Mensaje</h2>
 								<p class="mt-2 text-sm leading-relaxed text-copy/55">
 									Todos los campos marcados con <span class="text-primary">*</span> son obligatorios.
 								</p>

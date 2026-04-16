@@ -99,7 +99,7 @@
 <PageSectionStack class="py-8 lg:py-10">
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-80">
-			<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
+			<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 				Olimpiada Matemática
 				<span class="text-primary">Ecuatoriana</span>
 			</h1>
@@ -113,11 +113,7 @@
 		<div
 			class="relative overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
 		>
-			<img
-				src={hero_image}
-				alt="Problema de geometría olímpica"
-				class="mx-auto h-auto w-full max-w-96 object-contain"
-			/>
+			<img src={hero_image} alt="Problema de geometría olímpica" class="mx-auto w-full max-w-96" />
 		</div>
 	</ContentSection>
 
@@ -152,14 +148,14 @@
 						<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
 					</div>
 
-					<div class="grid gap-2 p-4 text-sm text-copy">
+					<dl class="grid gap-2 p-4 text-sm">
 						{#each olympic_stages as [label, date] (label)}
-							<div class="grid grid-cols-[1fr_auto] gap-3">
-								<p>{label}</p>
-								<p>{date}</p>
+							<div class="flex justify-between gap-3">
+								<dt>{label}</dt>
+								<dd>{date}</dd>
 							</div>
 						{/each}
-					</div>
+					</dl>
 				</article>
 			{/each}
 		</div>
@@ -193,9 +189,9 @@
 
 		<div class="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:grid-cols-4">
 			{#each international_achievements as achievement (achievement.id)}
-				<article class="rounded-sm border-x border-t-6 border-b border-primary bg-white p-4">
+				<article class="rounded-sm border border-t-6 border-primary bg-white p-4">
 					<div class="flex h-26 items-center justify-center">
-						<img src={achievement.image} alt="" class="max-h-22 w-auto object-contain" />
+						<img src={achievement.image} alt="" class="max-h-22 w-auto" />
 					</div>
 
 					<div class="mt-4 text-center">
@@ -232,13 +228,11 @@
 		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4">
 			{#each gallery_events as event (event.id)}
 				<article>
-					<div class="overflow-hidden border border-primary/25 bg-white">
-						<img
-							src={event.image}
-							alt={event.image_alt}
-							class="aspect-[4/2.7] w-full object-cover"
-						/>
-					</div>
+					<img
+						src={event.image}
+						alt={event.image_alt}
+						class="aspect-[4/2.7] w-full border border-primary/25 bg-white object-cover"
+					/>
 					<p class="mt-2 text-sm text-copy/70">{event.title}</p>
 				</article>
 			{/each}

@@ -89,7 +89,7 @@
 
 <PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
-		<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
+		<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 			{title}
 		</h1>
 
@@ -137,7 +137,7 @@
 			<p class="text-4xl leading-none font-semibold tracking-tighter text-primary lg:text-5xl">
 				Acerca de
 			</p>
-			<h2 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
+			<h2 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 				Nuestra labor
 			</h2>
 
@@ -171,7 +171,7 @@
 					<p class="mt-4 text-xs font-semibold tracking-widest text-primary uppercase">
 						{card.eyebrow}
 					</p>
-					<h3 class="mt-3 text-lg leading-tight font-semibold text-copy">{card.title}</h3>
+					<h3 class="mt-3 text-lg leading-tight font-semibold">{card.title}</h3>
 					<p class="mt-3 text-sm leading-6 text-copy/72">{card.description}</p>
 				</article>
 			{/each}

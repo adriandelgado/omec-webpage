@@ -149,7 +149,7 @@
 
 	<div class="overflow-hidden rounded-2xl border border-primary bg-white">
 		<div class="overflow-x-auto">
-			<table class="min-w-full text-left text-sm text-copy">
+			<table class="min-w-full text-left text-sm">
 				<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
 					<tr>
 						{#each national_columns as column (column)}

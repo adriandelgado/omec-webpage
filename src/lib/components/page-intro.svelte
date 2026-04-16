@@ -14,7 +14,7 @@
 </script>
 
 <div class={["max-w-185", class_name]}>
-	<h1 class="text-4xl leading-none font-semibold tracking-tighter text-copy lg:text-5xl">
+	<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 		{#each title_lines as title_line (title_line.text)}
 			<span class={["block", title_line.class]}>
 				{title_line.text}

@@ -134,7 +134,7 @@
 						>
 							{card.title}
 						</h3>
-						<p class="mx-auto mt-10 max-w-[20ch] text-center text-base leading-snug text-copy">
+						<p class="mx-auto mt-10 max-w-[20ch] text-center text-base leading-snug">
 							{card.description}
 						</p>
 					</div>

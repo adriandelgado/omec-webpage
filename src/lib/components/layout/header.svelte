@@ -28,7 +28,7 @@
 				<img src={logo_omec} alt="" class="h-9 w-auto" />
 			</a>
 			<Dialog.Trigger
-				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-copy transition-colors hover:text-primary lg:hidden"
+				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors hover:text-primary lg:hidden"
 			>
 				<span class="sr-only">Open main menu</span>
 				<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
@@ -39,13 +39,12 @@
 					<a
 						href={resolve(link.href)}
 						aria-current={is_active ? "page" : undefined}
-						class="text-sm font-medium text-copy transition-colors hover:text-primary"
+						class={[
+							"text-sm font-medium transition-colors before:text-primary before:content-['['] after:text-primary after:content-[']'] hover:text-primary hover:before:visible hover:after:visible",
+							is_active ? "before:visible after:visible" : "before:invisible after:invisible",
+						]}
 					>
-						<span class="inline-flex items-center">
-							<span class={["text-primary", !is_active && "invisible"]}>[</span>
-							<span>{link.text}</span>
-							<span class={["text-primary", !is_active && "invisible"]}>]</span>
-						</span>
+						{link.text}
 					</a>
 				{/each}
 			</div>
@@ -63,9 +62,7 @@
 						<span class="sr-only">OMEC</span>
 						<img src={logo_omec} alt="" class="h-9 w-auto" />
 					</a>
-					<Dialog.Close
-						class="-m-2.5 rounded-md p-2.5 text-copy transition-colors hover:text-primary"
-					>
+					<Dialog.Close class="-m-2.5 rounded-md p-2.5 transition-colors hover:text-primary">
 						<span class="sr-only">Close menu</span>
 						<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
 					</Dialog.Close>
@@ -78,7 +75,7 @@
 							href={resolve(link.href)}
 							aria-current={is_active ? "page" : undefined}
 							onclick={() => (is_mobile_menu_open = false)}
-							class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-copy transition-colors hover:bg-background hover:text-primary"
+							class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold transition-colors hover:bg-background hover:text-primary"
 						>
 							<span class="inline-flex items-center">
 								<span class={["text-primary", !is_active && "invisible"]}>[</span>

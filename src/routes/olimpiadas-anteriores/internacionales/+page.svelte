@@ -50,7 +50,7 @@
 
 		<div class="mt-5 overflow-hidden rounded-2xl border border-primary bg-white">
 			<div class="overflow-x-auto">
-				<table class="min-w-full text-left text-sm text-copy">
+				<table class="min-w-full text-left text-sm">
 					<thead class="bg-primary/8 text-xs font-semibold tracking-wide text-primary uppercase">
 						<tr>
 							{#each medallero_columns as column (column)}
@@ -63,7 +63,7 @@
 						{#each medal_summary as olympiad (olympiad.olympiad)}
 							<tr class="align-top transition-colors hover:bg-primary/4">
 								<td class="px-4 py-3">
-									<p class="font-medium text-copy">{olympiad.olympiad}</p>
+									<p class="font-medium">{olympiad.olympiad}</p>
 									<p class="mt-1 text-xs text-copy/55">
 										{olympiad.years} • {olympiad.participants} participaciones
 									</p>

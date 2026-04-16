@@ -9,12 +9,10 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="min-h-screen text-copy">
-	<div class="mx-auto flex min-h-screen w-full max-w-295 flex-col">
-		<Header />
-		<main class="flex-1 border-x border-primary bg-foreground">
-			{@render children()}
-		</main>
-		<Footer />
-	</div>
+<div class="mx-auto flex min-h-screen max-w-295 flex-col text-copy">
+	<Header />
+	<main class="flex-1 border-x border-primary bg-foreground">
+		{@render children()}
+	</main>
+	<Footer />
 </div>
