@@ -116,7 +116,7 @@
 			<img
 				src={hero_image}
 				alt="Problema de geometría olímpica"
-				class="mx-auto h-auto w-full max-w-130 object-contain"
+				class="mx-auto h-auto w-full max-w-96 object-contain"
 			/>
 		</div>
 	</ContentSection>
@@ -130,8 +130,7 @@
 				desde etapas iniciales hasta niveles de alta competencia. Nuestros entrenadores combinan
 				experiencia olímpica y formación universitaria.
 			</p>
-
-			<img src={blocks} alt="" class="w-18 justify-self-end lg:w-24" />
+			<img src={blocks} alt="" class="w-21 justify-self-end lg:w-28" />
 		</div>
 
 		<div class="mt-7 grid gap-5 lg:grid-cols-3">
@@ -139,8 +138,7 @@
 				<TrainingProgramCard {...card} />
 			{/each}
 		</div>
-
-		<img src={triangle_center_gravity} alt="" class="mt-6 w-14 lg:w-20" />
+		<img src={triangle_center_gravity} alt="" class="mt-6 w-21 lg:w-30" />
 	</ContentSection>
 
 	<ContentSection>
@@ -196,8 +194,8 @@
 		<div class="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:grid-cols-4">
 			{#each international_achievements as achievement (achievement.id)}
 				<article class="rounded-sm border-x border-t-6 border-b border-primary bg-white p-4">
-					<div class="flex h-20 items-center justify-center">
-						<img src={achievement.image} alt="" class="max-h-16 w-auto object-contain" />
+					<div class="flex h-26 items-center justify-center">
+						<img src={achievement.image} alt="" class="max-h-22 w-auto object-contain" />
 					</div>
 
 					<div class="mt-4 text-center">

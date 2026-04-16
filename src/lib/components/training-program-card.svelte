@@ -13,7 +13,7 @@
 </script>
 
 <Card class="p-4">
-	<img src={icon} alt={icon_alt} class="h-6 w-6" />
+	<img src={icon} alt={icon_alt} class="size-12" />
 	<h3 class="mt-3 max-w-[14ch] text-base leading-tight font-medium text-copy">{title}</h3>
 	<p class="mt-2.5 text-sm leading-relaxed text-copy/70">{description}</p>
 	<ul class="mt-3.5 space-y-1.5 text-sm leading-normal text-copy/80">
