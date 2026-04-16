@@ -24,16 +24,15 @@
 			class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
 		>
 			<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
-				<span class="sr-only">OMEC</span>
-				<img src={logo_omec} alt="" class="h-9 w-auto" />
+				<img src={logo_omec} alt="OMEC" class="h-9 w-auto" />
 			</a>
 			<Dialog.Trigger
+				aria-label="Abrir menú principal"
 				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors hover:text-primary lg:hidden"
 			>
-				<span class="sr-only">Open main menu</span>
 				<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
 			</Dialog.Trigger>
-			<div class="hidden items-center gap-x-8 lg:col-start-2 lg:flex">
+			<div class="hidden items-center gap-x-8 lg:flex">
 				{#each ROUTES as link (link.href)}
 					{@const is_active = is_active_route(link.href)}
 					<a

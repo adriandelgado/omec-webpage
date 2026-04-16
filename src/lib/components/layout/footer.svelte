@@ -44,7 +44,7 @@
 </script>
 
 <footer class="border-t border-primary px-4 text-primary xl:px-0">
-	<div class="w-full py-8">
+	<div class="py-8">
 		<div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.85fr_0.9fr]">
 			<a href={resolve("/")} class="inline-flex max-w-xs items-start gap-3">
 				<img src={logo_omec} alt="OMEC" class="h-14 w-auto shrink-0" />

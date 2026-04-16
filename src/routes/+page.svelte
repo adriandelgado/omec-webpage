@@ -23,7 +23,6 @@
 			description:
 				"Sesiones semanales guiadas por exolímpicos y docentes con experiencia en preparación competitiva.",
 			icon: hexagon,
-			icon_alt: "Ícono de hexágono",
 			bullets: ["Clases semanales", "Material didáctico", "Problemas resueltos"],
 		},
 		{
@@ -31,7 +30,6 @@
 			description:
 				"Seguimiento cercano para estudiantes que necesitan fortalecer técnicas de demostración y estrategia.",
 			icon: triangle,
-			icon_alt: "Ícono de triángulo",
 			bullets: ["Mentoría individual", "Retroalimentación", "Rutas por nivel"],
 		},
 		{
@@ -39,7 +37,6 @@
 			description:
 				"Acceso remoto a clases en vivo, recursos grabados y acompañamiento continuo durante la temporada.",
 			icon: circle,
-			icon_alt: "Ícono de círculo",
 			bullets: ["Clases en línea", "Biblioteca virtual", "Evaluaciones periódicas"],
 		},
 	] as const;
@@ -111,7 +108,7 @@
 		</div>
 
 		<div
-			class="relative overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
+			class="overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
 		>
 			<img src={hero_image} alt="Problema de geometría olímpica" class="mx-auto w-full max-w-96" />
 		</div>
@@ -148,12 +145,10 @@
 						<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
 					</div>
 
-					<dl class="grid gap-2 p-4 text-sm">
+					<dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 p-4 text-sm">
 						{#each olympic_stages as [label, date] (label)}
-							<div class="flex justify-between gap-3">
-								<dt>{label}</dt>
-								<dd>{date}</dd>
-							</div>
+							<dt>{label}</dt>
+							<dd class="justify-self-end text-right">{date}</dd>
 						{/each}
 					</dl>
 				</article>
@@ -231,6 +226,8 @@
 					<img
 						src={event.image}
 						alt={event.image_alt}
+						loading="lazy"
+						decoding="async"
 						class="aspect-[4/2.7] w-full border border-primary/25 bg-white object-cover"
 					/>
 					<p class="mt-2 text-sm text-copy/70">{event.title}</p>

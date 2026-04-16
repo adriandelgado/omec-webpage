@@ -6,14 +6,13 @@
 		description: string;
 		bullets: readonly string[];
 		icon: string;
-		icon_alt: string;
 	}
 
-	let { title, description, bullets, icon, icon_alt }: Props = $props();
+	let { title, description, bullets, icon }: Props = $props();
 </script>
 
 <Card class="p-4">
-	<img src={icon} alt={icon_alt} class="size-12" />
+	<img src={icon} alt="" class="size-12" />
 	<h3 class="mt-3 max-w-[14ch] text-base leading-tight font-medium">{title}</h3>
 	<p class="mt-2.5 text-sm leading-relaxed text-copy/70">{description}</p>
 	<ul
