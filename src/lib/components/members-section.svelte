@@ -15,9 +15,9 @@
 	let { members, class: class_name = "" }: Props = $props();
 </script>
 
-<div class={["grid gap-x-8 gap-y-10", class_name]}>
+<ul class={["grid gap-x-8 gap-y-10", class_name]}>
 	{#each members as member (member.id)}
-		<article class="flex items-center gap-4 md:gap-5">
+		<li class="flex items-center gap-4 md:gap-5">
 			<img
 				src={member.image}
 				alt={member.image_alt}
@@ -28,10 +28,10 @@
 				<h3 class="text-3xl leading-none font-semibold tracking-tighter text-primary">
 					{member.name}
 				</h3>
-				<p class="mt-2 text-lg leading-snug tracking-wider text-copy/72">
+				<p class="mt-2 text-lg leading-snug tracking-wider text-copy/75">
 					{member.role}
 				</p>
 			</div>
-		</article>
+		</li>
 	{/each}
-</div>
+</ul>

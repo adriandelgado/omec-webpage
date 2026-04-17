@@ -70,6 +70,7 @@
 				<div class="mt-6 space-y-2 py-6">
 					{#each ROUTES as link (link.href)}
 						{@const is_active = is_active_route(link.href)}
+						<!-- TODO: do the same as desktop -->
 						<a
 							href={resolve(link.href)}
 							aria-current={is_active ? "page" : undefined}

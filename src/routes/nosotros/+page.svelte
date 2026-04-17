@@ -98,7 +98,7 @@
 			estudiantes ecuatorianos mediante competencias, entrenamiento y acompañamiento académico.
 		</p>
 
-		<div
+		<aside
 			class="mt-7 grid gap-4 overflow-hidden rounded-2xl border border-primary/20 bg-primary px-4 py-3 text-white lg:grid-cols-[1fr_auto] lg:items-center lg:px-5"
 		>
 			<div class="flex items-start gap-3">
@@ -129,11 +129,11 @@
 					strokeWidth={1.8}
 				/>
 			</div>
-		</div>
+		</aside>
 	</ContentSection>
 
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-		<div class="max-w-125">
+		<div class="max-w-125 text-sm leading-6 text-copy/75">
 			<p class="text-4xl leading-none font-semibold tracking-tighter text-primary lg:text-5xl">
 				Acerca de
 			</p>
@@ -141,13 +141,13 @@
 				Nuestra labor
 			</h2>
 
-			<p class="mt-6 text-sm leading-6 text-copy/78">
+			<p class="mt-6">
 				OMEC crea espacios donde la matemática se vive como una práctica formativa, desafiante y
 				colectiva. Nuestro trabajo impulsa el razonamiento lógico, la resolución de problemas y la
 				confianza intelectual de niñas, niños y jóvenes interesados en profundizar en esta área.
 			</p>
 
-			<p class="mt-4 text-sm leading-6 text-copy/78">
+			<p class="mt-4">
 				Las olimpiadas matemáticas conectan al país con una comunidad internacional de aprendizaje y
 				exigencia académica. A través de ellas, estudiantes de diferentes provincias, contextos y
 				edades desarrollan disciplina, creatividad y autonomía para enfrentar problemas complejos.
@@ -172,7 +172,7 @@
 						{card.eyebrow}
 					</p>
 					<h3 class="mt-3 text-lg leading-tight font-semibold">{card.title}</h3>
-					<p class="mt-3 text-sm leading-6 text-copy/72">{card.description}</p>
+					<p class="mt-3 text-sm leading-6 text-copy/75">{card.description}</p>
 				</article>
 			{/each}
 		</div>

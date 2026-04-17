@@ -160,7 +160,7 @@
 		>
 			<div>
 				<h3 class="text-lg font-medium">Inscripciones Abiertas</h3>
-				<p class="mt-1 text-sm text-white/85">
+				<p class="mt-1 text-sm text-white/80">
 					Regístrate ahora para la temporada 2026 de las Olimpiadas Matemáticas.
 				</p>
 			</div>

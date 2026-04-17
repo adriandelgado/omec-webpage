@@ -7,7 +7,7 @@
 	<h2 class="text-3xl leading-none font-semibold tracking-tighter">
 		¿Listo para comenzar tu camino matemático?
 	</h2>
-	<p class="mx-auto mt-4 max-w-130 text-sm leading-7 text-white/82">
+	<p class="mx-auto mt-4 max-w-130 text-sm leading-7 text-white/80">
 		Inscríbete en uno de nuestros programas y comienza a desarrollar tu potencial junto a los
 		mejores entrenadores del país.
 	</p>
