@@ -25,10 +25,10 @@
 			/>
 
 			<div class="min-w-0">
-				<h3 class="text-3xl leading-none font-semibold tracking-tighter text-primary">
+				<h3 class="text-xl leading-none font-semibold tracking-tighter text-primary">
 					{member.name}
 				</h3>
-				<p class="mt-2 text-lg leading-snug tracking-wider text-copy/75">
+				<p class="mt-2 font-mono leading-snug tracking-tighter text-copy/75">
 					{member.role}
 				</p>
 			</div>

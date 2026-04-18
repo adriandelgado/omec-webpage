@@ -19,5 +19,11 @@
 
 	body {
 		@apply bg-background;
+		background-image: radial-gradient(
+			circle,
+			oklch(0.5465 0.2455 262.87 / 0.12) 0.8px,
+			transparent 1.5px
+		);
+		background-size: 10px 10px;
 	}
 }

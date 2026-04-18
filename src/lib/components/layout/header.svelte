@@ -13,15 +13,15 @@
 	}
 
 	let is_mobile_menu_open = $state(false);
+
+	const scale_ticks = Array.from({ length: 21 }, (_, i) => i);
 </script>
 
-<header
-	class="sticky top-0 z-50 border-x border-b border-primary bg-foreground/90 px-4 backdrop-blur-sm lg:px-6"
->
+<header class="sticky top-0 z-50 border-x border-primary bg-foreground/90 backdrop-blur-sm">
 	<Dialog.Root bind:open={is_mobile_menu_open}>
 		<nav
 			aria-label="Global"
-			class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
+			class="mx-auto flex max-w-270 items-center justify-between px-4 py-3 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-6"
 		>
 			<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
 				<img src={logo_omec} alt="OMEC" class="h-9 w-auto" />
@@ -88,4 +88,17 @@
 			</Dialog.Content>
 		</Dialog.Portal>
 	</Dialog.Root>
+
+	<div class="border-t border-primary" aria-hidden="true">
+		<div class="mx-auto hidden max-w-270 select-none justify-between px-4 lg:flex lg:px-6">
+			{#each scale_ticks as n (n)}
+				<div class="flex flex-col items-center">
+					<div class="h-2 w-px bg-primary/50"></div>
+					<span class="mt-px font-mono text-[7px] leading-none text-primary/50 tabular-nums"
+						>{n}</span
+					>
+				</div>
+			{/each}
+		</div>
+	</div>
 </header>

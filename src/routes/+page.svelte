@@ -228,7 +228,7 @@
 						alt={event.image_alt}
 						loading="lazy"
 						decoding="async"
-						class="aspect-[4/2.7] w-full border border-primary/25 bg-white object-cover"
+						class="aspect-[4/2.7] w-full rounded-lg object-cover"
 					/>
 					<p class="mt-2 text-sm text-copy/70">{event.title}</p>
 				</article>
