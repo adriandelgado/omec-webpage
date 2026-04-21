@@ -90,7 +90,7 @@
 	</Dialog.Root>
 
 	<div class="border-t border-primary" aria-hidden="true">
-		<div class="mx-auto hidden max-w-270 select-none justify-between px-4 lg:flex lg:px-6">
+		<div class="mx-auto hidden max-w-270 justify-between px-4 select-none lg:flex lg:px-6">
 			{#each scale_ticks as n (n)}
 				<div class="flex flex-col items-center">
 					<div class="h-2 w-px bg-primary/50"></div>
