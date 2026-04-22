@@ -92,11 +92,10 @@
 
 						<div class="mt-4 flex items-center gap-3">
 							{#each social_links as social_link (social_link.label)}
-								<!-- eslint-disable svelte/no-navigation-without-resolve -->
 								<a
 									href={social_link.href}
 									target="_blank"
-									rel="noreferrer"
+									rel="external noreferrer"
 									aria-label={social_link.label}
 									class={`inline-flex size-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
 								>
@@ -104,7 +103,6 @@
 										<path d={social_link.path}></path>
 									</svg>
 								</a>
-								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 							{/each}
 						</div>
 
