@@ -7,7 +7,7 @@ This project is a complete rewrite of the official [Olimpiada Matemática Ecuato
 - **Framework:** [SvelteKit 2](https://svelte.dev/docs/kit) with [Svelte 5](https://svelte.dev/docs/svelte) (using Runes)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Authentication:** [Better-Auth](https://www.better-auth.com/)
-- **Database:** [Turso](https://turso.tech/) / LibSQL
+- **Database:** local LibSQL/SQLite in development, [Turso](https://turso.tech/) / LibSQL in production
 - **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
 - **UI Components:** [Bits UI](https://www.bits-ui.com/) & [Lucide Svelte](https://lucide.dev/)
 - **Validation:** [Valibot](https://valibot.dev/)
@@ -24,8 +24,17 @@ To maintain consistency across the codebase, we adhere to the following naming c
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v20 or higher)
-- [Docker](https://www.docker.com/) (for local database)
 - [pnpm](https://pnpm.io/)
+
+## Local Development
+
+Local development is zero-secret by default.
+
+- If `DATABASE_URL` is unset, the app and Drizzle use `file:local.db`.
+- `DATABASE_AUTH_TOKEN`, `ORIGIN`, and `BETTER_AUTH_SECRET` are not required for `pnpm dev`, `pnpm check`, or `pnpm build`.
+- You can start from [`.env.example`](.env.example) as-is and run the app locally without provisioning Turso or auth secrets.
+
+When you do want to point your local app at Turso, set `DATABASE_URL` to the remote `libsql://...` URL and provide `DATABASE_AUTH_TOKEN` as well.
 
 ## Scripts
 
@@ -35,13 +44,18 @@ To maintain consistency across the codebase, we adhere to the following naming c
 - `pnpm check`: Runs Wrangler type generation, Svelte sync, and Svelte-Check for type validation.
 - `pnpm lint`: Runs Prettier checks and ESLint.
 - `pnpm format`: Formats code using Prettier.
-- `pnpm db:push`: Synchronizes the Drizzle schema with the database.
-- `pnpm db:generate`: Generates Drizzle migrations.
-- `pnpm db:studio`: Opens a GUI to explore your local database.
+- `pnpm db:push`: Synchronizes the Drizzle schema with the local default database (`file:local.db` unless overridden).
+- `pnpm db:push:prod`: Synchronizes the schema against a production Turso database and requires real Turso env vars.
+- `pnpm db:generate`: Generates Drizzle migrations using the local-safe config.
+- `pnpm db:studio`: Opens Drizzle Studio against the local-safe config.
 
 ## Deployment
 
-The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`, with **Turso** as the backing database. Ensure the required environment variables for your Turso and auth configuration are available before running the production build or database commands.
+The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`, with **Turso** as the production database.
+
+- Store `DATABASE_URL`, `DATABASE_AUTH_TOKEN`, `ORIGIN`, and `BETTER_AUTH_SECRET` in Cloudflare Worker secrets/vars.
+- Do not add these secrets to GitHub Actions just to make forks or pull request CI pass.
+- Production runtime stays strict: remote database URLs require `DATABASE_AUTH_TOKEN`, and auth requires `ORIGIN` plus `BETTER_AUTH_SECRET`.
 
 ## License
 

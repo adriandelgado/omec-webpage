@@ -1,11 +1,25 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import * as schema from "./schema";
+import { building, dev } from "$app/environment";
 import { env } from "$env/dynamic/private";
+import * as schema from "./schema";
+import { resolve_database_config } from "./config";
 
-if (!env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
-if (!env.DATABASE_AUTH_TOKEN) throw new Error("DATABASE_AUTH_TOKEN is not set");
+const database_config = resolve_database_config({
+	database_auth_token: env.DATABASE_AUTH_TOKEN,
+	database_url: env.DATABASE_URL,
+	allow_local_default: building || dev,
+	context: building
+		? "Build-time database configuration"
+		: dev
+			? "Development database configuration"
+			: "Production database configuration",
+});
 
-const client = createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
+const client = createClient(
+	database_config.auth_token
+		? { url: database_config.url, authToken: database_config.auth_token }
+		: { url: database_config.url },
+);
 
 export const db = drizzle(client, { schema });

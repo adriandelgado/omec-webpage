@@ -4,8 +4,9 @@ import { resolve_database_config } from "./src/lib/server/db/config";
 const database_config = resolve_database_config({
 	database_auth_token: process.env.DATABASE_AUTH_TOKEN,
 	database_url: process.env.DATABASE_URL,
-	allow_local_default: true,
-	context: "Drizzle local configuration",
+	allow_local_default: false,
+	context: "Drizzle production configuration",
+	require_remote: true,
 });
 
 export default defineConfig({
