@@ -19,35 +19,37 @@
 
 <header class="sticky top-0 z-50 border-x border-primary bg-foreground/90 backdrop-blur-sm">
 	<Dialog.Root bind:open={is_mobile_menu_open}>
-		<nav
-			aria-label="Global"
-			class="mx-auto flex max-w-270 items-center justify-between px-4 py-3 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-6"
-		>
-			<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
-				<img src={logo_omec} alt="OMEC" class="h-9 w-auto" />
-			</a>
-			<Dialog.Trigger
-				aria-label="Abrir menú principal"
-				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors hover:text-primary lg:hidden"
+		<div class="px-4 lg:px-6">
+			<nav
+				aria-label="Global"
+				class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
 			>
-				<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
-			</Dialog.Trigger>
-			<div class="hidden items-center gap-x-8 lg:flex">
-				{#each ROUTES as link (link.href)}
-					{@const is_active = is_active_route(link.href)}
-					<a
-						href={resolve(link.href)}
-						aria-current={is_active ? "page" : undefined}
-						class={[
-							"text-sm font-medium transition-colors before:text-primary before:content-['['] after:text-primary after:content-[']'] hover:text-primary hover:before:visible hover:after:visible",
-							is_active ? "before:visible after:visible" : "before:invisible after:invisible",
-						]}
-					>
-						{link.text}
-					</a>
-				{/each}
-			</div>
-		</nav>
+				<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
+					<img src={logo_omec} alt="OMEC" class="h-9 w-auto" />
+				</a>
+				<Dialog.Trigger
+					aria-label="Abrir menú principal"
+					class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors hover:text-primary lg:hidden"
+				>
+					<Menu aria-hidden="true" class="size-6" strokeWidth={1.5} />
+				</Dialog.Trigger>
+				<div class="hidden items-center gap-x-8 lg:flex">
+					{#each ROUTES as link (link.href)}
+						{@const is_active = is_active_route(link.href)}
+						<a
+							href={resolve(link.href)}
+							aria-current={is_active ? "page" : undefined}
+							class={[
+								"text-sm font-medium transition-colors before:text-primary before:content-['['] after:text-primary after:content-[']'] hover:text-primary hover:before:visible hover:after:visible",
+								is_active ? "before:visible after:visible" : "before:invisible after:invisible",
+							]}
+						>
+							{link.text}
+						</a>
+					{/each}
+				</div>
+			</nav>
+		</div>
 
 		<Dialog.Portal>
 			<Dialog.Overlay class="fixed inset-0 z-60 bg-copy/20 backdrop-blur-xs lg:hidden" />
