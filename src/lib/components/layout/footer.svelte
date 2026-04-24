@@ -5,11 +5,11 @@
 	import { ROUTES } from "$lib/constants";
 
 	const resource_links = [
-		{ text: "Problemas de Práctica", href: "#" },
-		{ text: "Exámenes Anteriores", href: "#" },
-		{ text: "Resultados", href: "#" },
-		{ text: "Calendario de Eventos", href: "#" },
-		{ text: "Preguntas Frecuentes", href: "#" },
+		{ text: "Problemas de Práctica", href: "/" },
+		{ text: "Exámenes Anteriores", href: "/" },
+		{ text: "Resultados", href: "/" },
+		{ text: "Calendario de Eventos", href: "/" },
+		{ text: "Preguntas Frecuentes", href: "/" },
 	] as const;
 
 	// TODO: consolidate the info in a constants.ts file
@@ -23,19 +23,9 @@
 	] as const;
 
 	const legal_links = [
-		{ text: "Política de Privacidad", href: "#" },
-		{ text: "Términos de Uso", href: "#" },
+		{ text: "Política de Privacidad", href: "/" },
+		{ text: "Términos de Uso", href: "/" },
 	] as const;
-
-	type footer_href =
-		| (typeof ROUTES)[number]["href"]
-		| (typeof resource_links)[number]["href"]
-		| (typeof contact_links)[number]["href"]
-		| (typeof legal_links)[number]["href"];
-
-	function get_href(href: footer_href) {
-		return href.startsWith("/") ? resolve(href as (typeof ROUTES)[number]["href"]) : href;
-	}
 
 	const footer_sections = [
 		{ title: "Enlaces Rápidos", links: ROUTES },
@@ -62,10 +52,9 @@
 					<ul class="mt-3 space-y-2 text-sm leading-relaxed">
 						{#each section.links as link (link.text)}
 							<li>
-								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-								<a class="transition-opacity hover:opacity-70" href={get_href(link.href)}
-									>{link.text}</a
-								>
+								<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}>
+									{link.text}
+								</a>
 							</li>
 						{/each}
 					</ul>
@@ -77,15 +66,14 @@
 				<ul class="mt-3 space-y-3 text-sm leading-relaxed">
 					{#each contact_links as link (link.text)}
 						<li>
-							<!-- eslint-disable svelte/no-navigation-without-resolve -->
 							<a
 								class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
-								href={get_href(link.href)}
+								href={link.href}
+								rel="external"
 							>
 								<link.icon class="size-4 shrink-0" aria-hidden="true" strokeWidth={1.8} />
 								<span>{link.text}</span>
 							</a>
-							<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						</li>
 					{/each}
 				</ul>
@@ -100,8 +88,7 @@
 			</p>
 			<nav aria-label="Enlaces legales" class="flex flex-wrap gap-4">
 				{#each legal_links as link (link.text)}
-					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-					<a class="transition-opacity hover:opacity-70" href={get_href(link.href)}>{link.text}</a>
+					<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}>{link.text}</a>
 				{/each}
 			</nav>
 		</div>

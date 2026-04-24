@@ -73,12 +73,11 @@
 
 										<div class="mt-1.5 space-y-1 text-sm leading-relaxed text-copy/72">
 											{#each card.lines as line, index (line)}
-												<!-- eslint-disable svelte/no-navigation-without-resolve -->
 												<a
 													href={card.links[index]}
+													rel="external"
 													class="block break-all transition-colors hover:text-primary">{line}</a
 												>
-												<!-- eslint-enable svelte/no-navigation-without-resolve -->
 											{/each}
 										</div>
 									</div>
