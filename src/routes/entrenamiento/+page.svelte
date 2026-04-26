@@ -110,7 +110,7 @@
 			description="Tres modalidades de estudio para adaptarse a las necesidades de cada estudiante, sin importar su ubicación o nivel actual."
 		/>
 
-		<div class="mt-7 grid gap-5 lg:grid-cols-3">
+		<div class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 			{#each training_programs as program (program.title)}
 				<TrainingProgramCard {...program} />
 			{/each}
@@ -123,14 +123,14 @@
 			description="La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. Nuestro banco de problemas podrá ayudarte a practicar con problemas de competencias nacionales e internacionales."
 		/>
 
-		<div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+		<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			{#each material_cards as card (card.id)}
 				<article
 					class="relative flex min-h-96 flex-col justify-between overflow-hidden rounded-xl border border-primary bg-white px-6 pt-10 pb-24 sm:px-7"
 				>
 					<div>
 						<h3
-							class="mx-auto max-w-[9ch] text-center text-3xl leading-8 font-semibold tracking-tighter text-primary sm:text-4xl"
+							class="mx-auto max-w-[9ch] py-4 text-center text-3xl leading-8 font-semibold tracking-tighter text-primary sm:text-4xl"
 						>
 							{card.title}
 						</h3>
@@ -144,7 +144,7 @@
 						class="absolute bottom-0 left-0 inline-flex size-20 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
 						aria-label={`Ver material ${card.title}`}
 					>
-						<span class="text-5xl leading-none">↗</span>
+						<span class="text-6xl leading-none">↗</span>
 					</a>
 				</article>
 			{/each}

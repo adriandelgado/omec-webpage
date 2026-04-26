@@ -126,7 +126,7 @@
 			<img src={blocks} alt="" class="w-21 justify-self-end lg:w-28" />
 		</div>
 
-		<div class="mt-7 grid gap-5 lg:grid-cols-3">
+		<div class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 			{#each training_cards as card (card.title)}
 				<TrainingProgramCard {...card} />
 			{/each}
@@ -137,7 +137,7 @@
 	<ContentSection>
 		<SectionHeading title="Calendario Olímpico" />
 
-		<div class="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-3">
+		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
 			{#each olympic_editions as edition (edition)}
 				<article class="overflow-hidden rounded-sm border border-primary bg-white">
 					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
