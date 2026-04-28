@@ -1,5 +1,9 @@
 export const ROUTES = [
 	{
+		text: "Inicio",
+		href: "/",
+	},
+	{
 		text: "Nosotros",
 		href: "/nosotros",
 	},

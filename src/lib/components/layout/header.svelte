@@ -9,6 +9,7 @@
 	const home_href = resolve("/");
 
 	function is_active_route(href: string) {
+		if (href === "/") return page.url.pathname === "/";
 		return page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 	}
 
@@ -90,17 +91,4 @@
 			</Dialog.Content>
 		</Dialog.Portal>
 	</Dialog.Root>
-
-	<div class="border-t border-primary" aria-hidden="true">
-		<div class="mx-auto hidden max-w-270 justify-between px-4 select-none lg:flex lg:px-6">
-			{#each scale_ticks as n (n)}
-				<div class="flex flex-col items-center">
-					<div class="h-2 w-px bg-primary/50"></div>
-					<span class="mt-px font-mono text-[7px] leading-none text-primary/50 tabular-nums"
-						>{n}</span
-					>
-				</div>
-			{/each}
-		</div>
-	</div>
 </header>

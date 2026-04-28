@@ -11,7 +11,7 @@
 </script>
 
 <section class={["px-4 lg:px-6", class_name]}>
-	<div class={["mx-auto max-w-270", container_class]}>
+	<div class={["mx-auto max-w-7xl", container_class]}>
 		{@render children()}
 	</div>
 </section>

@@ -11,7 +11,7 @@
 	let { title, description, bullets, icon }: Props = $props();
 </script>
 
-<Card class="p-4">
+<Card class="p-5">
 	<img src={icon} alt="" class="size-12" />
 	<h3 class="mt-3 max-w-[14ch] text-base leading-tight font-medium">{title}</h3>
 	<p class="mt-2.5 text-sm leading-relaxed text-copy/70">{description}</p>

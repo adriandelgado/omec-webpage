@@ -93,7 +93,7 @@
 	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
 />
 
-<PageSectionStack class="py-8 lg:py-10">
+<PageSectionStack class="py-12 lg:py-20">
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-80">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
@@ -101,7 +101,7 @@
 				<span class="text-primary">Ecuatoriana</span>
 			</h1>
 
-			<p class="mt-4 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">
+			<p class="mt-5 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">
 				Desarrollando el talento matemático de los estudiantes ecuatorianos y potenciando la
 				excelencia académica.
 			</p>
@@ -117,7 +117,7 @@
 	<ContentSection>
 		<SectionHeading title="Programas de Entrenamiento" />
 
-		<div class="mt-4 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
+		<div class="mt-6 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
 			<p class="max-w-150 text-sm leading-relaxed text-copy/75">
 				Ofrecemos programas de entrenamiento diseñados para desarrollar las capacidades matemáticas
 				desde etapas iniciales hasta niveles de alta competencia. Nuestros entrenadores combinan
@@ -126,7 +126,7 @@
 			<img src={blocks} alt="" class="w-21 justify-self-end lg:w-28" />
 		</div>
 
-		<div class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+		<div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 			{#each training_cards as card (card.title)}
 				<TrainingProgramCard {...card} />
 			{/each}
@@ -137,7 +137,7 @@
 	<ContentSection>
 		<SectionHeading title="Calendario Olímpico" />
 
-		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
+		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each olympic_editions as edition (edition)}
 				<article class="overflow-hidden rounded-sm border border-primary bg-white">
 					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
@@ -156,7 +156,7 @@
 		</div>
 
 		<div
-			class="relative mt-5 overflow-hidden rounded-md bg-primary px-5 py-4 text-white lg:grid lg:grid-cols-[1fr_auto] lg:items-center"
+			class="relative mt-6 overflow-hidden rounded-md bg-primary px-5 py-4 text-white lg:grid lg:grid-cols-[1fr_auto] lg:items-center"
 		>
 			<div>
 				<h3 class="text-lg font-medium">Inscripciones Abiertas</h3>
