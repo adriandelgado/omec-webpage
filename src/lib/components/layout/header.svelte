@@ -14,8 +14,6 @@
 	}
 
 	let is_mobile_menu_open = $state(false);
-
-	const scale_ticks = Array.from({ length: 21 }, (_, i) => i);
 </script>
 
 <header class="sticky top-0 z-50 border-x border-primary bg-foreground/90 backdrop-blur-sm">
