@@ -21,7 +21,7 @@
 		<div class="px-4 lg:px-6">
 			<nav
 				aria-label="Global"
-				class="mx-auto flex max-w-270 items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
+				class="mx-auto flex max-w-7xl items-center justify-between py-3 lg:grid lg:grid-cols-[1fr_auto_1fr]"
 			>
 				<a href={home_href} class="-m-1 flex flex-1 p-1 lg:justify-self-start">
 					<img src={logo_omec} alt="OMEC" class="h-9 w-auto" />
