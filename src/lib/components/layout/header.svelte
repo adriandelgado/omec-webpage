@@ -10,8 +10,8 @@
 	const home_href = resolve("/");
 
 	function is_active_route(href: string) {
-		const pathname = $state.eager(page.url.pathname);
-		return pathname === href || pathname.startsWith(`${href}/`);
+		if (href === "/") return page.url.pathname === "/";
+		return page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 	}
 
 	let is_mobile_menu_open = $state(false);
