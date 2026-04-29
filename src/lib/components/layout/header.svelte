@@ -3,6 +3,7 @@
 	import { Menu, X } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
+	import { fade, fly } from "svelte/transition";
 	import logo_omec from "$lib/assets/logo-omec.svg";
 	import { ROUTES } from "$lib/constants";
 
@@ -51,39 +52,58 @@
 		</div>
 
 		<Dialog.Portal>
-			<Dialog.Overlay class="fixed inset-0 z-60 bg-copy/20 backdrop-blur-xs lg:hidden" />
-			<Dialog.Content
-				preventScroll={false}
-				class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
-			>
-				<Dialog.Title class="sr-only">Main menu</Dialog.Title>
-				<div class="flex items-center justify-between">
-					<a href={home_href} class="-m-1 p-1" onclick={() => (is_mobile_menu_open = false)}>
-						<span class="sr-only">OMEC</span>
-						<img src={logo_omec} alt="" class="h-9 w-auto" />
-					</a>
-					<Dialog.Close class="-m-2.5 rounded-md p-2.5 transition-colors hover:text-primary">
-						<span class="sr-only">Close menu</span>
-						<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
-					</Dialog.Close>
-				</div>
-
-				<div class="mt-6 space-y-2 py-6">
-					{#each ROUTES as link (link.href)}
-						{@const is_active = is_active_route(link.href)}
-						<a
-							href={resolve(link.href)}
-							aria-current={is_active ? "page" : undefined}
-							onclick={() => (is_mobile_menu_open = false)}
-							class={[
-								"-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold transition-colors before:text-primary before:content-['['] after:text-primary after:content-[']'] hover:bg-background hover:text-primary hover:before:visible hover:after:visible",
-								is_active ? "before:visible after:visible" : "before:invisible after:invisible",
-							]}
+			<Dialog.Overlay forceMount>
+				{#snippet child({ props, open })}
+					{#if open}
+						<div
+							{...props}
+							transition:fade={{ duration: 200 }}
+							class="fixed inset-0 z-60 bg-copy/20 backdrop-blur-xs lg:hidden"
+						></div>
+					{/if}
+				{/snippet}
+			</Dialog.Overlay>
+			<Dialog.Content forceMount preventScroll={false}>
+				{#snippet child({ props, open })}
+					{#if open}
+						<div
+							{...props}
+							transition:fly={{ x: 32, duration: 240, opacity: 0.2 }}
+							class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
 						>
-							{link.text}
-						</a>
-					{/each}
-				</div>
+							<Dialog.Title class="sr-only">Main menu</Dialog.Title>
+							<div class="flex items-center justify-between">
+								<a href={home_href} class="-m-1 p-1" onclick={() => (is_mobile_menu_open = false)}>
+									<span class="sr-only">OMEC</span>
+									<img src={logo_omec} alt="" class="h-9 w-auto" />
+								</a>
+								<Dialog.Close class="-m-2.5 rounded-md p-2.5 transition-colors hover:text-primary">
+									<span class="sr-only">Close menu</span>
+									<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
+								</Dialog.Close>
+							</div>
+
+							<div class="mt-6 space-y-2 py-6">
+								{#each ROUTES as link (link.href)}
+									{@const is_active = is_active_route(link.href)}
+									<a
+										href={resolve(link.href)}
+										aria-current={is_active ? "page" : undefined}
+										onclick={() => (is_mobile_menu_open = false)}
+										class={[
+											"-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold transition-colors before:text-primary before:content-['['] after:text-primary after:content-[']'] hover:bg-background hover:text-primary hover:before:visible hover:after:visible",
+											is_active
+												? "before:visible after:visible"
+												: "before:invisible after:invisible",
+										]}
+									>
+										{link.text}
+									</a>
+								{/each}
+							</div>
+						</div>
+					{/if}
+				{/snippet}
 			</Dialog.Content>
 		</Dialog.Portal>
 	</Dialog.Root>
