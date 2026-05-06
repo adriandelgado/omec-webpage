@@ -107,9 +107,7 @@
 			</p>
 		</div>
 
-		<div
-			class="overflow-hidden rounded-3xl border border-primary/25 bg-[linear-gradient(to_right,rgba(61,120,255,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(61,120,255,0.14)_1px,transparent_1px)] bg-size-[40px_40px] px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8"
-		>
+		<div class="overflow-hidden px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8">
 			<img src={hero_image} alt="Problema de geometría olímpica" class="mx-auto w-full max-w-96" />
 		</div>
 	</ContentSection>
