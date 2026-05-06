@@ -6,7 +6,6 @@ This project is a complete rewrite of the official [Olimpiada Matemática Ecuato
 
 - **Framework:** [SvelteKit 2](https://svelte.dev/docs/kit) with [Svelte 5](https://svelte.dev/docs/svelte) (using Runes)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Authentication:** [Better-Auth](https://www.better-auth.com/)
 - **Database:** local LibSQL/SQLite in development, [Turso](https://turso.tech/) / LibSQL in production
 - **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
 - **UI Components:** [Bits UI](https://www.bits-ui.com/) & [Lucide Svelte](https://lucide.dev/)
@@ -31,8 +30,8 @@ To maintain consistency across the codebase, we adhere to the following naming c
 Local development is zero-secret by default.
 
 - If `DATABASE_URL` is unset, the app and Drizzle use `file:local.db`.
-- `DATABASE_AUTH_TOKEN`, `ORIGIN`, and `BETTER_AUTH_SECRET` are not required for `pnpm dev`, `pnpm check`, or `pnpm build`.
-- You can start from [`.env.example`](.env.example) as-is and run the app locally without provisioning Turso or auth secrets.
+- `DATABASE_AUTH_TOKEN` is not required for `pnpm dev`, `pnpm check`, or `pnpm build`.
+- You can start from [`.env.example`](.env.example) as-is and run the app locally without provisioning Turso secrets.
 
 When you do want to point your local app at Turso, set `DATABASE_URL` to the remote `libsql://...` URL and provide `DATABASE_AUTH_TOKEN` as well.
 
@@ -53,9 +52,9 @@ When you do want to point your local app at Turso, set `DATABASE_URL` to the rem
 
 The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`, with **Turso** as the production database.
 
-- Store `DATABASE_URL`, `DATABASE_AUTH_TOKEN`, `ORIGIN`, and `BETTER_AUTH_SECRET` in Cloudflare Worker secrets/vars.
+- Store `DATABASE_URL` and `DATABASE_AUTH_TOKEN` in Cloudflare Worker secrets/vars.
 - Do not add these secrets to GitHub Actions just to make forks or pull request CI pass.
-- Production runtime stays strict: remote database URLs require `DATABASE_AUTH_TOKEN`, and auth requires `ORIGIN` plus `BETTER_AUTH_SECRET`.
+- Production runtime stays strict: remote database URLs require `DATABASE_AUTH_TOKEN`.
 
 ## License
 
