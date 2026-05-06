@@ -20,7 +20,7 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 border-x border-b border-primary bg-foreground/90 backdrop-blur-sm"
+	class="sticky top-0 z-50 border-x border-b border-primary bg-background/90 backdrop-blur-sm"
 >
 	<Dialog.Root bind:open={is_mobile_menu_open}>
 		<div class="px-4 lg:px-6">
@@ -73,7 +73,7 @@
 						<div
 							{...props}
 							transition:fly={{ x: 32, duration: 240, opacity: 0.2 }}
-							class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-foreground p-6 shadow-2xl focus:outline-none lg:hidden"
+							class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-background p-6 shadow-2xl focus:outline-none lg:hidden"
 						>
 							<Dialog.Title class="sr-only">Main menu</Dialog.Title>
 							<div class="flex items-center justify-between">

@@ -5,9 +5,9 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--color-foreground: oklch(98.16% 0.009 264.52);
+	--color-foreground: oklch(95.94% 0.02 250.38);
 	--color-background: oklch(99.11% 0 0);
-	--color-primary: oklch(0.5465 0.2455 262.87);
+	--color-primary: oklch(55.26% 0.204 257.95);
 	--color-primary-dark: oklch(0.5 0.2455 262.87);
 	--color-copy: oklch(0.2099 0.0341 263.44);
 }
