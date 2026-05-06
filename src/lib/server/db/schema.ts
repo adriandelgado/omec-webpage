@@ -16,5 +16,3 @@ export const contact_submission = sqliteTable(
 	},
 	(table) => [index("contact_submission_email_idx").on(table.email)],
 );
-
-export * from "./auth.schema";
