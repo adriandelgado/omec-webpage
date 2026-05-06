@@ -19,7 +19,9 @@
 	let is_mobile_menu_open = $state(false);
 </script>
 
-<header class="sticky top-0 z-50 border-x border-primary bg-foreground/90 backdrop-blur-sm">
+<header
+	class="sticky top-0 z-50 border-x border-b border-primary bg-foreground/90 backdrop-blur-sm"
+>
 	<Dialog.Root bind:open={is_mobile_menu_open}>
 		<div class="px-4 lg:px-6">
 			<nav
