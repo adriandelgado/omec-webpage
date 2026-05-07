@@ -54,7 +54,9 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.14.0",
+		"@std/encoding": "jsr:^1.0.10",
 		"bits-ui": "^2.18.1",
+		"hash-wasm": "^4.12.0",
 		"tailwind-merge": "^3.5.0",
 		"valibot": "^1.4.0"
 	}
