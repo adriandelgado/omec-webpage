@@ -11,11 +11,11 @@ import {
 	user,
 	user_role,
 } from "$lib/server/db/schema";
-import { argon2Verify } from "hash-wasm";
+import { verify_password } from "$lib/server/auth/password";
 import { login_form_schema } from "./login-form";
 
 const DUMMY_PASSWORD_HASH =
-	"$argon2id$v=19$m=19456,t=2,p=1$N055R09wN3IwNWxRaG1rUQ$ygxL8wyYy5NoD9MqNM/QXOVAH8zK2MUyjIXyny2o1wE";
+	"pbkdf2-sha256$i=210000$s=LiJrhE2QUdoJVxx0gy6O7A$h=4-Bn8-7NNTV2PVWbZQQrw-Q7Eqh6l01irLsxf6wFD-A";
 
 async function get_role_keys(user_id: string) {
 	const role_rows = await db
@@ -52,10 +52,10 @@ export const login_admin = form(login_form_schema, async (data) => {
 	const event = getRequestEvent();
 	const [user_row] = await db.select().from(user).where(eq(user.email, data.email)).limit(1);
 
-	const password_is_valid = await argon2Verify({
-		password: data._password,
-		hash: user_row?.password_hash ?? DUMMY_PASSWORD_HASH,
-	});
+	const password_is_valid = await verify_password(
+		data._password,
+		user_row?.password_hash ?? DUMMY_PASSWORD_HASH,
+	);
 
 	if (!user_row || !password_is_valid) {
 		invalid("Credenciales inválidas.");

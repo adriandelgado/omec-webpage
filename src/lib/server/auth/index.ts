@@ -2,6 +2,7 @@ import { dev } from "$app/environment";
 import { encodeBase32, encodeHex } from "@std/encoding";
 import type { RequestEvent } from "@sveltejs/kit";
 import * as v from "valibot";
+import { constant_time_equal } from "./crypto";
 
 export const SESSION_COOKIE_NAME = "auth-session";
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -63,17 +64,6 @@ type ValidateSessionResult = {
 	session: AuthSession | null;
 	user: AuthUser | null;
 };
-
-function constant_time_equal(a: Uint8Array, b: Uint8Array) {
-	if (a.length !== b.length) {
-		return false;
-	}
-	let c = 0;
-	for (let i = 0; i < a.length; i++) {
-		c |= a[i] ^ b[i];
-	}
-	return c === 0;
-}
 
 function generate_secure_random_string() {
 	const secret_bytes = crypto.getRandomValues(new Uint8Array(15));

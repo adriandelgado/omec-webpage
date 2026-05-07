@@ -1,12 +1,16 @@
 import { createClient } from "@libsql/client";
-import { argon2id } from "hash-wasm";
-import { randomBytes, randomUUID } from "node:crypto";
+import { encodeBase64Url } from "@std/encoding/base64url";
+import { randomBytes, randomUUID, webcrypto } from "node:crypto";
 
 const database_url = process.env.SEED_DATABASE_URL ?? "file:local.db";
 const database_auth_token = process.env.SEED_DATABASE_AUTH_TOKEN ?? process.env.DATABASE_AUTH_TOKEN;
 const superuser_email = process.env.SUPERUSER_EMAIL ?? "superuser@example.com";
 const superuser_password = process.env.SUPERUSER_PASSWORD ?? "superuser-password";
 const superuser_full_name = process.env.SUPERUSER_FULL_NAME ?? "Local Superuser";
+const password_hash_iterations = 210_000;
+const password_hash_salt_bytes = 16;
+const password_hash_bytes = 32;
+const subtle = globalThis.crypto?.subtle ?? webcrypto.subtle;
 
 function normalize_env_value(value) {
 	const trimmed_value = value?.trim();
@@ -35,15 +39,32 @@ const client = createClient(
 const now = Date.now();
 
 async function hash_password(password) {
-	return argon2id({
-		password,
-		salt: randomBytes(16),
-		parallelism: 1,
-		iterations: 2,
-		memorySize: 19456,
-		hashLength: 32,
-		outputType: "encoded",
-	});
+	const salt = randomBytes(password_hash_salt_bytes);
+	const password_key = await subtle.importKey(
+		"raw",
+		new TextEncoder().encode(password),
+		"PBKDF2",
+		false,
+		["deriveBits"],
+	);
+	const hash_buffer = await subtle.deriveBits(
+		{
+			name: "PBKDF2",
+			hash: "SHA-256",
+			salt,
+			iterations: password_hash_iterations,
+		},
+		password_key,
+		password_hash_bytes * 8,
+	);
+	const hash = new Uint8Array(hash_buffer);
+
+	return [
+		"pbkdf2-sha256",
+		`i=${password_hash_iterations}`,
+		`s=${encodeBase64Url(salt)}`,
+		`h=${encodeBase64Url(hash)}`,
+	].join("$");
 }
 
 async function get_existing_user_id(email) {
