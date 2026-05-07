@@ -15,7 +15,7 @@ import { verify_password } from "$lib/server/auth/password";
 import { login_form_schema } from "./login-form";
 
 const DUMMY_PASSWORD_HASH =
-	"pbkdf2-sha256$i=210000$s=LiJrhE2QUdoJVxx0gy6O7A$h=4-Bn8-7NNTV2PVWbZQQrw-Q7Eqh6l01irLsxf6wFD-A";
+	"pbkdf2-sha256$i=100000$s=bXxD9TgaIm3ngKDz1eNc5Q$h=cPyQBqHyAuMu3K0kCeI9wYxRJXhzEy34U4fdBRM4tco";
 
 async function get_role_keys(user_id: string) {
 	const role_rows = await db

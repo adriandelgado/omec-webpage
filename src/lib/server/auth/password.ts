@@ -3,7 +3,8 @@ import { constant_time_equal } from "./crypto";
 
 const PASSWORD_HASH_ALGORITHM = "PBKDF2";
 const PASSWORD_HASH_DIGEST = "SHA-256";
-const PASSWORD_HASH_ITERATIONS = 210_000;
+const PASSWORD_HASH_ITERATIONS = 100_000;
+const PASSWORD_HASH_MAX_ITERATIONS = 100_000;
 const PASSWORD_HASH_SALT_BYTES = 16;
 const PASSWORD_HASH_BYTES = 32;
 const PASSWORD_HASH_PREFIX = "pbkdf2-sha256";
@@ -57,7 +58,11 @@ export async function verify_password(password: string, stored_hash: string) {
 	}
 
 	const iterations = Number.parseInt(raw_iterations.slice(2), 10);
-	if (!Number.isSafeInteger(iterations) || iterations < 1) {
+	if (
+		!Number.isSafeInteger(iterations) ||
+		iterations < 1 ||
+		iterations > PASSWORD_HASH_MAX_ITERATIONS
+	) {
 		return false;
 	}
 
