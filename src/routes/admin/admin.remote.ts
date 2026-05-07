@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import { error, invalid, redirect } from "@sveltejs/kit";
 import { form, getRequestEvent, query } from "$app/server";
 import { create_session, generate_session_token, set_session_token_cookie } from "$lib/server/auth";
@@ -42,7 +42,7 @@ export const redirect_if_authenticated = query(() => {
 	const event = getRequestEvent();
 
 	if (event.locals.user) {
-		redirect(303, "/admin/test");
+		redirect(303, "/admin/users");
 	}
 
 	return null;
@@ -50,7 +50,11 @@ export const redirect_if_authenticated = query(() => {
 
 export const login_admin = form(login_form_schema, async (data) => {
 	const event = getRequestEvent();
-	const [user_row] = await db.select().from(user).where(eq(user.email, data.email)).limit(1);
+	const [user_row] = await db
+		.select()
+		.from(user)
+		.where(and(eq(user.email, data.email), isNull(user.deleted_at)))
+		.limit(1);
 
 	const password_is_valid = await verify_password(
 		data._password,
@@ -102,5 +106,5 @@ export const login_admin = form(login_form_schema, async (data) => {
 	});
 
 	set_session_token_cookie(event, token, expires_at);
-	redirect(303, "/admin/test");
+	redirect(303, "/admin/users");
 });

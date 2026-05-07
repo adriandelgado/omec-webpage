@@ -20,6 +20,7 @@ export type AuthUser = {
 export type AuthSession = {
 	id: string;
 	user_id: string;
+	created_at: Date;
 	expires_at: Date;
 	remember_me: boolean;
 };
@@ -250,6 +251,7 @@ export async function validate_session_token(
 		session: {
 			id: session_record.session_id,
 			user_id: session_record.user_id,
+			created_at: new Date(session_record.created_at),
 			expires_at: new Date(session_record.expires_at),
 			remember_me: session_record.remember_me,
 		},

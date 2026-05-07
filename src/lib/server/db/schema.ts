@@ -12,6 +12,7 @@ export const contact_submission = sqliteTable(
 		institution: text().notNull(),
 		subject: text().notNull(),
 		message: text().notNull(),
+		read_at: integer({ mode: "timestamp_ms" }),
 		created_at: integer({ mode: "timestamp_ms" }).default(default_timestamp_ms).notNull(),
 	},
 	(table) => [index("contact_submission_email_idx").on(table.email)],
@@ -26,6 +27,7 @@ export const user = sqliteTable("user", {
 	last_password_changed_at: integer({ mode: "timestamp_ms" })
 		.default(default_timestamp_ms)
 		.notNull(),
+	deleted_at: integer({ mode: "timestamp_ms" }),
 	created_at: integer({ mode: "timestamp_ms" }).default(default_timestamp_ms).notNull(),
 	updated_at: integer({ mode: "timestamp_ms" }).default(default_timestamp_ms).notNull(),
 });
