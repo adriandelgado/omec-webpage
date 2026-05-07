@@ -3,15 +3,35 @@ import { argon2id } from "hash-wasm";
 import { randomBytes, randomUUID } from "node:crypto";
 
 const database_url = process.env.SEED_DATABASE_URL ?? "file:local.db";
+const database_auth_token = process.env.SEED_DATABASE_AUTH_TOKEN ?? process.env.DATABASE_AUTH_TOKEN;
 const superuser_email = process.env.SUPERUSER_EMAIL ?? "superuser@example.com";
 const superuser_password = process.env.SUPERUSER_PASSWORD ?? "superuser-password";
 const superuser_full_name = process.env.SUPERUSER_FULL_NAME ?? "Local Superuser";
 
-if (!database_url.startsWith("file:")) {
-	throw new Error("This seed script is local-only. Use a file: URL in SEED_DATABASE_URL.");
+function normalize_env_value(value) {
+	const trimmed_value = value?.trim();
+	return trimmed_value ? trimmed_value : undefined;
 }
 
-const client = createClient({ url: database_url });
+function is_local_database_url(url) {
+	return url.startsWith("file:") || url === ":memory:";
+}
+
+const resolved_database_url =
+	normalize_env_value(process.env.SEED_DATABASE_URL ?? process.env.DATABASE_URL) ?? database_url;
+const resolved_database_auth_token = normalize_env_value(database_auth_token);
+
+if (!is_local_database_url(resolved_database_url) && !resolved_database_auth_token) {
+	throw new Error(
+		"SEED_DATABASE_AUTH_TOKEN or DATABASE_AUTH_TOKEN is required for remote Turso/libSQL URLs.",
+	);
+}
+
+const client = createClient(
+	resolved_database_auth_token
+		? { url: resolved_database_url, authToken: resolved_database_auth_token }
+		: { url: resolved_database_url },
+);
 const now = Date.now();
 
 async function hash_password(password) {
@@ -121,10 +141,14 @@ async function seed_superuser() {
 		},
 	]);
 
-	console.log("Seeded local superuser:");
-	console.log(`  database: ${database_url}`);
+	console.log("Seeded superuser:");
+	console.log(`  database: ${resolved_database_url}`);
 	console.log(`  email: ${superuser_email}`);
 	console.log(`  password: ${superuser_password}`);
 }
 
-await seed_superuser();
+try {
+	await seed_superuser();
+} finally {
+	client.close();
+}
