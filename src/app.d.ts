@@ -1,5 +1,3 @@
-import type { AuthSession, AuthUser } from "$lib/server/auth";
-
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 declare global {
@@ -11,11 +9,7 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		interface Locals {
-			user: AuthUser | null;
-			session: AuthSession | null;
-		}
-
+		// interface Locals {}
 		// interface Error {}
 		// interface PageData {}
 		// interface PageState {}

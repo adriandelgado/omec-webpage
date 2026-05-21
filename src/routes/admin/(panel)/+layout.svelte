@@ -1,21 +1,9 @@
 <script lang="ts">
-	// TODO: made with vibecoding. please clean up
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
-	import { LogOut, Mailbox, Shield, ShieldCheck, Users } from "@lucide/svelte";
-	import { get_admin_context, logout_admin } from "./admin-shell.remote";
+	import { KeyRound, LogOut, Mail, ShieldCheck, Users } from "@lucide/svelte";
 
 	let { children } = $props();
-
-	const admin_context_query = get_admin_context();
-	const admin_context = $derived(await admin_context_query);
-
-	const navigation_items = [
-		{ href: "/admin/users", label: "Usuarios", icon: Users },
-		{ href: "/admin/roles", label: "Roles", icon: Shield },
-		{ href: "/admin/permissions", label: "Permisos", icon: ShieldCheck },
-		{ href: "/admin/contact-submissions", label: "Mensajes", icon: Mailbox },
-	] as const;
 </script>
 
 <div class="min-h-screen bg-background/60">
@@ -36,22 +24,17 @@
 
 				<div class="flex flex-col gap-3 lg:items-end">
 					<div class="rounded-2xl border border-primary/20 bg-primary/6 px-4 py-3 text-sm">
-						<p class="font-medium text-copy">{admin_context.user.full_name}</p>
-						<p class="mt-1 text-copy/65">{admin_context.user.email}</p>
+						<p class="font-medium text-copy">Administrador OMEC</p>
+						<p class="mt-1 text-copy/65">admin@example.com</p>
 					</div>
 
-					<form
-						{...logout_admin.enhance(async ({ submit }) => {
-							await submit();
-						})}
-					>
+					<form>
 						<button
 							type="submit"
-							disabled={logout_admin.pending > 0}
 							class="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-primary/35 px-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/8 disabled:cursor-not-allowed disabled:opacity-70"
 						>
 							<LogOut class="size-4" aria-hidden="true" />
-							{logout_admin.pending > 0 ? "Saliendo..." : "Cerrar sesión"}
+							Cerrar sesión
 						</button>
 					</form>
 				</div>
@@ -61,20 +44,57 @@
 		<div class="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
 			<aside class="rounded-3xl border border-primary/30 bg-white/88 p-3 lg:p-4">
 				<nav class="space-y-2" aria-label="Navegación del panel administrativo">
-					{#each navigation_items as navigation_item (navigation_item.href)}
-						<a
-							href={resolve(navigation_item.href)}
-							class={[
-								"flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition-colors",
-								page.url.pathname === navigation_item.href
-									? "bg-primary text-white shadow-[3px_3px_0_0_var(--color-primary)]"
-									: "text-copy/74 hover:bg-primary/8 hover:text-primary",
-							]}
-						>
-							<navigation_item.icon class="size-4" aria-hidden="true" />
-							<span>{navigation_item.label}</span>
-						</a>
-					{/each}
+					<a
+						href={resolve("/admin/(panel)/users")}
+						class={[
+							"flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition-colors",
+							page.url.pathname === "/admin/users"
+								? "bg-primary text-white shadow-[3px_3px_0_0_var(--color-primary)]"
+								: "text-copy/74 hover:bg-primary/8 hover:text-primary",
+						]}
+					>
+						<Users class="size-4" aria-hidden="true" />
+						<span>Usuarios</span>
+					</a>
+
+					<a
+						href={resolve("/admin/(panel)/roles")}
+						class={[
+							"flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition-colors",
+							page.url.pathname === "/admin/roles"
+								? "bg-primary text-white shadow-[3px_3px_0_0_var(--color-primary)]"
+								: "text-copy/74 hover:bg-primary/8 hover:text-primary",
+						]}
+					>
+						<ShieldCheck class="size-4" aria-hidden="true" />
+						<span>Roles</span>
+					</a>
+
+					<a
+						href={resolve("/admin/(panel)/permissions")}
+						class={[
+							"flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition-colors",
+							page.url.pathname === "/admin/permissions"
+								? "bg-primary text-white shadow-[3px_3px_0_0_var(--color-primary)]"
+								: "text-copy/74 hover:bg-primary/8 hover:text-primary",
+						]}
+					>
+						<KeyRound class="size-4" aria-hidden="true" />
+						<span>Permisos</span>
+					</a>
+
+					<a
+						href={resolve("/admin/(panel)/contact-submissions")}
+						class={[
+							"flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium transition-colors",
+							page.url.pathname === "/admin/contact-submissions"
+								? "bg-primary text-white shadow-[3px_3px_0_0_var(--color-primary)]"
+								: "text-copy/74 hover:bg-primary/8 hover:text-primary",
+						]}
+					>
+						<Mail class="size-4" aria-hidden="true" />
+						<span>Mensajes</span>
+					</a>
 				</nav>
 			</aside>
 

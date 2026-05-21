@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
 
+	// TODO: group image related props
 	type SeoProps = {
 		title: string;
 		description?: string;

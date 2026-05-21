@@ -1,7 +1,7 @@
 import { and, eq, isNull } from "drizzle-orm";
 import { error, invalid, redirect } from "@sveltejs/kit";
 import { form, getRequestEvent, query } from "$app/server";
-import { create_session, generate_session_token, set_session_token_cookie } from "$lib/server/auth";
+import * as auth from "$lib/server/auth";
 import { db } from "$lib/server/db";
 import {
 	permission,
@@ -29,19 +29,45 @@ async function get_role_keys(user_id: string) {
 
 async function get_permission_keys(user_id: string) {
 	const permission_rows = await db
-		.select({ key: permission.key })
+		.selectDistinct({ key: permission.key })
 		.from(user_role)
 		.innerJoin(role_permission, eq(user_role.role_id, role_permission.role_id))
 		.innerJoin(permission, eq(role_permission.permission_id, permission.id))
 		.where(eq(user_role.user_id, user_id));
 
-	return [...new Set(permission_rows.map((permission_row) => permission_row.key))];
+	return permission_rows.map((permission_row) => permission_row.key);
 }
 
-export const redirect_if_authenticated = query(() => {
+export const get_auth_data = query(async () => {
 	const event = getRequestEvent();
 
-	if (event.locals.user) {
+	const session_token = event.cookies.get(auth.SESSION_COOKIE_NAME);
+
+	if (!session_token) {
+		return null;
+	}
+
+	const parsed_token = auth.parse_token(session_token);
+
+	if (!parsed_token) {
+		auth.delete_session_token_cookie(event);
+		return null;
+	}
+
+	const { session, user } = await auth.validate_session_token(event, parsed_token);
+
+	if (!session || !user) {
+		auth.delete_session_token_cookie(event);
+		return null;
+	}
+
+	return { session, user };
+});
+
+export const redirect_if_authenticated = query(async () => {
+	const auth_data = await get_auth_data();
+
+	if (auth_data) {
 		redirect(303, "/admin/users");
 	}
 
@@ -65,10 +91,14 @@ export const login_admin = form(login_form_schema, async (data) => {
 		invalid("Credenciales inválidas.");
 	}
 
-	const role_keys = await get_role_keys(user_row.id);
-	const permission_keys = await get_permission_keys(user_row.id);
-	const token = generate_session_token();
-	const kv_session = await create_session(
+	// TODO: Batch API ?
+	const [role_keys, permission_keys] = await Promise.all([
+		get_role_keys(user_row.id),
+		get_permission_keys(user_row.id),
+	]);
+
+	const token = auth.generate_session_token();
+	const kv_session = await auth.create_session(
 		token,
 		{
 			user: {
@@ -105,6 +135,6 @@ export const login_admin = form(login_form_schema, async (data) => {
 		updated_at: created_at,
 	});
 
-	set_session_token_cookie(event, token, expires_at);
+	auth.set_session_token_cookie(event, token, expires_at);
 	redirect(303, "/admin/users");
 });

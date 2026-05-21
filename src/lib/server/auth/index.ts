@@ -1,3 +1,5 @@
+// TODO put everything into $lib/server/auth.ts
+
 import { dev } from "$app/environment";
 import { encodeBase32, encodeHex } from "@std/encoding";
 import type { RequestEvent } from "@sveltejs/kit";
@@ -156,7 +158,6 @@ export async function validate_session_token(
 	token: Token,
 ): Promise<ValidateSessionResult> {
 	const session_kv = get_session_kv(event);
-	const user_agent = event.request.headers.get("user-agent");
 
 	if (!session_kv) {
 		return {
@@ -239,6 +240,8 @@ export async function validate_session_token(
 			user: null,
 		};
 	}
+
+	const user_agent = event.request.headers.get("user-agent");
 
 	if (session_record.user_agent && user_agent && session_record.user_agent !== user_agent) {
 		return {
