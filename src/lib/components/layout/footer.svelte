@@ -1,96 +1,99 @@
 <script lang="ts">
 	import { Mail } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
-	import logo_omec from "$lib/assets/logo-omec.svg";
-	import { ROUTES } from "$lib/constants";
-
-	const resource_links = [
-		{ text: "Problemas de Práctica", href: "/" },
-		{ text: "Exámenes Anteriores", href: "/" },
-		{ text: "Resultados", href: "/" },
-		{ text: "Calendario de Eventos", href: "/" },
-		{ text: "Preguntas Frecuentes", href: "/" },
-	] as const;
-
-	// TODO: consolidate the info in a constants.ts file
-	const contact_links = [
-		{
-			text: "info@omec-mat.org",
-			href: "mailto:info@omec-mat.org",
-			label: "Correo electrónico",
-			icon: Mail,
-		},
-	] as const;
-
-	const legal_links = [
-		{ text: "Política de Privacidad", href: "/" },
-		{ text: "Términos de Uso", href: "/" },
-	] as const;
-
-	const footer_sections = [
-		{ title: "Enlaces Rápidos", links: ROUTES },
-		{ title: "Recursos", links: resource_links },
-	] as const;
+	import logo_foec from "#lib/assets/logos/foec.png";
+	import logo_omec from "#lib/assets/logos/omec.svg";
+	import logo_egcs_ucsg_sponsor from "#lib/assets/logos/egcs-ucsg-sponsor.png";
+	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, ROUTES, SOCIAL_LINKS } from "#lib/constants.js";
 </script>
 
 <footer class="border-t border-primary px-4 text-primary xl:px-0">
 	<div class="py-8">
 		<div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.85fr_0.9fr]">
-			<a href={resolve("/")} class="inline-flex max-w-xs items-start gap-3">
-				<img src={logo_omec} alt="OMEC" class="h-14 w-auto shrink-0" />
-				<div class="pt-1">
-					<p class="text-base font-semibold">OMEC</p>
-					<p class="mt-1 text-sm leading-tight">
-						Desarrollando el talento matemático de los estudiantes ecuatorianos.
+			<div class="max-w-xs">
+				<a href={resolve("/")} class="inline-flex items-start gap-3">
+					<img src={logo_omec} alt="OMEC" class="h-14 w-auto shrink-0" />
+					<div class="pt-1">
+						<p class="text-base font-semibold">OMEC</p>
+						<p class="mt-1 text-sm leading-tight">
+							Desarrollando el talento matemático de los estudiantes ecuatorianos.
+						</p>
+					</div>
+				</a>
+
+				<div class="mt-6 border-t border-primary/30 pt-4">
+					<a
+						href="https://www.foec.edu.ec/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-block transition-opacity hover:opacity-70"
+					>
+						<img
+							src={logo_foec}
+							alt="Logotipo de la Fundación Olimpiadas Ecuatorianas de Ciencias"
+							class="h-18 w-auto object-contain"
+						/>
+					</a>
+					<p class="mt-3 text-sm leading-relaxed">
+						Somos un departamento de la Fundación Olimpiadas Ecuatorianas de Ciencias (FOEC),
+						organismo sin fines de lucro que fomenta el estudio de las matemáticas y la ciencia en
+						el Ecuador.
 					</p>
 				</div>
-			</a>
-
-			{#each footer_sections as section (section.title)}
-				<section>
-					<h2 class="text-base font-semibold">{section.title}</h2>
-					<ul class="mt-3 space-y-2 text-sm leading-relaxed">
-						{#each section.links as link (link.text)}
-							<li>
-								<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}>
-									{link.text}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</section>
-			{/each}
+			</div>
 
 			<section>
-				<h2 class="text-base font-semibold">Contacto</h2>
-				<ul class="mt-3 space-y-3 text-sm leading-relaxed">
-					{#each contact_links as link (link.text)}
+				<h2 class="text-base font-semibold">Enlaces Rápidos</h2>
+				<ul class="mt-3 space-y-2 text-sm leading-relaxed">
+					{#each ROUTES as link (link.href)}
 						<li>
-							<a
-								class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
-								href={link.href}
-								rel="external"
-							>
-								<link.icon class="size-4 shrink-0" aria-hidden="true" strokeWidth={1.8} />
-								<span>{link.text}</span>
+							<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}>
+								{link.text}
 							</a>
 						</li>
 					{/each}
 				</ul>
 			</section>
+
+			<section>
+				<h2 class="text-base font-semibold">Auspicia</h2>
+				<img
+					src={logo_egcs_ucsg_sponsor}
+					alt="Logo de la Escuela de Graduados en Ciencias de la Salud de la Universidad Católica de Santiago de Guayaquil"
+					class="mt-4 h-auto w-full max-w-40 object-contain"
+				/>
+			</section>
+
+			<section>
+				<h2 class="text-base font-semibold">Contacto</h2>
+				<ul class="mt-3 space-y-3 text-sm leading-relaxed">
+					<li>
+						<a
+							class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
+							href={CONTACT_EMAIL_HREF}
+						>
+							<Mail class="size-4 shrink-0" aria-hidden="true" strokeWidth={1.8} />
+							<span>{CONTACT_EMAIL}</span>
+						</a>
+					</li>
+				</ul>
+				<nav aria-label="Redes sociales" class="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+					{#each SOCIAL_LINKS as social_link (social_link.id)}
+						<a
+							class="transition-opacity hover:opacity-70"
+							href={social_link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{social_link.label}
+						</a>
+					{/each}
+				</nav>
+			</section>
 		</div>
 
-		<div
-			class="mt-8 flex flex-col gap-3 border-t border-primary pt-4 text-xs leading-relaxed md:flex-row md:justify-between"
-		>
-			<p class="max-w-2xl">
-				© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.
-			</p>
-			<nav aria-label="Enlaces legales" class="flex flex-wrap gap-4">
-				{#each legal_links as link (link.text)}
-					<a class="transition-opacity hover:opacity-70" href={resolve(link.href)}>{link.text}</a>
-				{/each}
-			</nav>
+		<div class="mt-8 border-t border-primary pt-4 text-xs leading-relaxed">
+			<p>© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.</p>
 		</div>
 	</div>
 </footer>

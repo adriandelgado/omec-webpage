@@ -1,164 +1,118 @@
 <script lang="ts">
-	import { resolve } from "$app/paths";
-	import hexagon from "$lib/assets/hexagon.svg";
-	import triangle from "$lib/assets/triangle.svg";
-	import circle from "$lib/assets/circle.svg";
-	import ContentSection from "$lib/components/content-section.svelte";
-	import MembersSection from "$lib/components/members-section.svelte";
-	import PageSectionStack from "$lib/components/page-section-stack.svelte";
-	import PageIntro from "$lib/components/page-intro.svelte";
-	import Seo from "$lib/components/seo.svelte";
-	import SectionHeading from "$lib/components/section-heading.svelte";
-	import TrainingCtaSection from "$lib/components/training-cta-section.svelte";
-	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
+	import { ExternalLink } from "@lucide/svelte";
+	import training_calendar from "#lib/assets/entrenamiento/training-calendar.png";
+	import logo_egmo from "#lib/assets/logos/egmo.svg";
+	import logo_omec from "#lib/assets/logos/omec.svg";
+	import training_tutoring from "#lib/assets/entrenamiento/training-tutoring.png";
+	import Card from "#lib/components/card.svelte";
+	import ContentSection from "#lib/components/content-section.svelte";
+	import PageIntro from "#lib/components/page-intro.svelte";
+	import PageSectionStack from "#lib/components/page-section-stack.svelte";
+	import Seo from "#lib/components/seo.svelte";
+	import SectionHeading from "#lib/components/section-heading.svelte";
 
-	const title = "Entrenamientos";
-	const coach_portrait =
-		"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=320&q=80";
+	const title = "Entrenamiento";
 
-	const training_programs = [
+	const training_materials = [
 		{
-			title: "Entrenamiento Presencial",
+			id: "estudio-a-profundidad",
+			title: "Estudio a profundidad",
+			description: "Temario a fondo de teoría de números y álgebra. Incluye temas avanzados.",
+			image: logo_omec,
+			image_alt: "Logotipo de la Olimpiada Matemática Ecuatoriana",
+			href: "https://drive.google.com/drive/folders/1PkZNnvenS0Bt9siJlsH8XTa7iEZOVcHj",
+		},
+		{
+			id: "olimpiada-nacional",
+			title: "Olimpiada Nacional de Matemáticas",
 			description:
-				"Sesiones semanales con entrenadores olímpicos para afianzar técnicas de resolución y demostración.",
-			icon: hexagon,
-			icon_alt: "Ícono de hexágono",
-			bullets: ["Clases semanales", "Material curado", "Prácticas por nivel"],
+				"Esta carpeta incluye los problemas y soluciones de todos los niveles de las ONM 2016 – 2019",
+			image: logo_omec,
+			image_alt: "Logotipo de la Olimpiada Matemática Ecuatoriana",
+			href: "https://drive.google.com/drive/folders/1uHvRIcHWBflcFO0LajeEoJJoS2e8fNVi",
 		},
 		{
-			title: "Entrenamiento Olímpico",
+			id: "olimpiadas-internacionales",
+			title: "Olimpiadas Internacionales",
 			description:
-				"Sesiones intensivas para estudiantes con proyección competitiva y preparación para fases selectivas.",
-			icon: triangle,
-			icon_alt: "Ícono de triángulo",
-			bullets: ["Listas selectivas", "Análisis de pruebas", "Entrenamiento estratégico"],
+				"Esta carpeta incluye pruebas pasadas de: IMO, EGMO, Cono Sur, Olimpiada de Mayo, CIIM y APMO",
+			image: logo_egmo,
+			image_alt: "Logotipo de la Olimpiada Europea Femenina de Matemáticas",
+			href: "https://drive.google.com/drive/folders/1z2aMiN57ITnnd7oZOtvENsOjDWdRaSkY?usp=sharing",
 		},
 		{
-			title: "Programa Virtual",
+			id: "pruebas-selectivas",
+			title: "Pruebas selectivas",
 			description:
-				"Formato remoto con clases en vivo y seguimiento continuo para estudiantes fuera de las sedes principales.",
-			icon: circle,
-			icon_alt: "Ícono de círculo",
-			bullets: ["Clases en Zoom", "Biblioteca virtual", "Evaluaciones continuas"],
-		},
-	] as const;
-
-	const material_cards = [
-		{
-			id: "geometria-1",
-			title: "Introducción a la Geometría",
-			description: "Problemas introductorios a la geometría euclidiana.",
+				"Esta carpeta incluye las pruebas selectivas que se llevan a cabo cada año con el fin de seleccionar al equipo Ecuatoriano que participará a nivel internacional.",
+			image: training_tutoring,
+			image_alt: "Ilustración de tutoría matemática",
+			href: "https://drive.google.com/drive/folders/1o_tWnaBMD_0B54bZqVKEHmkFZzP9bHAi?usp=sharing",
 		},
 		{
-			id: "geometria-2",
-			title: "Introducción a la Geometría",
-			description: "Problemas introductorios a la geometría euclidiana.",
-		},
-		{
-			id: "geometria-3",
-			title: "Introducción a la Geometría",
-			description: "Problemas introductorios a la geometría euclidiana.",
-		},
-		{
-			id: "geometria-4",
-			title: "Introducción a la Geometría",
-			description: "Problemas introductorios a la geometría euclidiana.",
-		},
-	] as const;
-
-	const coaches = [
-		{
-			id: "coach-marty-1",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: coach_portrait,
-			image_alt: "Retrato del entrenador Marty Mauser",
-		},
-		{
-			id: "coach-marty-2",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: coach_portrait,
-			image_alt: "Retrato del entrenador Marty Mauser",
-		},
-		{
-			id: "coach-willy",
-			name: "Willy Wonka",
-			role: "Entrenador Básico",
-			image: coach_portrait,
-			image_alt: "Retrato del entrenador Willy Wonka",
+			id: "listas-semanales",
+			title: "Listas semanales",
+			description:
+				"Esta carpeta incluye las listas semanales OMEC. Estas listas fueron dadas cada semana entre 2013-2015. Hay de distintos niveles.",
+			image: training_calendar,
+			image_alt: "Ícono de calendario",
+			href: "https://drive.google.com/drive/folders/1yhcXrcbxDZ2fMJtt--jiCUvn4Obog4Yk?usp=sharing",
 		},
 	] as const;
 </script>
 
 <Seo
 	{title}
-	description="Programas de entrenamiento de OMEC para fortalecer resolución de problemas, demostración y preparación olímpica desde nivel básico hasta competencia internacional."
+	description="Material de entrenamiento de OMEC para prepararse para competencias matemáticas nacionales e internacionales."
 />
 
 <PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
 		<PageIntro
 			title_lines={[{ text: title, class: "text-primary" }]}
-			description="Desarrollamos las habilidades matemáticas de los estudiantes desde nivel básico hasta competencia internacional. Nuestros entrenadores son medallistas olímpicos y profesores universitarios con amplia experiencia."
+			description="Nuestro material de entrenamiento"
 		/>
 	</ContentSection>
 
 	<ContentSection>
 		<SectionHeading
-			title="Nuestros Programas"
-			description="Tres modalidades de estudio para adaptarse a las necesidades de cada estudiante, sin importar su ubicación o nivel actual."
+			title="Prepárate para las competencias"
+			description="La mejor manera de perpararse para concursos de matemáticas es resolviendo pruebas pasadas. En nuestro banco de problemas podrás encontrar problemas de competencias nacionales e internacionales. Asegúrate de practicar con problemas de tu nivel académico y de la competencia para la cual te estás preparando. Al hacer clic serás redirigido a una carpeta de Google Drive."
 		/>
 
 		<div class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-			{#each training_programs as program (program.title)}
-				<TrainingProgramCard {...program} />
-			{/each}
-		</div>
-	</ContentSection>
-
-	<ContentSection>
-		<SectionHeading
-			title="Material"
-			description="La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. Nuestro banco de problemas podrá ayudarte a practicar con problemas de competencias nacionales e internacionales."
-		/>
-
-		<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-			{#each material_cards as card (card.id)}
-				<article
-					class="relative flex min-h-96 flex-col justify-between overflow-hidden rounded-xl border border-primary bg-white px-6 pt-10 pb-24 sm:px-7"
-				>
-					<div>
-						<h3
-							class="mx-auto max-w-[9ch] py-4 text-center text-3xl leading-8 font-semibold tracking-tighter text-primary sm:text-4xl"
-						>
-							{card.title}
-						</h3>
-						<p class="mx-auto mt-10 max-w-[20ch] text-center text-base leading-snug">
-							{card.description}
-						</p>
+			{#each training_materials as material (material.id)}
+				<Card class="flex min-h-96 flex-col overflow-hidden">
+					<div class="flex h-36 items-center justify-center bg-foreground px-6 py-5">
+						<img
+							src={material.image}
+							alt={material.image_alt}
+							loading="lazy"
+							decoding="async"
+							class="h-full w-full object-contain"
+						/>
 					</div>
 
-					<a
-						href={resolve("/nosotros")}
-						class="absolute bottom-0 left-0 inline-flex size-20 items-center justify-center bg-primary text-white transition-colors hover:bg-primary-dark"
-						aria-label={`Ver material ${card.title}`}
-					>
-						<span class="text-6xl leading-none">↗</span>
-					</a>
-				</article>
+					<div class="flex flex-1 flex-col px-6 py-6">
+						<h3
+							class="max-w-[18ch] text-2xl leading-none font-semibold tracking-tighter text-primary"
+						>
+							{material.title}
+						</h3>
+						<p class="mt-4 text-sm leading-6 text-copy/75">{material.description}</p>
+
+						<a
+							href={material.href}
+							target="_blank"
+							rel="noreferrer"
+							class="mt-6 inline-flex h-10 w-fit items-center gap-2 rounded-sm bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+						>
+							Abrir en Drive
+							<ExternalLink aria-hidden="true" class="size-4" strokeWidth={2} />
+						</a>
+					</div>
+				</Card>
 			{/each}
 		</div>
 	</ContentSection>
-
-	<ContentSection>
-		<SectionHeading
-			title="Entrenadores"
-			description="Cada programa cuenta con temas específicos según el nivel. Los estudiantes avanzan al ritmo que necesitan."
-		/>
-
-		<MembersSection members={coaches} class="mt-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3" />
-	</ContentSection>
 </PageSectionStack>
-
-<TrainingCtaSection />

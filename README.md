@@ -1,16 +1,17 @@
 # OMEC webpage
 
-This project is a complete rewrite of the official [Olimpiada Matemática Ecuatoriana (OMEC)](https://omec-mat.org/) website. The goal is to replace the existing WordPress site with a modern, type-safe, and highly performant web application built to serve the Ecuadorian mathematical community.
+This project is a complete rewrite of the official [Olimpiada Matemática Ecuatoriana (OMEC)](https://omec-mat.org/) website. It is a type-safe SvelteKit application for sharing OMEC's competitions, training materials, news, and contact information with the Ecuadorian mathematical community.
 
 ## Tech Stack
 
-- **Framework:** [SvelteKit 2](https://svelte.dev/docs/kit) with [Svelte 5](https://svelte.dev/docs/svelte) (using Runes)
+- **Framework:** [SvelteKit 3](https://next.svelte.dev/docs/kit) with [Svelte 5](https://svelte.dev/docs/svelte) using Runes
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Database:** local LibSQL/SQLite in development, [Turso](https://turso.tech/) / LibSQL in production
+- **Database:** SQLite/libSQL through [LibSQL Client](https://github.com/tursodatabase/libsql-client-ts), configured with `DATABASE_URL`
 - **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
 - **UI Components:** [Bits UI](https://www.bits-ui.com/) & [Lucide Svelte](https://lucide.dev/)
 - **Validation:** [Valibot](https://valibot.dev/)
-- **Build Tool:** [Vite 8](https://vitejs.dev/)
+- **Build Tool:** [Vite 8](https://vitejs.dev/) with enhanced image processing
+- **Deployment:** [Cloudflare Workers](https://workers.cloudflare.com/) via `@sveltejs/adapter-cloudflare`
 
 ## Coding Standards
 
@@ -18,43 +19,48 @@ To maintain consistency across the codebase, we adhere to the following naming c
 
 - **Variables & Functions:** Always use `snake_case` (e.g., `get_user_data`, `const national_results = []`).
 - **Files & Directories:** Always use `kebab-case` (e.g., `auth-handler.ts`, `components/nav-bar.svelte`).
-- **Commits:** We follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add student registration form`).
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v20 or higher)
-- [pnpm](https://pnpm.io/)
+- [Node.js](https://nodejs.org/) (v22 or higher)
+- [pnpm](https://pnpm.io/) 11 or higher
 
 ## Local Development
 
-Local development is zero-secret by default.
+Install dependencies and create a local environment file:
 
-- If `DATABASE_URL` is unset, the app and Drizzle use `file:local.db`.
-- `DATABASE_AUTH_TOKEN` is not required for `pnpm dev`, `pnpm check`, or `pnpm build`.
-- You can start from [`.env.example`](.env.example) as-is and run the app locally without provisioning Turso secrets.
+```bash
+pnpm install
+cp .env.example .env
+pnpm dev
+```
 
-When you do want to point your local app at Turso, set `DATABASE_URL` to the remote `libsql://...` URL and provide `DATABASE_AUTH_TOKEN` as well.
+`DATABASE_URL` is required by both the application and Drizzle. Use `file:local.db` for a local SQLite database, or set it to the URL of a remote libSQL/Turso database. The current application and Drizzle configuration read `DATABASE_URL`; they do not configure a separate database authentication token.
 
 ## Scripts
 
 - `pnpm dev`: Starts the Vite development server.
-- `pnpm build`: Generates Wrangler types and builds the Cloudflare Worker bundle.
+- `pnpm build`: Builds the Cloudflare Worker bundle.
 - `pnpm preview`: Runs the built Cloudflare Worker locally on port `4173`.
-- `pnpm check`: Runs Wrangler type generation, Svelte sync, and Svelte-Check for type validation.
+- `pnpm check`: Synchronizes SvelteKit and runs Svelte-Check for type validation.
 - `pnpm lint`: Runs Prettier checks and ESLint.
 - `pnpm format`: Formats code using Prettier.
-- `pnpm db:push`: Synchronizes the Drizzle schema with the local default database (`file:local.db` unless overridden).
-- `pnpm db:push:prod`: Synchronizes the schema against a production Turso database and requires real Turso env vars.
-- `pnpm db:generate`: Generates Drizzle migrations using the local-safe config.
-- `pnpm db:studio`: Opens Drizzle Studio against the local-safe config.
+- `pnpm test`: Runs the unit test suite once.
+- `pnpm test:unit`: Starts Vitest in watch mode.
+- `pnpm gen`: Generates Cloudflare Worker types with Wrangler.
+- `pnpm db:push`: Pushes the Drizzle schema to the database in `DATABASE_URL`.
+- `pnpm db:generate`: Generates Drizzle migrations from the schema.
+- `pnpm db:migrate`: Applies pending Drizzle migrations.
+- `pnpm db:studio`: Opens Drizzle Studio for the database in `DATABASE_URL`.
 
 ## Deployment
 
-The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`, with **Turso** as the production database.
+The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`. Configure `DATABASE_URL` in the Worker environment to point to the deployment's SQLite/libSQL database, including a remote [Turso](https://turso.tech/) database when applicable.
 
-- Store `DATABASE_URL` and `DATABASE_AUTH_TOKEN` in Cloudflare Worker secrets/vars.
-- Do not add these secrets to GitHub Actions just to make forks or pull request CI pass.
-- Production runtime stays strict: remote database URLs require `DATABASE_AUTH_TOKEN`.
+- Set `DATABASE_URL` in the Cloudflare Worker environment before starting the application.
+- Run `pnpm gen` when the Cloudflare Worker type definitions need to be refreshed.
+- Run `pnpm build` to produce the Worker bundle consumed by `pnpm preview` and Wrangler.
+- Keep environment files and database credentials out of version control.
 
 ## License
 

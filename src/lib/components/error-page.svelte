@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
-	import blocks from "$lib/assets/blocks.svg";
-	import sine from "$lib/assets/sine.svg";
-	import ContentSection from "$lib/components/content-section.svelte";
-	import PageSectionStack from "$lib/components/page-section-stack.svelte";
-	import Seo from "$lib/components/seo.svelte";
+	import blocks from "#lib/assets/shared/blocks.svg";
+	import sine from "#lib/assets/shared/sine.svg";
+	import ContentSection from "#lib/components/content-section.svelte";
+	import PageSectionStack from "#lib/components/page-section-stack.svelte";
+	import Seo from "#lib/components/seo.svelte";
 
 	interface Props {
 		error: App.Error;

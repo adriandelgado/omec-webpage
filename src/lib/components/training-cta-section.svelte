@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import ContentSection from "$lib/components/content-section.svelte";
+	import ContentSection from "#lib/components/content-section.svelte";
 </script>
 
 <ContentSection class="bg-primary" container_class="py-9 text-center text-white lg:py-11">

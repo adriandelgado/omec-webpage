@@ -1,91 +1,73 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import hero_image from "$lib/assets/hero.svg";
-	import blocks from "$lib/assets/blocks.svg";
-	import triangle_center_gravity from "$lib/assets/triangle-center-gravity.svg";
-	import hexagon from "$lib/assets/hexagon.svg";
-	import triangle from "$lib/assets/triangle.svg";
-	import circle from "$lib/assets/circle.svg";
-	import sine from "$lib/assets/sine.svg";
-	import logo_imo from "$lib/assets/logo-imo.svg";
-	import logo_egmo from "$lib/assets/logo-egmo.svg";
-	import logo_pagmo from "$lib/assets/logo-pagmo.svg";
-	import olimpiada_de_mayo from "$lib/assets/olimpiada-de-mayo.svg";
-	import ContentSection from "$lib/components/content-section.svelte";
-	import PageSectionStack from "$lib/components/page-section-stack.svelte";
-	import Seo from "$lib/components/seo.svelte";
-	import SectionHeading from "$lib/components/section-heading.svelte";
-	import TrainingProgramCard from "$lib/components/training-program-card.svelte";
+	import blocks from "#lib/assets/shared/blocks.svg";
+	import logo_egcs_ucsg from "#lib/assets/logos/egcs-ucsg.png";
+	import imo_team_2026 from "#lib/assets/home/imo-team-2026.jpeg";
+	import information_icon from "#lib/assets/home/information-icon.png";
+	import national_olympiad_participants from "#lib/assets/home/national-olympiad-participants.jpg";
+	import news_icon from "#lib/assets/home/news-icon.png";
+	import olympiad_student from "#lib/assets/home/olympiad-student.jpeg";
+	import preparation_icon from "#lib/assets/home/preparation-icon.png";
+	import sine from "#lib/assets/shared/sine.svg";
+	import triangle_center_gravity from "#lib/assets/home/triangle-center-gravity.svg";
+	import ContentSection from "#lib/components/content-section.svelte";
+	import PageSectionStack from "#lib/components/page-section-stack.svelte";
+	import Seo from "#lib/components/seo.svelte";
+	import SectionHeading from "#lib/components/section-heading.svelte";
 
-	const training_cards = [
+	const olympiad_stages = [
+		{ label: "Primera fase", date: "17 de octubre" },
+		{ label: "Segunda fase", date: "7 de noviembre" },
+		{ label: "Fase final", date: "11 y 12 de diciembre" },
+	] as const;
+
+	const information_items = [
 		{
-			title: "Entrenamiento Presencial",
-			description:
-				"Sesiones semanales guiadas por exolímpicos y docentes con experiencia en preparación competitiva.",
-			icon: hexagon,
-			bullets: ["Clases semanales", "Material didáctico", "Problemas resueltos"],
+			title: "Información",
+			image: information_icon,
+			alt: "Ícono de información",
+			href: resolve("/olimpiadas/nacionales"),
 		},
 		{
-			title: "Entrenamiento Personal",
-			description:
-				"Seguimiento cercano para estudiantes que necesitan fortalecer técnicas de demostración y estrategia.",
-			icon: triangle,
-			bullets: ["Mentoría individual", "Retroalimentación", "Rutas por nivel"],
+			title: "Preparación",
+			image: preparation_icon,
+			alt: "Ícono de preparación",
+			href: resolve("/entrenamiento"),
 		},
 		{
-			title: "Programa Virtual",
-			description:
-				"Acceso remoto a clases en vivo, recursos grabados y acompañamiento continuo durante la temporada.",
-			icon: circle,
-			bullets: ["Clases en línea", "Biblioteca virtual", "Evaluaciones periódicas"],
+			title: "Noticias",
+			image: news_icon,
+			alt: "Ícono de noticias",
+			href: resolve("/noticias"),
 		},
 	] as const;
 
-	const olympic_stages = [
-		["Inscripciones", "Enero - Febrero"],
-		["Fase Regional", "Marzo"],
-		["Fase Nacional", "Mayo"],
-		["IMO", "Julio"],
-	] as const;
-
-	const olympic_editions = [1, 2, 3] as const;
-
-	const international_achievements = [
+	const olympiad_cards = [
 		{
-			id: "logo_imo",
-			image: logo_imo,
-			title: "IMO - Olimpiada Internacional de Matemática",
-			description: "Participación y medallistas a nivel mundial.",
+			title: "Olimpiada Nacional de Matemáticas",
+			description:
+				"Tienen como objetivo preseleccionar a los alumnos que formarán parte de los equipos que representan al país en los torneos internacionales en los que competimos. Son abiertas para cualquier estudiante del sistema educativo ecuatoriano.",
+			href: resolve("/olimpiadas/nacionales"),
 		},
 		{
-			id: "logo_egmo",
-			image: logo_egmo,
-			title: "EGMO - Olimpiada Europea Femenina de Matemática",
-			description: "Participación y medallistas en la competencia europea.",
-		},
-		{
-			id: "logo_pagmo",
-			image: logo_pagmo,
-			title: "PAGMO - Olimpiada Panamericana Femenina de Matemática",
-			description: "Participación y medallistas a nivel panamericano.",
-		},
-		{
-			id: "olimpiada_de_mayo",
-			image: olimpiada_de_mayo,
-			title: "Olimpiada de Mayo",
-			description: "Competencia matemática juvenil a nivel iberoamericano.",
+			title: "Olimpiadas Internacionales",
+			description:
+				"Incluye varias competencias tanto presenciales como por correspondencia. A estos eventos sólo se asiste con invitación, la cual es enviada únicamente a los ganadores de las Olimpiadas Nacionales del año anterior.",
+			href: resolve("/olimpiadas/internacionales"),
 		},
 	] as const;
 
-	const gallery_image =
-		"https://images.unsplash.com/photo-1706174757544-3fb254ec54fd?auto=format&fit=crop&w=1170&q=80";
+	const national_olympiad_facts = [
+		"Participan colegios de todo el Ecuador. También se puede participar de manera independiente.",
+		"Concursantes de primaria, secundaria y universidades",
+		"Abierto a todas las provincias del Ecuador",
+	] as const;
 
-	const gallery_events = Array.from({ length: 8 }, (_, index) => ({
-		id: `evento-${index + 1}`,
-		title: `Evento ${index + 1}`,
-		image: gallery_image,
-		image_alt: "Estudiantes con toga y birrete durante una ceremonia académica al aire libre",
-	}));
+	const social_links = [
+		{ label: "Facebook", href: "https://www.facebook.com/OlimpiadaMatematicaEcuatoriana" },
+		{ label: "Instagram", href: "https://www.instagram.com/omec.mat" },
+		{ label: "TikTok", href: "https://www.tiktok.com/@omec.mat" },
+	] as const;
 </script>
 
 <Seo
@@ -95,142 +77,199 @@
 
 <PageSectionStack class="py-12 lg:py-20">
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-		<div class="max-w-80">
+		<div class="max-w-100">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 				Olimpiada Matemática
 				<span class="text-primary">Ecuatoriana</span>
 			</h1>
-
-			<p class="mt-5 max-w-67.5 text-sm leading-6 text-copy/75 lg:max-w-75">
-				Desarrollando el talento matemático de los estudiantes ecuatorianos y potenciando la
-				excelencia académica.
-			</p>
 		</div>
 
-		<div class="overflow-hidden px-4 py-5 lg:min-h-72.5 lg:px-7 lg:py-8">
-			<img src={hero_image} alt="Problema de geometría olímpica" class="mx-auto w-full max-w-96" />
-		</div>
-	</ContentSection>
-
-	<ContentSection>
-		<SectionHeading title="Programas de Entrenamiento" />
-
-		<div class="mt-6 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
-			<p class="max-w-150 text-sm leading-relaxed text-copy/75">
-				Ofrecemos programas de entrenamiento diseñados para desarrollar las capacidades matemáticas
-				desde etapas iniciales hasta niveles de alta competencia. Nuestros entrenadores combinan
-				experiencia olímpica y formación universitaria.
-			</p>
-			<img src={blocks} alt="" class="w-21 justify-self-end lg:w-28" />
-		</div>
-
-		<div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-			{#each training_cards as card (card.title)}
-				<TrainingProgramCard {...card} />
-			{/each}
-		</div>
-		<img src={triangle_center_gravity} alt="" class="mt-6 w-21 lg:w-30" />
-	</ContentSection>
-
-	<ContentSection>
-		<SectionHeading title="Calendario Olímpico" />
-
-		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{#each olympic_editions as edition (edition)}
-				<article class="overflow-hidden rounded-sm border border-primary bg-white">
-					<div class="flex items-center justify-between bg-primary px-4 py-2 text-white">
-						<h3 class="text-sm font-medium">Olimpiada Nacional</h3>
-						<p class="text-xs tracking-widest uppercase opacity-70">fase {edition}</p>
-					</div>
-
-					<dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 p-4 text-sm">
-						{#each olympic_stages as [label, date] (label)}
-							<dt>{label}</dt>
-							<dd class="justify-self-end text-right">{date}</dd>
-						{/each}
-					</dl>
-				</article>
-			{/each}
-		</div>
-
-		<div
-			class="relative mt-6 overflow-hidden rounded-md bg-primary px-5 py-4 text-white lg:grid lg:grid-cols-[1fr_auto] lg:items-center"
+		<figure
+			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
-			<div>
-				<h3 class="text-lg font-medium">Inscripciones Abiertas</h3>
-				<p class="mt-1 text-sm text-white/80">
-					Regístrate ahora para la temporada 2026 de las Olimpiadas Matemáticas.
-				</p>
+			<img
+				src={imo_team_2026}
+				alt="Delegación ecuatoriana junto al letrero de la IMO 2026 en Shanghái"
+				fetchpriority="high"
+				class="aspect-[2.7/1] w-full object-cover"
+			/>
+		</figure>
+	</ContentSection>
+
+	<ContentSection>
+		<SectionHeading title="Olimpiada Nacional de Matemática 2026" />
+
+		<div class="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+			<div
+				class="relative overflow-hidden rounded-md bg-primary px-5 py-5 text-white shadow-[4px_4px_0_0_var(--color-primary-dark)] lg:px-7 lg:py-6"
+			>
+				<img
+					src={sine}
+					alt=""
+					class="pointer-events-none absolute top-1/2 right-5 w-36 -translate-y-1/2 opacity-25 lg:w-52"
+				/>
+				<div class="relative">
+					<p class="max-w-130 text-lg leading-tight font-semibold lg:text-xl">
+						Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abrirán en septiembre.
+					</p>
+					<a
+						href={resolve("/olimpiadas/nacionales")}
+						class="mt-5 inline-flex h-9 items-center justify-center rounded-sm bg-white px-4 text-sm font-medium text-primary transition-colors hover:bg-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+					>
+						Conoce la olimpiada nacional
+					</a>
+				</div>
 			</div>
 
-			<img
-				src={sine}
-				alt=""
-				class="pointer-events-none absolute top-1/2 right-8 hidden w-44 -translate-y-1/2 opacity-50 lg:block"
-			/>
+			<dl
+				class="divide-y divide-primary/20 rounded-md border border-primary bg-white px-5 py-1 text-sm shadow-[4px_4px_0_0_var(--color-primary)]"
+			>
+				{#each olympiad_stages as stage (stage.label)}
+					<div class="flex items-center justify-between gap-4 py-3">
+						<dt class="font-medium text-primary">{stage.label}</dt>
+						<dd class="text-right text-copy/75">{stage.date}</dd>
+					</div>
+				{/each}
+			</dl>
+		</div>
+
+		<div class="mt-8 grid gap-4 sm:grid-cols-3">
+			{#each information_items as item (item.title)}
+				<a
+					href={item.href}
+					class="flex items-center gap-3 rounded-md border border-primary/30 bg-white px-4 py-3 transition-colors hover:bg-primary/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+				>
+					<img src={item.image} alt={item.alt} class="size-10 object-contain" loading="lazy" />
+					<p class="text-sm font-medium text-primary">{item.title}</p>
+				</a>
+			{/each}
+		</div>
+	</ContentSection>
+
+	<ContentSection container_class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+		<div>
+			<p class="text-sm font-semibold tracking-widest text-primary uppercase">Acerca de nosotros</p>
+			<h2 class="mt-3 max-w-150 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
+				Encontrando Talentos Matemáticos desde 1997
+			</h2>
+
+			<p class="mt-6 max-w-150 text-sm leading-6 text-copy/75">
+				Desde 1997 <em>Olimpiada Matemática Ecuatoriana (OMEC)</em> se encarga de detectar, formar y
+				preparar los talentos matemáticos que conforman los equipos que representarán al país en
+				varias competencias olímpicas. Entre ellas el <strong>Mundial de Matemáticas (IMO)</strong>,
+				la <strong>Olimpiada Europea Femenina de Matemáticas (EGMO)</strong>, la
+				<strong>Olimpiada de Matemáticas de Asia-Pacífico (APMO)</strong>, la Olimpiada de
+				Matemáticas de países del <strong>Cono Sur</strong>.
+			</p>
 
 			<a
 				href={resolve("/nosotros")}
-				class="relative mt-4 inline-flex h-9 items-center justify-center rounded-sm bg-white px-5 text-sm font-medium text-primary lg:mt-0"
-				>Inscríbete Ahora</a
+				class="mt-6 inline-flex h-9 items-center justify-center rounded-sm border border-primary px-4 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 			>
+				Ver más sobre OMEC
+			</a>
+		</div>
+
+		<figure
+			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
+		>
+			<img
+				src={olympiad_student}
+				alt="Dos estudiantes sostienen sus diplomas y medallas de la Olimpiada Matemática Ecuatoriana"
+				loading="lazy"
+				decoding="async"
+				class="aspect-4/5 w-full object-cover object-center"
+			/>
+		</figure>
+	</ContentSection>
+
+	<ContentSection>
+		<SectionHeading title="Conoce a Nuestros Auspiciantes" />
+
+		<div
+			class="mt-8 flex justify-center rounded-md border border-primary/30 bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)]"
+		>
+			<img
+				src={logo_egcs_ucsg}
+				alt="Logo de la Escuela de Graduados en Ciencias de la Salud de la Universidad Católica de Santiago de Guayaquil"
+				loading="lazy"
+				decoding="async"
+				class="h-auto w-full max-w-70 object-contain"
+			/>
 		</div>
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Logros Internacionales" />
-
-		<div class="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:grid-cols-4">
-			{#each international_achievements as achievement (achievement.id)}
-				<article class="rounded-sm border border-t-6 border-primary bg-white p-4">
-					<div class="flex h-26 items-center justify-center">
-						<img src={achievement.image} alt="" class="max-h-22 w-auto" />
-					</div>
-
-					<div class="mt-4 text-center">
-						<h3 class="text-sm leading-tight font-medium text-primary">{achievement.title}</h3>
-						<p class="mt-2 text-xs leading-normal text-copy/70">{achievement.description}</p>
-					</div>
-
-					<div class="mt-3 flex items-end justify-center gap-5 text-center">
-						<div>
-							<div
-								class="mx-auto flex size-7 items-center justify-center rounded-full bg-amber-600 text-xs font-semibold text-white"
-							>
-								1
-							</div>
-							<p class="mt-1 text-xs text-copy/70">Bronce</p>
-						</div>
-						<div>
-							<div
-								class="mx-auto flex size-7 items-center justify-center rounded-full bg-slate-200 text-xs font-semibold text-copy"
-							>
-								10
-							</div>
-							<p class="mt-1 text-xs text-copy/70">HM</p>
-						</div>
-					</div>
+		<div class="grid overflow-hidden rounded-md border border-primary lg:grid-cols-2">
+			{#each olympiad_cards as card (card.title)}
+				<article class="bg-primary px-6 py-8 text-white even:bg-primary-dark lg:px-10 lg:py-12">
+					<h2 class="max-w-105 text-3xl leading-none font-semibold tracking-tighter lg:text-4xl">
+						{card.title}
+					</h2>
+					<p class="mt-5 max-w-130 text-sm leading-6 text-white/80">{card.description}</p>
+					<a
+						href={card.href}
+						class="mt-6 inline-flex h-9 items-center justify-center rounded-sm bg-white px-4 text-sm font-medium text-primary transition-colors hover:bg-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+					>
+						Ver más
+					</a>
 				</article>
 			{/each}
 		</div>
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Galería de eventos" />
+		<div class="relative overflow-hidden rounded-md border border-primary bg-primary">
+			<img
+				src={national_olympiad_participants}
+				alt="Estudiantes participan en una prueba de la Olimpiada Nacional de Matemáticas"
+				loading="lazy"
+				decoding="async"
+				class="absolute inset-0 size-full object-cover opacity-25"
+			/>
+			<div class="relative px-6 py-10 text-white lg:px-10 lg:py-14">
+				<h2 class="max-w-180 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
+					Nuestra Olimpiada Nacional de Matemáticas
+				</h2>
+				<div class="mt-8 grid gap-4 md:grid-cols-3">
+					{#each national_olympiad_facts as fact (fact)}
+						<p class="border-l border-white/50 pl-4 text-sm leading-6 font-medium">{fact}</p>
+					{/each}
+				</div>
+			</div>
+		</div>
+	</ContentSection>
 
-		<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4">
-			{#each gallery_events as event (event.id)}
-				<article>
-					<img
-						src={event.image}
-						alt={event.image_alt}
-						loading="lazy"
-						decoding="async"
-						class="aspect-[4/2.7] w-full rounded-lg object-cover"
-					/>
-					<p class="mt-2 text-sm text-copy/70">{event.title}</p>
-				</article>
-			{/each}
+	<ContentSection
+		container_class="relative overflow-hidden rounded-md border border-primary bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)] lg:px-10 lg:py-12"
+	>
+		<img
+			src={blocks}
+			alt=""
+			class="pointer-events-none absolute right-6 bottom-0 hidden w-36 translate-y-1/4 opacity-35 lg:block"
+		/>
+		<img
+			src={triangle_center_gravity}
+			alt=""
+			class="pointer-events-none absolute top-5 right-8 w-16 opacity-40 lg:right-14 lg:w-22"
+		/>
+		<div class="relative max-w-155">
+			<p class="text-sm font-semibold tracking-widest text-primary uppercase">Síguenos</p>
+			<h2 class="mt-3 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
+				No te pierdas de inscripciones y fechas importantes
+			</h2>
+			<nav class="mt-6 flex flex-wrap gap-3" aria-label="Redes sociales de OMEC">
+				{#each social_links as social_link (social_link.label)}
+					<a
+						href={social_link.href}
+						target="_blank"
+						rel="noreferrer"
+						class="inline-flex h-9 items-center justify-center rounded-sm border border-primary px-4 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+					>
+						{social_link.label}
+					</a>
+				{/each}
+			</nav>
 		</div>
 	</ContentSection>
 </PageSectionStack>
