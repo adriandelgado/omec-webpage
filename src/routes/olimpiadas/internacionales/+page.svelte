@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ExternalLink } from "@lucide/svelte";
-	import logo_apmo from "#lib/assets/logos/apmo.png";
+	import logo_apmo from "#lib/assets/logos/apmo.svg";
 	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg";
 	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg";
 	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg";

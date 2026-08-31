@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Mail } from "@lucide/svelte";
 	import { resolve } from "$app/paths";
-	import logo_foec from "#lib/assets/logos/foec.png";
+	import logo_foec from "#lib/assets/logos/foec.svg";
 	import logo_omec from "#lib/assets/logos/omec.svg";
 	import logo_egcs_ucsg_sponsor from "#lib/assets/logos/egcs-ucsg-sponsor.png";
 	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, ROUTES, SOCIAL_LINKS } from "#lib/constants.js";
