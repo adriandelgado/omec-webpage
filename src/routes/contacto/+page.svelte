@@ -1,42 +1,21 @@
 <script lang="ts">
 	import { Mail, Send } from "@lucide/svelte";
-	import ContentSection from "$lib/components/content-section.svelte";
-	import PageSectionStack from "$lib/components/page-section-stack.svelte";
-	import PageIntro from "$lib/components/page-intro.svelte";
-	import Seo from "$lib/components/seo.svelte";
+	import ContentSection from "#lib/components/content-section.svelte";
+	import PageSectionStack from "#lib/components/page-section-stack.svelte";
+	import PageIntro from "#lib/components/page-intro.svelte";
+	import Seo from "#lib/components/seo.svelte";
+	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, SOCIAL_LINKS } from "#lib/constants.js";
 	import { contact_form_schema } from "./contact-form";
 	import { send_contact_message } from "./contacto.remote";
 
 	const title = "Contáctanos";
 
-	// TODO: consolidate the info in a constants.ts file
 	const contact_cards = [
 		{
 			title: "Correo Electrónico",
 			icon: Mail,
-			lines: ["info@omec-mat.org"],
-			links: ["mailto:info@omec-mat.org"],
-		},
-	] as const;
-
-	const social_links = [
-		{
-			label: "Facebook",
-			href: "https://facebook.com",
-			class_name: "bg-primary text-white",
-			path: "M14 8h-2c-.7 0-1 .3-1 1v2H9v3h2v6h3v-6h2.3l.7-3H14V9c0-.2.1-.3.3-.3H17V6h-2.6C11.9 6 11 7.1 11 8.7V8z",
-		},
-		{
-			label: "Instagram",
-			href: "https://instagram.com",
-			class_name: "bg-pink-500 text-white",
-			path: "M8 4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4zm0 2.2A1.8 1.8 0 0 0 6.2 8v8A1.8 1.8 0 0 0 8 17.8h8a1.8 1.8 0 0 0 1.8-1.8V8A1.8 1.8 0 0 0 16 6.2H8zm8.5 1.1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2.2A1.8 1.8 0 1 0 12 13.8a1.8 1.8 0 0 0 0-3.6z",
-		},
-		{
-			label: "Twitter",
-			href: "https://twitter.com",
-			class_name: "bg-sky-400 text-white",
-			path: "M18.2 7.2c.8-.1 1.5-.4 2.1-.8-.3.8-.8 1.4-1.5 1.9v.5c0 4.8-3.6 10.3-10.3 10.3-2 0-3.9-.6-5.5-1.6h.8c1.7 0 3.3-.6 4.5-1.6-1.6 0-2.9-1.1-3.4-2.5.2 0 .5.1.8.1.4 0 .8-.1 1.1-.2-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.7.5-1-.7-1.7-1.8-1.7-3.1 0-.7.2-1.3.5-1.8 1.9 2.4 4.8 4 8 4.1-.1-.3-.1-.6-.1-.9 0-2.1 1.7-3.8 3.8-3.8 1.1 0 2 .4 2.7 1.1z",
+			lines: [CONTACT_EMAIL],
+			links: [CONTACT_EMAIL_HREF],
 		},
 	] as const;
 </script>
@@ -90,7 +69,7 @@
 						<h2 class="text-base font-medium">Síguenos</h2>
 
 						<div class="mt-4 flex items-center gap-3">
-							{#each social_links as social_link (social_link.label)}
+							{#each SOCIAL_LINKS as social_link (social_link.id)}
 								<a
 									href={social_link.href}
 									target="_blank"

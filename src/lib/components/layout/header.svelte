@@ -4,8 +4,8 @@
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
 	import { fade, fly } from "svelte/transition";
-	import logo_omec from "$lib/assets/logo-omec.svg";
-	import { ROUTES } from "$lib/constants";
+	import logo_omec from "#lib/assets/logos/omec.svg";
+	import { ROUTES } from "#lib/constants.js";
 
 	const home_href = resolve("/");
 

@@ -1,90 +1,125 @@
 <script lang="ts">
 	import { Bell, ShieldAlert } from "@lucide/svelte";
-	import imo_2018 from "$lib/assets/imo-2018.jpg";
-	import ContentSection from "$lib/components/content-section.svelte";
-	import MembersSection from "$lib/components/members-section.svelte";
-	import PageSectionStack from "$lib/components/page-section-stack.svelte";
-	import Seo from "$lib/components/seo.svelte";
-	import SectionHeading from "$lib/components/section-heading.svelte";
-	import TrainingCtaSection from "$lib/components/training-cta-section.svelte";
+	import fernando_gomez from "#lib/assets/nosotros/fernando-gomez.jpg";
+	import imo_2018 from "#lib/assets/nosotros/imo-2018.jpg";
+	import lucero_llanos from "#lib/assets/nosotros/lucero-llanos.jpg";
+	import pablo_serrano from "#lib/assets/nosotros/pablo-serrano.jpg";
+	import pedro_suarez from "#lib/assets/nosotros/pedro-suarez.png";
+	import valeria_santana from "#lib/assets/nosotros/valeria-santana.jpeg";
+	import ContentSection from "#lib/components/content-section.svelte";
+	import MembersSection from "#lib/components/members-section.svelte";
+	import PageSectionStack from "#lib/components/page-section-stack.svelte";
+	import Seo from "#lib/components/seo.svelte";
+	import SectionHeading from "#lib/components/section-heading.svelte";
+	import TrainingCtaSection from "#lib/components/training-cta-section.svelte";
 
-	const title = "Nosotros";
-	const member_portrait =
-		"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=320&q=80";
+	const title = "Acerca de nosotros";
 
 	const values_cards = [
 		{
 			number: "01",
-			eyebrow: "Nuestra Visión",
-			title: "Promover talento matemático",
+			title: "Nuestra misión",
 			description:
-				"Buscamos que más estudiantes ecuatorianos descubran en la matemática un espacio para pensar con rigor, creatividad y curiosidad.",
+				"Desarrollar el talento matemático mediante competencias académicas y experiencias de aprendizaje. Nuestro compromiso es proporcionar las herramientas necesarias para competir al más alto nivel, mientras cultivamos valores que trascienden el ámbito académico.",
 		},
 		{
 			number: "02",
-			eyebrow: "Nuestra Misión",
-			title: "Construir formación sostenida",
+			title: "Nuestra visión",
 			description:
-				"Organizamos competencias, entrenamientos y acompañamiento académico para que el aprendizaje no termine con una sola prueba.",
+				"Consolidarnos como un referente del desarrollo científico y cultural en Ecuador y América Latina, promoviendo una comunidad matemática reconocida por su excelencia académica, liderazgo, calidad humana y compromiso con la sociedad.",
 		},
 		{
 			number: "03",
-			eyebrow: "Nuestro Compromiso",
-			title: "Representar al país con excelencia",
-			description:
-				"Preparamos delegaciones que compiten a nivel nacional e internacional con solidez técnica, trabajo en equipo y responsabilidad.",
+			title: "Nuestros valores",
+			values: [
+				"Altruismo académico",
+				"Auto aprendizaje",
+				"Equidad",
+				"Honestidad",
+				"Transparencia",
+				"Trabajo en equipo",
+			],
 		},
 	] as const;
 
 	const members = [
+		"Adrián Delgado",
+		"Adrián Cerda",
+		"Anthony Flores",
+		"Ana Indacochea",
+		"Arody Carlosama",
+		"Cristhyan Cayetano",
+		"Daniel Suárez",
+		"Eduardo Arteaga",
+		"Emilio Zamora",
+		"Fernando Gómez",
+		"Giacomo Yu",
+		"Gratzia Indacochea",
+		"Jahir Cajas",
+		"Jordie Astudillo",
+		"Keny Carlosama",
+		"Lucero Llanos",
+		"Marcelo Rodríguez",
+		"Mauricio Cevallos",
+		"Melvin Poveda",
+		"Mia Dunn",
+		"Miguel Guzmán",
+		"Pablo Serrano",
+		"Pedro Suárez",
+		"Romnie Acosta",
+		"Samantha Carrillo",
+		"Santiago Velázquez",
+		"Sebastián Regalado",
+		"Valentina Ulloa",
+		"Valeria Santana",
+		"Víctor Marriott",
+	] as const;
+
+	const directors = [
 		{
-			id: "member-marty-1",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
+			id: "fernando-gomez",
+			name: "Fernando Gómez",
+			role: "Director académico",
+			image: fernando_gomez,
+			image_alt: "Retrato de Fernando Gómez, director académico de OMEC",
 		},
 		{
-			id: "member-marty-2",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
+			id: "pablo-serrano",
+			name: "Pablo Serrano",
+			role: "Director general",
+			image: pablo_serrano,
+			image_alt: "Retrato de Pablo Serrano, director general de OMEC",
 		},
 		{
-			id: "member-marty-3",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
+			id: "lucero-llanos",
+			name: "Lucero Llanos",
+			role: "Directora de comunicación",
+			image: lucero_llanos,
+			image_alt: "Retrato de Lucero Llanos, directora de comunicación de OMEC",
 		},
 		{
-			id: "member-marty-4",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
+			id: "valeria-santana",
+			name: "Valeria Santana",
+			role: "Tesorera",
+			image: valeria_santana,
+			image_alt: "Retrato de Valeria Santana, tesorera de OMEC",
 		},
 		{
-			id: "member-marty-5",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
-		},
-		{
-			id: "member-marty-6",
-			name: "Marty Mauser",
-			role: "Jefe de Entrenamiento",
-			image: member_portrait,
-			image_alt: "Retrato de Marty Mauser",
+			id: "pedro-suarez",
+			name: "Pedro Suárez",
+			role: "Relaciones Interinstitucionales",
+			contact: "pedro.suarez@omec-mat.org",
+			image: pedro_suarez,
+			image_alt: "Retrato de Pedro Suárez, responsable de Relaciones Interinstitucionales de OMEC",
 		},
 	] as const;
 </script>
 
 <Seo
 	{title}
-	description="Conoce a OMEC, su misión y el trabajo que realiza para promover la excelencia matemática y las olimpiadas estudiantiles en Ecuador."
+	description="Conoce la labor, misión, visión, valores y miembros de la Olimpiada Matemática Ecuatoriana."
+	image={imo_2018}
+	image_alt="Delegación ecuatoriana en la Olimpiada Internacional de Matemáticas 2018"
 />
 
 <PageSectionStack class="py-8 lg:py-10">
@@ -92,11 +127,6 @@
 		<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
 			{title}
 		</h1>
-
-		<p class="mt-4 max-w-175 text-sm leading-6 text-copy/75">
-			Somos una organización sin fines de lucro dedicada a desarrollar el talento matemático de
-			estudiantes ecuatorianos mediante competencias, entrenamiento y acompañamiento académico.
-		</p>
 
 		<aside
 			class="mt-7 grid gap-4 overflow-hidden rounded-2xl border border-primary/20 bg-primary px-4 py-3 text-white lg:grid-cols-[1fr_auto] lg:items-center lg:px-5"
@@ -107,10 +137,8 @@
 				</div>
 
 				<div>
-					<p class="text-sm font-semibold">Aviso a la comunidad</p>
-					<p class="mt-1 max-w-160 text-xs leading-5 text-white/80">
-						OMEC comunica únicamente por sus canales oficiales y por convocatorias publicadas en sus
-						espacios institucionales.
+					<p class="max-w-160 text-sm leading-5 font-semibold">
+						Aviso a la comunidad: Vicente Torres y Jorge Chamaidán ya no forman parte de la OMEC
 					</p>
 				</div>
 			</div>
@@ -142,21 +170,16 @@
 			</h2>
 
 			<p class="mt-6">
-				OMEC crea espacios donde la matemática se vive como una práctica formativa, desafiante y
-				colectiva. Nuestro trabajo impulsa el razonamiento lógico, la resolución de problemas y la
-				confianza intelectual de niñas, niños y jóvenes interesados en profundizar en esta área.
-			</p>
-
-			<p class="mt-4">
-				Las olimpiadas matemáticas conectan al país con una comunidad internacional de aprendizaje y
-				exigencia académica. A través de ellas, estudiantes de diferentes provincias, contextos y
-				edades desarrollan disciplina, creatividad y autonomía para enfrentar problemas complejos.
+				Descubrir, formar e impulsar el talento matemático para contribuir al desarrollo científico,
+				educativo y humano del Ecuador. OMEC existe para abrir oportunidades a estudiantes
+				apasionados por las matemáticas, brindándoles espacios donde el conocimiento, la curiosidad
+				y el esfuerzo se conviertan en herramientas para alcanzar su máximo potencial.
 			</p>
 		</div>
 
 		<img
 			src={imo_2018}
-			alt="Delegación ecuatoriana durante la IMO 2018"
+			alt="Delegación ecuatoriana en la Olimpiada Internacional de Matemáticas 2018"
 			class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
 		/>
 	</ContentSection>
@@ -168,19 +191,45 @@
 					<p class="text-5xl leading-none font-semibold tracking-tighter text-primary">
 						{card.number}
 					</p>
-					<p class="mt-4 text-xs font-semibold tracking-widest text-primary uppercase">
-						{card.eyebrow}
-					</p>
-					<h3 class="mt-3 text-lg leading-tight font-semibold">{card.title}</h3>
-					<p class="mt-3 text-sm leading-6 text-copy/75">{card.description}</p>
+					<h3 class="mt-4 text-lg leading-tight font-semibold text-primary">{card.title}</h3>
+					{#if "description" in card}
+						<p class="mt-3 text-sm leading-6 text-copy/75 italic">{card.description}</p>
+					{:else}
+						<ul class="mt-3 space-y-1 text-sm leading-6 text-copy/75 italic">
+							{#each card.values as value (value)}
+								<li>{value}</li>
+							{/each}
+						</ul>
+					{/if}
 				</article>
 			{/each}
 		</div>
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Miembros" />
-		<MembersSection class="mt-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3" {members} />
+		<SectionHeading title="Miembros de la OMEC" />
+		<ul
+			class="mt-8 grid gap-x-12 gap-y-2 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-15 lg:mt-10 lg:gap-x-20 lg:gap-y-3"
+		>
+			{#each members as member (member)}
+				<li
+					class="border-b border-primary/20 py-2 text-lg leading-tight font-semibold tracking-tighter text-primary"
+				>
+					{member}
+				</li>
+			{/each}
+		</ul>
+	</ContentSection>
+
+	<ContentSection>
+		<div class="text-center">
+			<p class="text-sm font-semibold tracking-widest text-primary uppercase">Nuestro Equipo</p>
+			<h2 class="mt-3 text-3xl leading-none font-semibold tracking-tighter lg:text-4xl">
+				Conoce a los directores de actividades
+			</h2>
+		</div>
+
+		<MembersSection members={directors} class="mt-8 sm:grid-cols-2 lg:mt-10" />
 	</ContentSection>
 </PageSectionStack>
 

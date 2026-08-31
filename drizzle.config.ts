@@ -1,20 +1,11 @@
 import { defineConfig } from "drizzle-kit";
-import { resolve_database_config } from "./src/lib/server/db/config";
 
-const database_config = resolve_database_config({
-	database_auth_token: process.env.DATABASE_AUTH_TOKEN,
-	database_url: process.env.DATABASE_URL,
-	allow_local_default: true,
-	context: "Drizzle local configuration",
-});
+if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
 
 export default defineConfig({
 	schema: "./src/lib/server/db/schema.ts",
-	dialect: "turso",
-	dbCredentials: {
-		authToken: database_config.auth_token,
-		url: database_config.url,
-	},
+	dialect: "sqlite",
+	dbCredentials: { url: process.env.DATABASE_URL },
 	verbose: true,
 	strict: true,
 });

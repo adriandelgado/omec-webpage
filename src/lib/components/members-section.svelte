@@ -3,6 +3,7 @@
 		id: string;
 		name: string;
 		role: string;
+		contact?: string;
 		image: string;
 		image_alt: string;
 	}
@@ -31,6 +32,11 @@
 				<p class="mt-2 font-mono leading-snug tracking-tighter text-copy/75">
 					{member.role}
 				</p>
+				{#if member.contact}
+					<p class="mt-1 font-mono text-sm leading-snug tracking-tighter break-all text-copy/75">
+						{member.contact}
+					</p>
+				{/if}
 			</div>
 		</li>
 	{/each}
