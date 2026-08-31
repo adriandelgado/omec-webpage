@@ -55,9 +55,9 @@ pnpm dev
 
 ## Deployment
 
-The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`. Configure `DATABASE_URL` in the Worker environment to point to the deployment's SQLite/libSQL database, including a remote [Turso](https://turso.tech/) database when applicable.
+The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`. Configure `DATABASE_URL` as a Worker runtime variable or secret to point to the deployment's SQLite/libSQL database, including a remote [Turso](https://turso.tech/) database when applicable. It does not need to be present in Cloudflare's build environment; the app validates it when the Worker starts handling requests.
 
-- Set `DATABASE_URL` in the Cloudflare Worker environment before starting the application.
+- Set `DATABASE_URL` in the Cloudflare Worker environment before deploying or starting the application.
 - Run `pnpm gen` when the Cloudflare Worker type definitions need to be refreshed.
 - Run `pnpm build` to produce the Worker bundle consumed by `pnpm preview` and Wrangler.
 - Keep environment files and database credentials out of version control.
