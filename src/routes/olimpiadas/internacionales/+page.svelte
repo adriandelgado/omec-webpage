@@ -4,14 +4,14 @@
 	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg";
 	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg";
 	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg";
-	import logo_igo from "#lib/assets/logos/igo.png";
+	import logo_igo from "#lib/assets/logos/igo.svg";
 	import olympiad_imo from "#lib/assets/olimpiadas/internacionales/olympiad-imo.jpeg";
 	import logo_mayo from "#lib/assets/logos/mayo.svg";
 	import olympiad_pagmo from "#lib/assets/olimpiadas/internacionales/olympiad-pagmo.jpeg";
 	import olympiad_tjm from "#lib/assets/olimpiadas/internacionales/olympiad-tjm.jpeg";
-	import logo_egcs_ucsg_sponsor from "#lib/assets/logos/egcs-ucsg-sponsor.png";
-	import logo_sponsor from "#lib/assets/logos/sponsor.png";
-	import logo_usfq from "#lib/assets/logos/usfq.png";
+	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
+	import logo_sedem from "#lib/assets/logos/sedem.svg";
+	import logo_usfq from "#lib/assets/logos/usfq.svg";
 	import Card from "#lib/components/card.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
@@ -116,9 +116,9 @@
 		{
 			id: "egcs-ucsg",
 			name: "Escuela de Graduados en Ciencias de la Salud de la UCSG",
-			image: logo_egcs_ucsg_sponsor,
+			image: logo_ucsg,
 		},
-		{ id: "sponsor", name: "Entidad auspiciadora de OMEC", image: logo_sponsor },
+		{ id: "sponsor", name: "Entidad auspiciadora de OMEC", image: logo_sedem },
 	] as const;
 </script>
 

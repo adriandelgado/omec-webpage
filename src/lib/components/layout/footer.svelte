@@ -3,7 +3,7 @@
 	import { resolve } from "$app/paths";
 	import logo_foec from "#lib/assets/logos/foec.svg";
 	import logo_omec from "#lib/assets/logos/omec.svg";
-	import logo_egcs_ucsg_sponsor from "#lib/assets/logos/egcs-ucsg-sponsor.png";
+	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
 	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, ROUTES, SOCIAL_LINKS } from "#lib/constants.js";
 </script>
 
@@ -58,7 +58,7 @@
 			<section>
 				<h2 class="text-base font-semibold">Auspicia</h2>
 				<img
-					src={logo_egcs_ucsg_sponsor}
+					src={logo_ucsg}
 					alt="Logo de la Escuela de Graduados en Ciencias de la Salud de la Universidad Católica de Santiago de Guayaquil"
 					class="mt-4 h-auto w-full max-w-40 object-contain"
 				/>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import blocks from "#lib/assets/shared/blocks.svg";
-	import logo_egcs_ucsg from "#lib/assets/logos/egcs-ucsg.png";
+	import logo_egcs_ucsg from "#lib/assets/logos/ucsg.svg";
 	import imo_team_2026 from "#lib/assets/home/imo-team-2026.jpeg";
 	import information_icon from "#lib/assets/home/information-icon.png";
 	import national_olympiad_participants from "#lib/assets/home/national-olympiad-participants.jpg";
