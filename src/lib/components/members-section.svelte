@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { Picture } from "@sveltejs/enhanced-img";
+
 	interface Member {
 		id: string;
 		name: string;
 		role: string;
 		contact?: string;
-		image: string;
+		image: Picture;
 		image_alt: string;
 	}
 
@@ -19,9 +21,10 @@
 <ul class={["grid gap-x-8 gap-y-10", class_name]}>
 	{#each members as member (member.id)}
 		<li class="flex items-center gap-4 md:gap-5">
-			<img
+			<enhanced:img
 				src={member.image}
 				alt={member.image_alt}
+				sizes="96px"
 				class="size-24 shrink-0 rounded-full object-cover"
 			/>
 

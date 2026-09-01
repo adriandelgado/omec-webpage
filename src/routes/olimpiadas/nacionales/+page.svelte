@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { BookOpen, CirclePlay, ExternalLink } from "@lucide/svelte";
-	import onm_2019_awards from "#lib/assets/olimpiadas/nacionales/onm-2019-awards.jpg";
-	import onm_2019_video_thumbnail from "#lib/assets/olimpiadas/nacionales/onm-2019-video-thumbnail.jpg";
 	import Card from "#lib/components/card.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
@@ -211,11 +209,12 @@
 			<p class="text-sm font-semibold tracking-widest text-primary uppercase">
 				Premiación ONM 2019
 			</p>
-			<img
-				src={onm_2019_awards}
+			<enhanced:img
+				src="#lib/assets/olimpiadas/nacionales/onm-2019-awards.jpg"
 				alt="Estudiantes durante la premiación de la Olimpiada Nacional de Matemática 2019"
 				loading="lazy"
 				decoding="async"
+				sizes="(min-width: 1024px) 60vw, 100vw"
 				class="mt-5 aspect-4/3 w-full rounded-2xl object-cover"
 			/>
 		</div>
@@ -226,11 +225,12 @@
 			rel="noopener noreferrer"
 			class="group relative block overflow-hidden rounded-2xl border border-primary bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 		>
-			<img
-				src={onm_2019_video_thumbnail}
+			<enhanced:img
+				src="#lib/assets/olimpiadas/nacionales/onm-2019-video-thumbnail.jpg"
 				alt="Vista previa del video de la premiación ONM 2019"
 				loading="lazy"
 				decoding="async"
+				sizes="(min-width: 1024px) 40vw, 100vw"
 				class="aspect-4/3 w-full object-cover opacity-85 transition-transform duration-300 group-hover:scale-105"
 			/>
 			<span class="absolute inset-0 flex items-center justify-center bg-primary/25">

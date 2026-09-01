@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Bell, ShieldAlert } from "@lucide/svelte";
-	import fernando_gomez from "#lib/assets/nosotros/fernando-gomez.jpg";
+	import fernando_gomez from "#lib/assets/nosotros/fernando-gomez.jpg?enhanced";
 	import imo_2018 from "#lib/assets/nosotros/imo-2018.jpg";
-	import lucero_llanos from "#lib/assets/nosotros/lucero-llanos.jpg";
-	import pablo_serrano from "#lib/assets/nosotros/pablo-serrano.jpg";
-	import pedro_suarez from "#lib/assets/nosotros/pedro-suarez.png";
-	import valeria_santana from "#lib/assets/nosotros/valeria-santana.jpeg";
+	import lucero_llanos from "#lib/assets/nosotros/lucero-llanos.jpg?enhanced";
+	import pablo_serrano from "#lib/assets/nosotros/pablo-serrano.jpg?enhanced";
+	import pedro_suarez from "#lib/assets/nosotros/pedro-suarez.png?enhanced";
+	import valeria_santana from "#lib/assets/nosotros/valeria-santana.jpeg?enhanced";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import MembersSection from "#lib/components/members-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
@@ -177,9 +177,10 @@
 			</p>
 		</div>
 
-		<img
-			src={imo_2018}
+		<enhanced:img
+			src="#lib/assets/nosotros/imo-2018.jpg"
 			alt="Delegación ecuatoriana en la Olimpiada Internacional de Matemáticas 2018"
+			sizes="(min-width: 1024px) 60vw, 100vw"
 			class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
 		/>
 	</ContentSection>

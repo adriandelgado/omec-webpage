@@ -3,9 +3,6 @@
 	import { Info, Lightbulb, Newspaper } from "@lucide/svelte";
 	import blocks from "#lib/assets/shared/blocks.svg";
 	import logo_egcs_ucsg from "#lib/assets/logos/ucsg.svg";
-	import imo_team_2026 from "#lib/assets/home/imo-team-2026.jpeg";
-	import national_olympiad_participants from "#lib/assets/home/national-olympiad-participants.jpg";
-	import olympiad_student from "#lib/assets/home/olympiad-student.jpeg";
 	import sine from "#lib/assets/shared/sine.svg";
 	import triangle_center_gravity from "#lib/assets/home/triangle-center-gravity.svg";
 	import ContentSection from "#lib/components/content-section.svelte";
@@ -82,10 +79,11 @@
 		<figure
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
-			<img
-				src={imo_team_2026}
+			<enhanced:img
+				src="#lib/assets/home/imo-team-2026.jpeg"
 				alt="Delegación ecuatoriana junto al letrero de la IMO 2026 en Shanghái"
 				fetchpriority="high"
+				sizes="(min-width: 1024px) 60vw, 100vw"
 				class="aspect-[2.7/1] w-full object-cover"
 			/>
 		</figure>
@@ -168,11 +166,12 @@
 		<figure
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
-			<img
-				src={olympiad_student}
+			<enhanced:img
+				src="#lib/assets/home/olympiad-student.jpeg"
 				alt="Dos estudiantes sostienen sus diplomas y medallas de la Olimpiada Matemática Ecuatoriana"
 				loading="lazy"
 				decoding="async"
+				sizes="(min-width: 1024px) 36vw, 100vw"
 				class="aspect-4/5 w-full object-cover object-center"
 			/>
 		</figure>
@@ -215,11 +214,12 @@
 
 	<ContentSection>
 		<div class="relative overflow-hidden rounded-md border border-primary bg-primary">
-			<img
-				src={national_olympiad_participants}
+			<enhanced:img
+				src="#lib/assets/home/national-olympiad-participants.jpg"
 				alt="Estudiantes participan en una prueba de la Olimpiada Nacional de Matemáticas"
 				loading="lazy"
 				decoding="async"
+				sizes="100vw"
 				class="absolute inset-0 size-full object-cover opacity-25"
 			/>
 			<div class="relative px-6 py-10 text-white lg:px-10 lg:py-14">

@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { ExternalLink } from "@lucide/svelte";
+	import type { Picture } from "@sveltejs/enhanced-img";
 	import logo_apmo from "#lib/assets/logos/apmo.svg";
-	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg";
-	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg";
-	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg";
+	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg?enhanced";
+	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg?enhanced";
+	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg?enhanced";
 	import logo_igo from "#lib/assets/logos/igo.svg";
-	import olympiad_imo from "#lib/assets/olimpiadas/internacionales/olympiad-imo.jpeg";
+	import olympiad_imo from "#lib/assets/olimpiadas/internacionales/olympiad-imo.jpeg?enhanced";
 	import logo_mayo from "#lib/assets/logos/mayo.svg";
-	import olympiad_pagmo from "#lib/assets/olimpiadas/internacionales/olympiad-pagmo.jpeg";
-	import olympiad_tjm from "#lib/assets/olimpiadas/internacionales/olympiad-tjm.jpeg";
+	import olympiad_pagmo from "#lib/assets/olimpiadas/internacionales/olympiad-pagmo.jpeg?enhanced";
+	import olympiad_tjm from "#lib/assets/olimpiadas/internacionales/olympiad-tjm.jpeg?enhanced";
 	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
 	import logo_sedem from "#lib/assets/logos/sedem.svg";
 	import logo_usfq from "#lib/assets/logos/usfq.svg";
@@ -20,7 +21,7 @@
 		id: string;
 		name: string;
 		description: string;
-		image: string;
+		image: Picture | string;
 		image_alt: string;
 		href?: string;
 	};
@@ -148,11 +149,12 @@
 					<div
 						class="flex h-48 items-center justify-center border-b border-primary/20 bg-foreground p-4"
 					>
-						<img
+						<enhanced:img
 							src={olympiad.image}
 							alt={olympiad.image_alt}
 							loading="lazy"
 							decoding="async"
+							sizes="(min-width: 1280px) 30vw, (min-width: 640px) 50vw, 100vw"
 							class="h-full w-full object-contain"
 						/>
 					</div>
