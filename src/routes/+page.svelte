@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
+	import { Info, Lightbulb, Newspaper } from "@lucide/svelte";
 	import blocks from "#lib/assets/shared/blocks.svg";
 	import logo_egcs_ucsg from "#lib/assets/logos/ucsg.svg";
 	import imo_team_2026 from "#lib/assets/home/imo-team-2026.jpeg";
-	import information_icon from "#lib/assets/home/information-icon.png";
 	import national_olympiad_participants from "#lib/assets/home/national-olympiad-participants.jpg";
-	import news_icon from "#lib/assets/home/news-icon.png";
 	import olympiad_student from "#lib/assets/home/olympiad-student.jpeg";
-	import preparation_icon from "#lib/assets/home/preparation-icon.png";
 	import sine from "#lib/assets/shared/sine.svg";
 	import triangle_center_gravity from "#lib/assets/home/triangle-center-gravity.svg";
 	import ContentSection from "#lib/components/content-section.svelte";
@@ -24,20 +22,17 @@
 	const information_items = [
 		{
 			title: "Información",
-			image: information_icon,
-			alt: "Ícono de información",
+			icon: Info,
 			href: resolve("/olimpiadas/nacionales"),
 		},
 		{
 			title: "Preparación",
-			image: preparation_icon,
-			alt: "Ícono de preparación",
+			icon: Lightbulb,
 			href: resolve("/entrenamiento"),
 		},
 		{
 			title: "Noticias",
-			image: news_icon,
-			alt: "Ícono de noticias",
+			icon: Newspaper,
 			href: resolve("/noticias"),
 		},
 	] as const;
@@ -139,7 +134,7 @@
 					href={item.href}
 					class="flex items-center gap-3 rounded-md border border-primary/30 bg-white px-4 py-3 transition-colors hover:bg-primary/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 				>
-					<img src={item.image} alt={item.alt} class="size-10 object-contain" loading="lazy" />
+					<item.icon aria-hidden="true" class="size-10 text-primary" strokeWidth={1.8} />
 					<p class="text-sm font-medium text-primary">{item.title}</p>
 				</a>
 			{/each}
