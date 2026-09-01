@@ -12,7 +12,7 @@
 		mejores entrenadores del país.
 	</p>
 	<a
-		href={resolve("/nosotros")}
+		href={resolve("/contacto")}
 		class="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-white px-5 text-sm font-medium text-primary transition-colors hover:bg-white/90"
 	>
 		Inscribirse Ahora
