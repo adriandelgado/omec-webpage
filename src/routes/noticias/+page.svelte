@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import Card from "#lib/components/card.svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
@@ -22,7 +23,7 @@
 	<ContentSection>
 		<Card class="max-w-3xl">
 			<a
-				href="/noticias/logros-de-la-omec-en-2026"
+				href={resolve("/noticias/logros-de-la-omec-en-2026")}
 				class="block p-6 transition-colors hover:bg-foreground/45 lg:p-8"
 			>
 				<p class="text-sm font-semibold text-primary">13 de agosto de 2026 · OMEC</p>

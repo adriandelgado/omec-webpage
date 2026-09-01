@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
@@ -11,7 +12,9 @@
 
 <PageSectionStack class="py-12 lg:py-20">
 	<ContentSection>
-		<a href="/noticias" class="text-sm font-semibold text-primary hover:underline">← Noticias</a>
+		<a href={resolve("/noticias")} class="text-sm font-semibold text-primary hover:underline"
+			>← Noticias</a
+		>
 		<p class="mt-8 text-sm font-semibold tracking-widest text-primary uppercase">Noticias</p>
 		<h1 class="mt-3 max-w-4xl text-4xl leading-none font-semibold tracking-tighter lg:text-6xl">
 			Logros de la OMEC en 2026
