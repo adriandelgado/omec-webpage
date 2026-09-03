@@ -6,8 +6,13 @@
 	import { get_articles } from "../articles.remote";
 	import { get_content } from "./content.remote";
 
+	const ARTICLE_ID = "logros-de-la-omec-en-2026";
 	const [content, articles] = await Promise.all([get_content(), get_articles()]);
-	const article = articles[0];
+	const article = articles.find((candidate) => candidate.id === ARTICLE_ID);
+
+	if (!article) {
+		throw new Error(`Article not found: ${ARTICLE_ID}`);
+	}
 </script>
 
 <Seo

@@ -6,9 +6,10 @@
 	import Seo from "#lib/components/seo.svelte";
 	import SectionHeading from "#lib/components/section-heading.svelte";
 	import TrainingCtaSection from "#lib/components/training-cta-section.svelte";
+	import { get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
 
-	const content = await get_content();
+	const [content, site_content] = await Promise.all([get_content(), get_site_content()]);
 </script>
 
 <Seo
@@ -17,6 +18,7 @@
 	image={content.seo.image}
 	image_alt={content.seo.image_alt}
 	include_organization
+	social_links={site_content.social_links}
 	page_type="AboutPage"
 />
 
