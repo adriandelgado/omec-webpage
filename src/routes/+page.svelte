@@ -65,6 +65,8 @@
 <Seo
 	title=""
 	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
+	include_organization
+	include_website
 />
 
 <PageSectionStack class="py-12 lg:py-20">

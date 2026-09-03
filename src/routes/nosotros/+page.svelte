@@ -120,6 +120,8 @@
 	description="Conoce la labor, misión, visión, valores y miembros de la Olimpiada Matemática Ecuatoriana."
 	image={imo_2018}
 	image_alt="Delegación ecuatoriana en la Olimpiada Internacional de Matemáticas 2018"
+	include_organization
+	page_type="AboutPage"
 />
 
 <PageSectionStack class="py-8 lg:py-10">

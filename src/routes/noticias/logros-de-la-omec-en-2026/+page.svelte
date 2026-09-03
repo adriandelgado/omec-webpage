@@ -8,6 +8,10 @@
 <Seo
 	title="Logros de la OMEC en 2026"
 	description="17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo."
+	news_article={{
+		headline: "Logros de la OMEC en 2026",
+		date_published: "2026-08-13",
+	}}
 />
 
 <PageSectionStack class="py-12 lg:py-20">

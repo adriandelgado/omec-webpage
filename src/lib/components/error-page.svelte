@@ -30,7 +30,7 @@
 	let status_label = $derived(status === 404 ? "Ruta no disponible" : "Error de navegación");
 </script>
 
-<Seo {title} {description} />
+<Seo {title} {description} emit_structured_data={false} />
 
 <PageSectionStack class="justify-center py-8 lg:py-10">
 	<ContentSection>
