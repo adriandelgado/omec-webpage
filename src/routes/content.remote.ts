@@ -19,16 +19,8 @@ export const get_content = query(
 				image_alt: "Delegación ecuatoriana junto al letrero de la IMO 2026 en Shanghái",
 			},
 			national_olympiad: {
-				title: "Olimpiada Nacional de Matemática 2026",
-				announcement:
-					"Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abrirán en septiembre.",
 				link_label: "Conoce la olimpiada nacional",
 				link_href: "/olimpiadas/nacionales",
-				stages: [
-					{ label: "Primera fase", date: "17 de octubre" },
-					{ label: "Segunda fase", date: "7 de noviembre" },
-					{ label: "Fase final", date: "11 y 12 de diciembre" },
-				],
 				information_items: [
 					{ id: "information", title: "Información", icon: "info", href: "/olimpiadas/nacionales" },
 					{ id: "preparation", title: "Preparación", icon: "lightbulb", href: "/entrenamiento" },

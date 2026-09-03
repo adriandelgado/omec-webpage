@@ -8,11 +8,15 @@
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
 	import SectionHeading from "#lib/components/section-heading.svelte";
-	import { SOCIAL_LINKS } from "#lib/constants.js";
+	import { get_national_olympiad, get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
 
 	const INFORMATION_ICONS = { info: Info, lightbulb: Lightbulb, newspaper: Newspaper } as const;
-	const content = await get_content();
+	const [content, national_olympiad, site_content] = await Promise.all([
+		get_content(),
+		get_national_olympiad(),
+		get_site_content(),
+	]);
 </script>
 
 <Seo
@@ -20,6 +24,7 @@
 	description={content.seo.description}
 	include_organization
 	include_website
+	social_links={site_content.social_links}
 />
 
 <PageSectionStack class="py-12 lg:py-20">
@@ -45,7 +50,7 @@
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title={content.national_olympiad.title} />
+		<SectionHeading title={national_olympiad.title} />
 
 		<div class="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
 			<div
@@ -58,7 +63,7 @@
 				/>
 				<div class="relative">
 					<p class="max-w-130 text-lg leading-tight font-semibold lg:text-xl">
-						{content.national_olympiad.announcement}
+						{national_olympiad.announcement}
 					</p>
 					<a
 						href={resolve(content.national_olympiad.link_href)}
@@ -72,7 +77,7 @@
 			<dl
 				class="divide-y divide-primary/20 rounded-md border border-primary bg-white px-5 py-1 text-sm shadow-[4px_4px_0_0_var(--color-primary)]"
 			>
-				{#each content.national_olympiad.stages as stage (stage.label)}
+				{#each national_olympiad.stages as stage (stage.label)}
 					<div class="flex items-center justify-between gap-4 py-3">
 						<dt class="font-medium text-primary">{stage.label}</dt>
 						<dd class="text-right text-copy/75">{stage.date}</dd>
@@ -210,7 +215,7 @@
 				{content.follow.title}
 			</h2>
 			<nav class="mt-6 flex flex-wrap gap-3" aria-label="Redes sociales de OMEC">
-				{#each SOCIAL_LINKS as social_link (social_link.id)}
+				{#each site_content.social_links as social_link (social_link.id)}
 					<a
 						href={social_link.href}
 						target="_blank"

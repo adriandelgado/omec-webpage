@@ -4,12 +4,12 @@
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import PageIntro from "#lib/components/page-intro.svelte";
 	import Seo from "#lib/components/seo.svelte";
-	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, SOCIAL_LINKS } from "#lib/constants.js";
+	import { get_site_content } from "#lib/content.remote.js";
 	import { contact_form_schema } from "./contact-form";
 	import { get_content } from "./content.remote";
 	import { send_contact_message } from "./contacto.remote";
 
-	const content = await get_content();
+	const [content, site_content] = await Promise.all([get_content(), get_site_content()]);
 </script>
 
 <Seo title={content.seo.title} description={content.seo.description} />
@@ -27,7 +27,7 @@
 					<h2 class="text-base font-medium">{content.contact.heading}</h2>
 
 					<div class="mt-5 space-y-3.5">
-						{#each [{ title: content.contact.card_title, lines: [CONTACT_EMAIL], links: [CONTACT_EMAIL_HREF] }] as card (card.title)}
+						{#each [{ title: content.contact.card_title, lines: [site_content.contact.email], links: [site_content.contact.email_href] }] as card (card.title)}
 							<div class="rounded-2xl border border-primary bg-white/80 p-4">
 								<div class="flex items-start gap-3">
 									<div
@@ -58,7 +58,7 @@
 						<h2 class="text-base font-medium">{content.follow.heading}</h2>
 
 						<div class="mt-4 flex items-center gap-3">
-							{#each SOCIAL_LINKS as social_link (social_link.id)}
+							{#each site_content.social_links as social_link (social_link.id)}
 								<a
 									href={social_link.href}
 									target="_blank"

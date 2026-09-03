@@ -10,14 +10,6 @@ export const get_content = query(
 				description:
 					"Información sobre la Olimpiada Nacional de Matemática de OMEC: fechas, niveles de participación, preparación y premios.",
 			},
-			announcement: {
-				text: "Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abrirán en septiembre.",
-				stages: [
-					"Primera fase: 17 de octubre",
-					"Segunda fase: 7 de noviembre",
-					"Fase final: 11 y 12 de diciembre",
-				],
-			},
 			information: {
 				eyebrow: "Información",
 				title: "¿A quién está dirigido?",

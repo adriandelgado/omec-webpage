@@ -3,17 +3,8 @@ import { query } from "$app/server";
 export const get_content = query(
 	() =>
 		({
-			seo: {
-				title: "Logros de la OMEC en 2026",
-				description:
-					"17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo.",
-				news_article: { headline: "Logros de la OMEC en 2026", date_published: "2026-08-13" },
-			},
 			back_link: { href: "/noticias", label: "← Noticias" },
 			category: "Noticias",
-			title: "Logros de la OMEC en 2026",
-			date: "13 de agosto de 2026",
-			author: "OMEC",
 			body_html: String.raw`<h2 class="text-2xl leading-tight font-semibold tracking-tight text-copy lg:text-3xl">17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo</h2>
 
 <p class="mt-8">La Olimpiada Matemática Ecuatoriana (<strong>OMEC</strong>), a través de la Fundación de Olimpiadas Ecuatorianas de Ciencias (<strong>FOEC</strong>), organización a cargo de la selección de los equipos que representan al país en olimpiadas matemáticas internacionales, anuncia con orgullo los resultados obtenidos en las más recientes participaciones internacionales.</p>

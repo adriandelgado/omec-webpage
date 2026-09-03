@@ -4,9 +4,10 @@
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
+	import { get_articles } from "./articles.remote";
 	import { get_content } from "./content.remote";
 
-	const content = await get_content();
+	const [content, articles] = await Promise.all([get_content(), get_articles()]);
 </script>
 
 <Seo title={content.seo.title} description={content.seo.description} />
@@ -25,7 +26,7 @@
 	</ContentSection>
 
 	<ContentSection>
-		{#each content.articles as article (article.id)}
+		{#each articles as article (article.id)}
 			<Card class="max-w-3xl">
 				<a
 					href={resolve(article.href)}

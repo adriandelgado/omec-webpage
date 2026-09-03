@@ -4,7 +4,25 @@
 	import logo_foec from "#lib/assets/logos/foec.svg";
 	import logo_omec from "#lib/assets/logos/omec.svg";
 	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
-	import { CONTACT_EMAIL, CONTACT_EMAIL_HREF, ROUTES, SOCIAL_LINKS } from "#lib/constants.js";
+	import { ROUTES } from "#lib/constants.js";
+
+	type Contact = {
+		email: string;
+		email_href: string;
+	};
+
+	type SocialLink = {
+		id: string;
+		label: string;
+		href: string;
+	};
+
+	interface Props {
+		contact: Contact;
+		social_links: readonly SocialLink[];
+	}
+
+	let { contact, social_links }: Props = $props();
 </script>
 
 <footer class="border-t border-primary px-4 text-primary xl:px-0">
@@ -70,15 +88,15 @@
 					<li>
 						<a
 							class="inline-flex items-center gap-4 transition-opacity hover:opacity-70"
-							href={CONTACT_EMAIL_HREF}
+							href={contact.email_href}
 						>
 							<Mail class="size-4 shrink-0" aria-hidden="true" strokeWidth={1.8} />
-							<span>{CONTACT_EMAIL}</span>
+							<span>{contact.email}</span>
 						</a>
 					</li>
 				</ul>
 				<nav aria-label="Redes sociales" class="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-sm">
-					{#each SOCIAL_LINKS as social_link (social_link.id)}
+					{#each social_links as social_link (social_link.id)}
 						<a
 							class="transition-opacity hover:opacity-70"
 							href={social_link.href}

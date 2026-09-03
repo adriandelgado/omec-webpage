@@ -3,15 +3,17 @@
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
+	import { get_articles } from "../articles.remote";
 	import { get_content } from "./content.remote";
 
-	const content = await get_content();
+	const [content, articles] = await Promise.all([get_content(), get_articles()]);
+	const article = articles[0];
 </script>
 
 <Seo
-	title={content.seo.title}
-	description={content.seo.description}
-	news_article={content.seo.news_article}
+	title={article.title}
+	description={article.summary}
+	news_article={{ headline: article.title, date_published: article.date_published }}
 />
 
 <PageSectionStack class="py-12 lg:py-20">
@@ -24,9 +26,9 @@
 			{content.category}
 		</p>
 		<h1 class="mt-3 max-w-4xl text-4xl leading-none font-semibold tracking-tighter lg:text-6xl">
-			{content.title}
+			{article.title}
 		</h1>
-		<p class="mt-5 text-sm font-semibold text-copy/65">{content.date} · {content.author}</p>
+		<p class="mt-5 text-sm font-semibold text-copy/65">{article.date} · {article.author}</p>
 	</ContentSection>
 
 	<ContentSection>

@@ -3,10 +3,14 @@
 	import Card from "#lib/components/card.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
-	import { SOCIAL_LINKS } from "#lib/constants.js";
+	import { get_national_olympiad, get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
 
-	const content = await get_content();
+	const [content, national_olympiad, site_content] = await Promise.all([
+		get_content(),
+		get_national_olympiad(),
+		get_site_content(),
+	]);
 </script>
 
 <Seo title={content.seo.title} description={content.seo.description} />
@@ -16,11 +20,11 @@
 		class="rounded-2xl border border-primary bg-primary px-5 py-6 text-center text-white shadow-[4px_4px_0_0_var(--color-primary-dark)] lg:px-10 lg:py-8"
 	>
 		<p class="text-lg leading-7 font-semibold lg:text-xl">
-			{content.announcement.text}
+			{national_olympiad.announcement}
 		</p>
 		<ul class="mt-5 grid gap-3 text-sm font-medium sm:grid-cols-3 sm:gap-4">
-			{#each content.announcement.stages as stage (stage)}
-				<li class="rounded-md bg-white/12 px-3 py-3">{stage}</li>
+			{#each national_olympiad.stages as stage (stage.label)}
+				<li class="rounded-md bg-white/12 px-3 py-3">{stage.label}: {stage.date}</li>
 			{/each}
 		</ul>
 	</section>
@@ -56,7 +60,7 @@
 				{content.follow.description}
 			</p>
 			<div class="mt-6 flex flex-wrap gap-3">
-				{#each SOCIAL_LINKS as destination (destination.id)}
+				{#each site_content.social_links as destination (destination.id)}
 					<a
 						href={destination.href}
 						target="_blank"

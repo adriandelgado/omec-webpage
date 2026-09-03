@@ -2,12 +2,15 @@
 	import { page } from "$app/state";
 	import { SITE_URL } from "$app/env/public";
 	import logo_omec from "#lib/assets/logos/omec.svg?url&no-inline";
-	import { SOCIAL_LINKS } from "#lib/constants.js";
 
 	type NewsArticle = {
 		headline: string;
 		date_published: string;
 		date_modified?: string;
+	};
+
+	type SocialLink = {
+		href: string;
 	};
 
 	type SeoProps = {
@@ -22,6 +25,7 @@
 		emit_structured_data?: boolean;
 		include_organization?: boolean;
 		include_website?: boolean;
+		social_links?: readonly SocialLink[];
 		page_type?: "WebPage" | "AboutPage";
 		news_article?: NewsArticle;
 	};
@@ -49,6 +53,7 @@
 		emit_structured_data = true,
 		include_organization = false,
 		include_website = false,
+		social_links = [],
 		page_type = "WebPage",
 		news_article,
 	}: SeoProps = $props();
@@ -80,7 +85,7 @@
 				alternateName: "OMEC",
 				url: SITE_URL,
 				logo: new URL(logo_omec, `${SITE_URL}/`).href,
-				sameAs: SOCIAL_LINKS.map((social_link) => social_link.href),
+				sameAs: social_links.map((social_link) => social_link.href),
 			});
 		}
 
