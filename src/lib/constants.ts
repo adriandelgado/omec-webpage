@@ -16,6 +16,10 @@ export const ROUTES = [
 		href: "/olimpiadas",
 	},
 	{
+		text: "Noticias",
+		href: "/noticias",
+	},
+	{
 		text: "Contacto",
 		href: "/contacto",
 	},
