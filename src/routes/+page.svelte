@@ -2,69 +2,22 @@
 	import { resolve } from "$app/paths";
 	import { Info, Lightbulb, Newspaper } from "@lucide/svelte";
 	import blocks from "#lib/assets/shared/blocks.svg";
-	import logo_egcs_ucsg from "#lib/assets/logos/ucsg.svg";
 	import sine from "#lib/assets/shared/sine.svg";
 	import triangle_center_gravity from "#lib/assets/home/triangle-center-gravity.svg";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
 	import SectionHeading from "#lib/components/section-heading.svelte";
+	import { SOCIAL_LINKS } from "#lib/constants.js";
+	import { get_content } from "./content.remote";
 
-	const olympiad_stages = [
-		{ label: "Primera fase", date: "17 de octubre" },
-		{ label: "Segunda fase", date: "7 de noviembre" },
-		{ label: "Fase final", date: "11 y 12 de diciembre" },
-	] as const;
-
-	const information_items = [
-		{
-			title: "Información",
-			icon: Info,
-			href: resolve("/olimpiadas/nacionales"),
-		},
-		{
-			title: "Preparación",
-			icon: Lightbulb,
-			href: resolve("/entrenamiento"),
-		},
-		{
-			title: "Noticias",
-			icon: Newspaper,
-			href: resolve("/noticias"),
-		},
-	] as const;
-
-	const olympiad_cards = [
-		{
-			title: "Olimpiada Nacional de Matemáticas",
-			description:
-				"Tienen como objetivo preseleccionar a los alumnos que formarán parte de los equipos que representan al país en los torneos internacionales en los que competimos. Son abiertas para cualquier estudiante del sistema educativo ecuatoriano.",
-			href: resolve("/olimpiadas/nacionales"),
-		},
-		{
-			title: "Olimpiadas Internacionales",
-			description:
-				"Incluye varias competencias tanto presenciales como por correspondencia. A estos eventos sólo se asiste con invitación, la cual es enviada únicamente a los ganadores de las Olimpiadas Nacionales del año anterior.",
-			href: resolve("/olimpiadas/internacionales"),
-		},
-	] as const;
-
-	const national_olympiad_facts = [
-		"Participan colegios de todo el Ecuador. También se puede participar de manera independiente.",
-		"Concursantes de primaria, secundaria y universidades",
-		"Abierto a todas las provincias del Ecuador",
-	] as const;
-
-	const social_links = [
-		{ label: "Facebook", href: "https://www.facebook.com/OlimpiadaMatematicaEcuatoriana" },
-		{ label: "Instagram", href: "https://www.instagram.com/omec.mat" },
-		{ label: "TikTok", href: "https://www.tiktok.com/@omec.mat" },
-	] as const;
+	const INFORMATION_ICONS = { info: Info, lightbulb: Lightbulb, newspaper: Newspaper } as const;
+	const content = await get_content();
 </script>
 
 <Seo
-	title=""
-	description="Olimpiada Matemática Ecuatoriana. Organizamos competencias, entrenamiento y procesos de selección para desarrollar el talento matemático de estudiantes ecuatorianos."
+	title={content.seo.title}
+	description={content.seo.description}
 	include_organization
 	include_website
 />
@@ -73,8 +26,8 @@
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
 		<div class="max-w-100">
 			<h1 class="text-4xl leading-none font-semibold tracking-tighter lg:text-5xl">
-				Olimpiada Matemática
-				<span class="text-primary">Ecuatoriana</span>
+				{content.hero.title}
+				<span class="text-primary">{content.hero.highlight}</span>
 			</h1>
 		</div>
 
@@ -82,8 +35,8 @@
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
 			<enhanced:img
-				src="#lib/assets/home/imo-team-2026.jpeg"
-				alt="Delegación ecuatoriana junto al letrero de la IMO 2026 en Shanghái"
+				src={content.hero.image}
+				alt={content.hero.image_alt}
 				fetchpriority="high"
 				sizes="(min-width: 1024px) 60vw, 100vw"
 				class="aspect-[2.7/1] w-full object-cover"
@@ -92,7 +45,7 @@
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Olimpiada Nacional de Matemática 2026" />
+		<SectionHeading title={content.national_olympiad.title} />
 
 		<div class="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
 			<div
@@ -105,13 +58,13 @@
 				/>
 				<div class="relative">
 					<p class="max-w-130 text-lg leading-tight font-semibold lg:text-xl">
-						Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abrirán en septiembre.
+						{content.national_olympiad.announcement}
 					</p>
 					<a
-						href={resolve("/olimpiadas/nacionales")}
+						href={resolve(content.national_olympiad.link_href)}
 						class="mt-5 inline-flex h-9 items-center justify-center rounded-sm bg-white px-4 text-sm font-medium text-primary transition-colors hover:bg-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
 					>
-						Conoce la olimpiada nacional
+						{content.national_olympiad.link_label}
 					</a>
 				</div>
 			</div>
@@ -119,7 +72,7 @@
 			<dl
 				class="divide-y divide-primary/20 rounded-md border border-primary bg-white px-5 py-1 text-sm shadow-[4px_4px_0_0_var(--color-primary)]"
 			>
-				{#each olympiad_stages as stage (stage.label)}
+				{#each content.national_olympiad.stages as stage (stage.label)}
 					<div class="flex items-center justify-between gap-4 py-3">
 						<dt class="font-medium text-primary">{stage.label}</dt>
 						<dd class="text-right text-copy/75">{stage.date}</dd>
@@ -129,12 +82,13 @@
 		</div>
 
 		<div class="mt-8 grid gap-4 sm:grid-cols-3">
-			{#each information_items as item (item.title)}
+			{#each content.national_olympiad.information_items as item (item.id)}
+				{@const Icon = INFORMATION_ICONS[item.icon]}
 				<a
-					href={item.href}
+					href={resolve(item.href)}
 					class="flex items-center gap-3 rounded-md border border-primary/30 bg-white px-4 py-3 transition-colors hover:bg-primary/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 				>
-					<item.icon aria-hidden="true" class="size-10 text-primary" strokeWidth={1.8} />
+					<Icon aria-hidden="true" class="size-10 text-primary" strokeWidth={1.8} />
 					<p class="text-sm font-medium text-primary">{item.title}</p>
 				</a>
 			{/each}
@@ -143,25 +97,23 @@
 
 	<ContentSection container_class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
 		<div>
-			<p class="text-sm font-semibold tracking-widest text-primary uppercase">Acerca de nosotros</p>
+			<p class="text-sm font-semibold tracking-widest text-primary uppercase">
+				{content.about.eyebrow}
+			</p>
 			<h2 class="mt-3 max-w-150 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
-				Encontrando Talentos Matemáticos desde 1997
+				{content.about.title}
 			</h2>
 
 			<p class="mt-6 max-w-150 text-sm leading-6 text-copy/75">
-				Desde 1997 <em>Olimpiada Matemática Ecuatoriana (OMEC)</em> se encarga de detectar, formar y
-				preparar los talentos matemáticos que conforman los equipos que representarán al país en
-				varias competencias olímpicas. Entre ellas el <strong>Mundial de Matemáticas (IMO)</strong>,
-				la <strong>Olimpiada Europea Femenina de Matemáticas (EGMO)</strong>, la
-				<strong>Olimpiada de Matemáticas de Asia-Pacífico (APMO)</strong>, la Olimpiada de
-				Matemáticas de países del <strong>Cono Sur</strong>.
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html content.about.description_html}
 			</p>
 
 			<a
-				href={resolve("/nosotros")}
+				href={resolve(content.about.link_href)}
 				class="mt-6 inline-flex h-9 items-center justify-center rounded-sm border border-primary px-4 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 			>
-				Ver más sobre OMEC
+				{content.about.link_label}
 			</a>
 		</div>
 
@@ -169,8 +121,8 @@
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
 			<enhanced:img
-				src="#lib/assets/home/olympiad-student.jpeg"
-				alt="Dos estudiantes sostienen sus diplomas y medallas de la Olimpiada Matemática Ecuatoriana"
+				src={content.about.image}
+				alt={content.about.image_alt}
 				loading="lazy"
 				decoding="async"
 				sizes="(min-width: 1024px) 36vw, 100vw"
@@ -180,14 +132,14 @@
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Conoce a Nuestros Auspiciantes" />
+		<SectionHeading title={content.sponsor.title} />
 
 		<div
 			class="mt-8 flex justify-center rounded-md border border-primary/30 bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)]"
 		>
 			<img
-				src={logo_egcs_ucsg}
-				alt="Logo de la Escuela de Graduados en Ciencias de la Salud de la Universidad Católica de Santiago de Guayaquil"
+				src={content.sponsor.image}
+				alt={content.sponsor.image_alt}
 				loading="lazy"
 				decoding="async"
 				class="h-auto w-full max-w-70 object-contain"
@@ -197,17 +149,17 @@
 
 	<ContentSection>
 		<div class="grid overflow-hidden rounded-md border border-primary lg:grid-cols-2">
-			{#each olympiad_cards as card (card.title)}
+			{#each content.olympiad_cards as card (card.id)}
 				<article class="bg-primary px-6 py-8 text-white even:bg-primary-dark lg:px-10 lg:py-12">
 					<h2 class="max-w-105 text-3xl leading-none font-semibold tracking-tighter lg:text-4xl">
 						{card.title}
 					</h2>
 					<p class="mt-5 max-w-130 text-sm leading-6 text-white/80">{card.description}</p>
 					<a
-						href={card.href}
+						href={resolve(card.href)}
 						class="mt-6 inline-flex h-9 items-center justify-center rounded-sm bg-white px-4 text-sm font-medium text-primary transition-colors hover:bg-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
 					>
-						Ver más
+						{card.link_label}
 					</a>
 				</article>
 			{/each}
@@ -217,8 +169,8 @@
 	<ContentSection>
 		<div class="relative overflow-hidden rounded-md border border-primary bg-primary">
 			<enhanced:img
-				src="#lib/assets/home/national-olympiad-participants.jpg"
-				alt="Estudiantes participan en una prueba de la Olimpiada Nacional de Matemáticas"
+				src={content.national_facts.image}
+				alt={content.national_facts.image_alt}
 				loading="lazy"
 				decoding="async"
 				sizes="100vw"
@@ -226,10 +178,10 @@
 			/>
 			<div class="relative px-6 py-10 text-white lg:px-10 lg:py-14">
 				<h2 class="max-w-180 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
-					Nuestra Olimpiada Nacional de Matemáticas
+					{content.national_facts.title}
 				</h2>
 				<div class="mt-8 grid gap-4 md:grid-cols-3">
-					{#each national_olympiad_facts as fact (fact)}
+					{#each content.national_facts.facts as fact (fact)}
 						<p class="border-l border-white/50 pl-4 text-sm leading-6 font-medium">{fact}</p>
 					{/each}
 				</div>
@@ -251,12 +203,14 @@
 			class="pointer-events-none absolute top-5 right-8 w-16 opacity-40 lg:right-14 lg:w-22"
 		/>
 		<div class="relative max-w-155">
-			<p class="text-sm font-semibold tracking-widest text-primary uppercase">Síguenos</p>
+			<p class="text-sm font-semibold tracking-widest text-primary uppercase">
+				{content.follow.eyebrow}
+			</p>
 			<h2 class="mt-3 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
-				No te pierdas de inscripciones y fechas importantes
+				{content.follow.title}
 			</h2>
 			<nav class="mt-6 flex flex-wrap gap-3" aria-label="Redes sociales de OMEC">
-				{#each social_links as social_link (social_link.label)}
+				{#each SOCIAL_LINKS as social_link (social_link.id)}
 					<a
 						href={social_link.href}
 						target="_blank"

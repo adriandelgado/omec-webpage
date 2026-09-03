@@ -5,7 +5,7 @@
 	}
 
 	interface Props {
-		title_lines: TitleLine[];
+		title_lines: readonly TitleLine[];
 		description?: string;
 		class?: string;
 	}

@@ -5,35 +5,23 @@
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import PageIntro from "#lib/components/page-intro.svelte";
 	import SectionHeading from "#lib/components/section-heading.svelte";
+	import { get_content } from "./content.remote";
 
 	let { children } = $props();
-
-	const olympiad_routes = [
-		{
-			label: "Olimpiadas internacionales",
-			href: "/olimpiadas/internacionales",
-		},
-		{
-			label: "Olimpiadas nacionales",
-			href: "/olimpiadas/nacionales",
-		},
-	] as const;
+	const content = await get_content();
 </script>
 
 <PageSectionStack class="py-8 lg:py-10">
 	<ContentSection>
-		<PageIntro
-			title_lines={[{ text: "Olimpiadas" }, { text: "matemáticas", class: "text-primary" }]}
-			description="Conoce la Olimpiada Nacional de Matemática y las competencias internacionales en las que participan las delegaciones ecuatorianas."
-		/>
+		<PageIntro title_lines={content.intro.title_lines} description={content.intro.description} />
 	</ContentSection>
 
 	<ContentSection>
-		<SectionHeading title="Competencias" />
+		<SectionHeading title={content.section_title} />
 
 		<nav aria-label="Información de olimpiadas" class="mt-5 border-b border-primary/80">
 			<div class="flex flex-wrap gap-5 text-sm font-medium">
-				{#each olympiad_routes as route (route.href)}
+				{#each content.routes as route (route.href)}
 					<a
 						href={resolve(route.href)}
 						aria-current={page.url.pathname === route.href ? "page" : undefined}
