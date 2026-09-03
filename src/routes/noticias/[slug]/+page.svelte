@@ -3,16 +3,10 @@
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
-	import { get_articles } from "../articles.remote";
-	import { get_content } from "./content.remote";
+	import { get_article } from "../articles.remote";
 
-	const ARTICLE_ID = "logros-de-la-omec-en-2026";
-	const [content, articles] = await Promise.all([get_content(), get_articles()]);
-	const article = articles.find((candidate) => candidate.id === ARTICLE_ID);
-
-	if (!article) {
-		throw new Error(`Article not found: ${ARTICLE_ID}`);
-	}
+	let { params } = $props();
+	const article = $derived(await get_article(params.slug));
 </script>
 
 <Seo
@@ -23,12 +17,11 @@
 
 <PageSectionStack class="py-12 lg:py-20">
 	<ContentSection>
-		<a
-			href={resolve(content.back_link.href)}
-			class="text-sm font-semibold text-primary hover:underline">{content.back_link.label}</a
+		<a href={resolve("/noticias")} class="text-sm font-semibold text-primary hover:underline"
+			>← Noticias</a
 		>
 		<p class="mt-8 text-sm font-semibold tracking-widest text-primary uppercase">
-			{content.category}
+			{article.category}
 		</p>
 		<h1 class="mt-3 max-w-4xl text-4xl leading-none font-semibold tracking-tighter lg:text-6xl">
 			{article.title}
@@ -40,7 +33,7 @@
 		<!-- This source-controlled HTML is trusted. Future CMS content must be sanitized before it is returned. -->
 		<article class="max-w-[70ch] text-base leading-8 text-copy/80">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html content.body_html}
+			{@html article.body_html}
 		</article>
 	</ContentSection>
 </PageSectionStack>

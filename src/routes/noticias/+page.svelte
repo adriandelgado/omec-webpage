@@ -26,10 +26,10 @@
 	</ContentSection>
 
 	<ContentSection>
-		{#each articles as article (article.id)}
+		{#each articles as article (article.slug)}
 			<Card class="max-w-3xl">
 				<a
-					href={resolve(article.href)}
+					href={resolve("/noticias/[slug]", { slug: article.slug })}
 					class="block p-6 transition-colors hover:bg-foreground/45 lg:p-8"
 				>
 					<p class="text-sm font-semibold text-primary">{article.date} · {article.author}</p>
