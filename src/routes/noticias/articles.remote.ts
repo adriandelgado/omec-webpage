@@ -32,7 +32,13 @@ const ARTICLES = [
 	},
 ] as const;
 
-export const get_articles = query(() => ARTICLES);
+const ARTICLE_SUMMARIES = ARTICLES.map((article) => {
+	const { body_html: article_body_html, ...article_summary } = article;
+	void article_body_html;
+	return article_summary;
+});
+
+export const get_articles = query(() => ARTICLE_SUMMARIES);
 
 export const get_article = query(v.string(), (slug) => {
 	const article = ARTICLES.find((candidate) => candidate.slug === slug);
