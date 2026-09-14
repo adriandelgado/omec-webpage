@@ -14,7 +14,7 @@ export const get_content = query(
 			section: {
 				title: "Prepárate para las competencias",
 				description:
-					"La mejor manera de perpararse para concursos de matemáticas es resolviendo pruebas pasadas. En nuestro banco de problemas podrás encontrar problemas de competencias nacionales e internacionales. Asegúrate de practicar con problemas de tu nivel académico y de la competencia para la cual te estás preparando. Al hacer clic serás redirigido a una carpeta de Google Drive.",
+					"La mejor manera de prepararse para concursos de matemáticas es resolviendo pruebas pasadas. En nuestro banco de problemas podrás encontrar problemas de competencias nacionales e internacionales. Asegúrate de practicar con problemas de tu nivel académico y de la competencia para la cual te estás preparando. Al hacer clic serás redirigido a una carpeta de Google Drive.",
 			},
 			materials: [
 				{
@@ -30,7 +30,7 @@ export const get_content = query(
 					id: "olimpiada-nacional",
 					title: "Olimpiada Nacional de Matemáticas",
 					description:
-						"Esta carpeta incluye los problemas y soluciones de todos los niveles de las ONM 2016 – 2019",
+						"Esta carpeta incluye los problemas y las soluciones de todos los niveles de las ONM de 2016 a 2019.",
 					icon: null,
 					image: logo_omec,
 					image_alt: "Logotipo de la Olimpiada Matemática Ecuatoriana",
@@ -50,7 +50,7 @@ export const get_content = query(
 					id: "pruebas-selectivas",
 					title: "Pruebas selectivas",
 					description:
-						"Esta carpeta incluye las pruebas selectivas que se llevan a cabo cada año con el fin de seleccionar al equipo Ecuatoriano que participará a nivel internacional.",
+						"Esta carpeta incluye las pruebas selectivas que se realizan cada año para elegir al equipo ecuatoriano que participará en competencias internacionales.",
 					icon: "presentation",
 					image: null,
 					image_alt: "",
@@ -60,7 +60,7 @@ export const get_content = query(
 					id: "listas-semanales",
 					title: "Listas semanales",
 					description:
-						"Esta carpeta incluye las listas semanales OMEC. Estas listas fueron dadas cada semana entre 2013-2015. Hay de distintos niveles.",
+						"Esta carpeta incluye las listas semanales de OMEC publicadas entre 2013 y 2015. Hay material para distintos niveles.",
 					icon: "calendar_days",
 					image: null,
 					image_alt: "Ícono de calendario",

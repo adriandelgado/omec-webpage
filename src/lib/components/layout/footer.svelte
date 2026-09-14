@@ -19,10 +19,11 @@
 
 	interface Props {
 		contact: Contact;
+		copyright_year: number;
 		social_links: readonly SocialLink[];
 	}
 
-	let { contact, social_links }: Props = $props();
+	let { contact, copyright_year, social_links }: Props = $props();
 </script>
 
 <footer class="border-t border-primary px-4 text-primary xl:px-0">
@@ -111,7 +112,7 @@
 		</div>
 
 		<div class="mt-8 border-t border-primary pt-4 text-xs leading-relaxed">
-			<p>© 2026 Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.</p>
+			<p>© {copyright_year} Olimpiada Matemática Ecuatoriana. Todos los derechos reservados.</p>
 		</div>
 	</div>
 </footer>

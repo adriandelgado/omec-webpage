@@ -14,10 +14,10 @@ export const get_content = query(
 				eyebrow: "Información",
 				title: "¿A quién está dirigido?",
 				description:
-					"Para participar es necesario ser estudiante regular de cualquier institución educativa del país, ya sea de Educación Básica, Bachillerato o Universitarios.",
+					"Para participar es necesario ser estudiante regular de una institución educativa del país, ya sea de educación básica, bachillerato o universidad.",
 				registration_title: "Cuándo y cómo inscribirse",
 				registration_description:
-					"Las inscripciones de la Olimpiada Nacional de Matemática se abren usualmente en los meses de junio o julio. La apertura de inscripciones, la convocatoria y los pasos de inscripción se publicarán en nuestras redes sociales y esta página web.",
+					"Las fechas de inscripción cambian cada año. La convocatoria y los pasos de inscripción se publicarán en nuestras redes sociales y en esta página web.",
 			},
 			follow: {
 				eyebrow: "Síguenos",
@@ -71,8 +71,8 @@ export const get_content = query(
 				eyebrow: "Premios",
 				title: "¿Qué gano?",
 				paragraphs: [
-					"Además de su medalla y reconocimiento, los ganadores de cada nivel recibirán medallas de oro, plata y bronce, según su ubicación por puntuaciones obtenidas en la última etapa.",
-					"Además de las medallas y los premios respectivos, los ganadores de la Olimpiada Nacional de Matemática tendrán la posibilidad de ser invitados a las pruebas selectivas para determinar los integrantes de los diferentes equipos que representarán al Ecuador en las competencias internacionales.",
+					"Los ganadores de cada nivel recibirán medallas de oro, plata o bronce y el reconocimiento correspondiente, según la puntuación obtenida en la etapa final.",
+					"También podrán ser invitados a las pruebas selectivas que determinan los integrantes de los equipos que representarán al Ecuador en competencias internacionales.",
 				],
 			},
 			awards: {
@@ -91,7 +91,7 @@ export const get_content = query(
 				{ id: "open", text: "Abierto a todos los estudiantes ecuatorianos" },
 				{ id: "problems", text: "Problemas de razonamiento y creatividad" },
 				{ id: "fee", text: "Costo de inscripción de $10" },
-				{ id: "phases", text: "3 fases: online y presencial" },
+				{ id: "phases", text: "3 fases: en línea y presencial" },
 			],
 		}) as const,
 );

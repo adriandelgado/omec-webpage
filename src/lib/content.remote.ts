@@ -3,6 +3,7 @@ import { query } from "$app/server";
 export const get_site_content = query(
 	() =>
 		({
+			copyright_year: new Date().getFullYear(),
 			contact: {
 				email: "info@omec-mat.org",
 				email_href: "mailto:info@omec-mat.org",
@@ -38,7 +39,7 @@ export const get_national_olympiad = query(
 		({
 			title: "Olimpiada Nacional de Matemática 2026",
 			announcement:
-				"Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abrirán en septiembre.",
+				"Las inscripciones de la Olimpiada Nacional de Matemática 2026 se abren en septiembre.",
 			stages: [
 				{ label: "Primera fase", date: "17 de octubre" },
 				{ label: "Segunda fase", date: "7 de noviembre" },

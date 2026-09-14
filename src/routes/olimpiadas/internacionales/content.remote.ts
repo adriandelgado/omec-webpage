@@ -24,14 +24,14 @@ export const get_content = query(
 				eyebrow: "Conoce algunas de las",
 				title: "Olimpiadas Internacionales",
 				description:
-					"Estas son algunas de las olimpiadas en las que Ecuador participa a nivel internacional. Los ganadores de la ONM del año previo serán convocados a los selectivos de estas competencias y tendrán una oportunidad de formar parte de la delegación de Ecuador en estas olimpiadas, dependiendo de su edad y género.",
+					"Estas son algunas de las olimpiadas internacionales en las que participa Ecuador. Los ganadores de la ONM del año anterior serán convocados a los procesos selectivos y podrán formar parte de la delegación ecuatoriana, según su edad y género.",
 			},
 			olympiads: [
 				{
 					id: "imo",
 					name: "IMO",
 					description:
-						"La Olimpiada Internacional de Matemáticas es el certamen mundial en el que participan alrededor de 100 países de todos los continentes del mundo.",
+						"La Olimpiada Internacional de Matemáticas es un certamen mundial en el que participan alrededor de 100 países de todos los continentes.",
 					image: olympiad_imo,
 					image_alt: "Participantes en la Olimpiada Internacional de Matemáticas",
 					href: "http://imo-official.org/",
@@ -40,7 +40,7 @@ export const get_content = query(
 					id: "egmo",
 					name: "EGMO",
 					description:
-						"Ecuador es un país invitado a la Olimpiada Europea Femenina que tiene como finalidad promover el estudio de las matemáticas en las mujeres.",
+						"Ecuador es un país invitado a la Olimpiada Europea Femenina, cuya finalidad es promover el estudio de las matemáticas entre las mujeres.",
 					image: olympiad_egmo,
 					image_alt: "Participantes en la Olimpiada Europea Femenina de Matemáticas",
 					href: "https://www.egmo.org/",
@@ -76,9 +76,9 @@ export const get_content = query(
 					id: "apmo",
 					name: "APMO",
 					description:
-						"La Olimpiada Matemática de Asia Pacífico se realiza por correspondencia, tiene un formato y dificultad similar a la IMO.",
+						"La Olimpiada Matemática de Asia-Pacífico se realiza por correspondencia y tiene un formato y una dificultad similares a los de la IMO.",
 					image: logo_apmo,
-					image_alt: "Logotipo de la Olimpiada Matemática de Asia Pacífico",
+					image_alt: "Logotipo de la Olimpiada Matemática de Asia-Pacífico",
 					href: "https://www.apmo-official.org/",
 				},
 				{
@@ -94,7 +94,7 @@ export const get_content = query(
 					id: "igo",
 					name: "IGO",
 					description:
-						"La Olimpiada Iraní de Geometría se enfoca únicamente en el área que le da el nombre. Esta olimpiada por correspondencia es única por tener un nivel abierto a todo el público, sin restricciones.",
+						"La Olimpiada Iraní de Geometría se enfoca exclusivamente en esta área. La competencia se realiza por correspondencia y cuenta con un nivel abierto a todo público.",
 					image: logo_igo,
 					image_alt: "Logotipo de la Olimpiada Iraní de Geometría",
 					href: undefined,

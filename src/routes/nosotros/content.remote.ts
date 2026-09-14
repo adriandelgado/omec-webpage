@@ -44,7 +44,7 @@ export const get_content = query(
 					title: "Nuestros valores",
 					values: [
 						"Altruismo académico",
-						"Auto aprendizaje",
+						"Autoaprendizaje",
 						"Equidad",
 						"Honestidad",
 						"Transparencia",

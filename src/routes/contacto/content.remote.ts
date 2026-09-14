@@ -11,7 +11,7 @@ export const get_content = query(
 			intro: {
 				title: "Contáctanos",
 				description:
-					"¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción, o nuestros programas de entrenamiento? Estamos aquí para ayudarte.",
+					"¿Tienes preguntas sobre las olimpiadas, el proceso de inscripción o nuestros programas de entrenamiento? Estamos aquí para ayudarte.",
 			},
 			contact: { heading: "Información de Contacto", card_title: "Correo Electrónico" },
 			follow: {

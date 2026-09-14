@@ -29,9 +29,9 @@ export const get_content = query(
 			},
 			about: {
 				eyebrow: "Acerca de nosotros",
-				title: "Encontrando Talentos Matemáticos desde 1997",
+				title: "Encontrando talentos matemáticos desde 1997",
 				description_html:
-					"Desde 1997 <em>Olimpiada Matemática Ecuatoriana (OMEC)</em> se encarga de detectar, formar y preparar los talentos matemáticos que conforman los equipos que representarán al país en varias competencias olímpicas. Entre ellas el <strong>Mundial de Matemáticas (IMO)</strong>, la <strong>Olimpiada Europea Femenina de Matemáticas (EGMO)</strong>, la <strong>Olimpiada de Matemáticas de Asia-Pacífico (APMO)</strong>, la Olimpiada de Matemáticas de países del <strong>Cono Sur</strong>.",
+					"Desde 1997, la <em>Olimpiada Matemática Ecuatoriana (OMEC)</em> detecta, forma y prepara a los talentos matemáticos que integran los equipos que representan al país en varias competencias olímpicas. Entre ellas están la <strong>Olimpiada Internacional de Matemáticas (IMO)</strong>, la <strong>Olimpiada Europea Femenina de Matemáticas (EGMO)</strong>, la <strong>Olimpiada Matemática de Asia-Pacífico (APMO)</strong> y la <strong>Olimpiada Matemática de Países del Cono Sur</strong>.",
 				link_label: "Ver más sobre OMEC",
 				link_href: "/nosotros",
 				image: about_image,
@@ -49,7 +49,7 @@ export const get_content = query(
 					id: "national",
 					title: "Olimpiada Nacional de Matemáticas",
 					description:
-						"Tienen como objetivo preseleccionar a los alumnos que formarán parte de los equipos que representan al país en los torneos internacionales en los que competimos. Son abiertas para cualquier estudiante del sistema educativo ecuatoriano.",
+						"Tiene como objetivo preseleccionar a los estudiantes que formarán parte de los equipos que representan al país en los torneos internacionales en los que competimos. Está abierta a cualquier estudiante del sistema educativo ecuatoriano.",
 					href: "/olimpiadas/nacionales",
 					link_label: "Ver más",
 				},
@@ -57,7 +57,7 @@ export const get_content = query(
 					id: "international",
 					title: "Olimpiadas Internacionales",
 					description:
-						"Incluye varias competencias tanto presenciales como por correspondencia. A estos eventos sólo se asiste con invitación, la cual es enviada únicamente a los ganadores de las Olimpiadas Nacionales del año anterior.",
+						"Incluyen varias competencias presenciales y por correspondencia. A estos eventos solo se asiste con una invitación dirigida a los ganadores de la Olimpiada Nacional del año anterior.",
 					href: "/olimpiadas/internacionales",
 					link_label: "Ver más",
 				},
@@ -68,7 +68,7 @@ export const get_content = query(
 				image_alt: "Estudiantes participan en una prueba de la Olimpiada Nacional de Matemáticas",
 				facts: [
 					"Participan colegios de todo el Ecuador. También se puede participar de manera independiente.",
-					"Concursantes de primaria, secundaria y universidades",
+					"Concursantes de primaria, secundaria y universidad",
 					"Abierto a todas las provincias del Ecuador",
 				],
 			},

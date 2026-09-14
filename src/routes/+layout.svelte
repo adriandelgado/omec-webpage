@@ -20,5 +20,9 @@
 		<div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-px bg-primary"></div>
 		{@render children()}
 	</main>
-	<Footer contact={site_content.contact} social_links={site_content.social_links} />
+	<Footer
+		contact={site_content.contact}
+		copyright_year={site_content.copyright_year}
+		social_links={site_content.social_links}
+	/>
 </div>
