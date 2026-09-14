@@ -22,6 +22,13 @@
 <header
 	class="sticky top-0 z-50 border-x border-b border-primary bg-background/90 backdrop-blur-sm"
 >
+	<a
+		href="#contenido-principal"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-80 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg focus:outline-2 focus:outline-offset-2 focus:outline-primary-dark"
+	>
+		Saltar al contenido principal
+	</a>
+
 	<Dialog.Root bind:open={is_mobile_menu_open}>
 		<div class="px-4 lg:px-6">
 			<nav
@@ -75,14 +82,14 @@
 							transition:fly={{ x: 32, duration: 240, opacity: 0.2 }}
 							class="fixed inset-y-0 right-0 z-70 flex w-full max-w-sm flex-col overflow-y-auto border-l border-primary bg-background p-6 shadow-2xl focus:outline-none lg:hidden"
 						>
-							<Dialog.Title class="sr-only">Main menu</Dialog.Title>
+							<Dialog.Title class="sr-only">Menú principal</Dialog.Title>
 							<div class="flex items-center justify-between">
 								<a href={home_href} class="-m-1 p-1" onclick={() => (is_mobile_menu_open = false)}>
 									<span class="sr-only">OMEC</span>
 									<img src={logo_omec} alt="" class="h-9 w-auto" />
 								</a>
 								<Dialog.Close class="-m-2.5 rounded-md p-2.5 transition-colors hover:text-primary">
-									<span class="sr-only">Close menu</span>
+									<span class="sr-only">Cerrar menú</span>
 									<X aria-hidden="true" class="size-6" strokeWidth={1.5} />
 								</Dialog.Close>
 							</div>
