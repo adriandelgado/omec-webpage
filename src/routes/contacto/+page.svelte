@@ -5,7 +5,7 @@
 	import PageIntro from "#lib/components/page-intro.svelte";
 	import Seo from "#lib/components/seo.svelte";
 	import { get_site_content } from "#lib/content.remote.js";
-	import { contact_form_schema } from "./contact-form";
+	import { CONTACT_FORM_MAX_LENGTHS, contact_form_schema } from "./contact-form";
 	import { get_content } from "./content.remote";
 	import { send_contact_message } from "./contacto.remote";
 
@@ -87,7 +87,7 @@
 						<div class="flex items-start justify-between gap-4">
 							<div>
 								<h2 class="text-xl leading-tight font-semibold">{content.form.title}</h2>
-								<p class="mt-2 text-sm leading-relaxed text-copy/55">
+								<p class="mt-2 text-sm leading-relaxed text-copy/65">
 									{content.form.required_notice_before}<span class="text-primary">*</span>{content
 										.form.required_notice_after}
 								</p>
@@ -113,6 +113,10 @@
 							</div>
 						{/if}
 
+						<p class="sr-only" role="status">
+							{send_contact_message.pending > 0 ? content.form.pending_label : ""}
+						</p>
+
 						<div class="mt-5 space-y-4">
 							<div>
 								<label for="full_name" class="text-sm font-medium text-copy/82">
@@ -122,11 +126,18 @@
 									id="full_name"
 									placeholder={content.form.fields.full_name.placeholder}
 									{...send_contact_message.fields.full_name.as("text")}
-									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+									autocomplete="name"
+									maxlength={CONTACT_FORM_MAX_LENGTHS.full_name}
+									aria-describedby={send_contact_message.fields.full_name.issues()?.[0]
+										? "full_name_error"
+										: undefined}
+									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/60 focus:border-primary focus:ring-primary/20"
 								/>
-								{#each send_contact_message.fields.full_name.issues() ?? [] as issue (issue.message)}
-									<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
-								{/each}
+								{#if send_contact_message.fields.full_name.issues()?.[0]}
+									<p id="full_name_error" class="mt-1.5 text-sm text-red-600">
+										{send_contact_message.fields.full_name.issues()?.[0]?.message}
+									</p>
+								{/if}
 							</div>
 
 							<div>
@@ -137,11 +148,18 @@
 									id="email"
 									placeholder={content.form.fields.email.placeholder}
 									{...send_contact_message.fields.email.as("email")}
-									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+									autocomplete="email"
+									maxlength={CONTACT_FORM_MAX_LENGTHS.email}
+									aria-describedby={send_contact_message.fields.email.issues()?.[0]
+										? "email_error"
+										: undefined}
+									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/60 focus:border-primary focus:ring-primary/20"
 								/>
-								{#each send_contact_message.fields.email.issues() ?? [] as issue (issue.message)}
-									<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
-								{/each}
+								{#if send_contact_message.fields.email.issues()?.[0]}
+									<p id="email_error" class="mt-1.5 text-sm text-red-600">
+										{send_contact_message.fields.email.issues()?.[0]?.message}
+									</p>
+								{/if}
 							</div>
 
 							<div>
@@ -152,11 +170,18 @@
 									id="institution"
 									placeholder={content.form.fields.institution.placeholder}
 									{...send_contact_message.fields.institution.as("text")}
-									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+									autocomplete="organization"
+									maxlength={CONTACT_FORM_MAX_LENGTHS.institution}
+									aria-describedby={send_contact_message.fields.institution.issues()?.[0]
+										? "institution_error"
+										: undefined}
+									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/60 focus:border-primary focus:ring-primary/20"
 								/>
-								{#each send_contact_message.fields.institution.issues() ?? [] as issue (issue.message)}
-									<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
-								{/each}
+								{#if send_contact_message.fields.institution.issues()?.[0]}
+									<p id="institution_error" class="mt-1.5 text-sm text-red-600">
+										{send_contact_message.fields.institution.issues()?.[0]?.message}
+									</p>
+								{/if}
 							</div>
 
 							<div>
@@ -167,11 +192,17 @@
 									id="subject"
 									placeholder={content.form.fields.subject.placeholder}
 									{...send_contact_message.fields.subject.as("text")}
-									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+									maxlength={CONTACT_FORM_MAX_LENGTHS.subject}
+									aria-describedby={send_contact_message.fields.subject.issues()?.[0]
+										? "subject_error"
+										: undefined}
+									class="mt-2 form-input block h-11 w-full rounded-xl border border-primary/40 bg-white px-3.5 text-sm text-copy placeholder:text-copy/60 focus:border-primary focus:ring-primary/20"
 								/>
-								{#each send_contact_message.fields.subject.issues() ?? [] as issue (issue.message)}
-									<p class="mt-1.5 text-sm text-red-600">{issue.message}</p>
-								{/each}
+								{#if send_contact_message.fields.subject.issues()?.[0]}
+									<p id="subject_error" class="mt-1.5 text-sm text-red-600">
+										{send_contact_message.fields.subject.issues()?.[0]?.message}
+									</p>
+								{/if}
 							</div>
 
 							<div>
@@ -183,21 +214,27 @@
 									rows="6"
 									placeholder={content.form.fields.message.placeholder}
 									{...send_contact_message.fields.message.as("text")}
-									class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-primary/40 bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/35 focus:border-primary focus:ring-primary/20"
+									maxlength={CONTACT_FORM_MAX_LENGTHS.message}
+									aria-describedby={send_contact_message.fields.message.issues()?.[0]
+										? "message_help message_error"
+										: "message_help"}
+									class="mt-2 block min-h-34 w-full form-textarea rounded-2xl border border-primary/40 bg-white px-3.5 py-3 text-sm text-copy placeholder:text-copy/60 focus:border-primary focus:ring-primary/20"
 								></textarea>
 								<div class="mt-2 flex items-center justify-between gap-4">
-									{#if send_contact_message.fields.message.issues()?.[0]}
-										<p class="text-sm text-red-600">
-											{send_contact_message.fields.message.issues()?.[0]?.message}
-										</p>
-									{:else}
-										<p class="text-sm text-copy/48">
+									<div>
+										<p id="message_help" class="text-sm text-copy/65">
 											{content.form.fields.message.help}
 										</p>
-									{/if}
+										{#if send_contact_message.fields.message.issues()?.[0]}
+											<p id="message_error" class="mt-1.5 text-sm text-red-600">
+												{send_contact_message.fields.message.issues()?.[0]?.message}
+											</p>
+										{/if}
+									</div>
 
-									<p class="text-sm text-copy/48">
-										{send_contact_message.fields.message.value()?.length ?? 0}/2000
+									<p class="shrink-0 self-start text-sm text-copy/65">
+										{send_contact_message.fields.message.value()?.length ??
+											0}/{CONTACT_FORM_MAX_LENGTHS.message}
 									</p>
 								</div>
 							</div>

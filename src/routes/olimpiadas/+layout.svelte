@@ -29,7 +29,7 @@
 							"border-b px-1 pb-2 transition-colors",
 							page.url.pathname === route.href
 								? "border-primary text-primary"
-								: "border-transparent text-copy/45 hover:text-primary",
+								: "border-transparent text-copy/65 hover:text-primary",
 						]}
 					>
 						{route.label}
