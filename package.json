@@ -57,6 +57,7 @@
 	"dependencies": {
 		"@lucide/svelte": "^1.45.0",
 		"@std/encoding": "jsr:^1.0.11",
+		"@tanstack/markdown": "^0.0.15",
 		"bits-ui": "^2.19.2",
 		"tailwind-merge": "^3.7.0",
 		"valibot": "^1.5.0"

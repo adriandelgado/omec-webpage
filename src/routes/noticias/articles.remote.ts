@@ -1,5 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { query } from "$app/server";
+import { renderHtml } from "@tanstack/markdown";
 import * as v from "valibot";
 
 const ARTICLES = [
@@ -13,28 +14,63 @@ const ARTICLES = [
 		summary:
 			"17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo.",
 		link_label: "Leer noticia →",
-		// This source-controlled HTML is trusted. Future CMS content must be sanitized before it is returned.
-		body_html: String.raw`<h2 class="text-2xl leading-tight font-semibold tracking-tight text-copy lg:text-3xl">17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo</h2>
+		body_markdown: `## 17 estudiantes destacan en olimpiadas matemáticas del Cono Sur, APMO y Olimpiada de Mayo
 
-<p class="mt-8">La Olimpiada Matemática Ecuatoriana (<strong>OMEC</strong>), a través de la Fundación Olimpiadas Ecuatorianas de Ciencias (<strong>FOEC</strong>), organización a cargo de la selección de los equipos que representan al país en olimpiadas matemáticas internacionales, anuncia con orgullo los resultados obtenidos en las más recientes participaciones internacionales.</p>
-<p class="mt-6"><strong>Una medalla de bronce y 3 menciones en la Olimpiada del Cono Sur</strong><br />Del 3 al 8 de agosto de 2026, se celebró en Lima, Perú, la 37.ª <strong>Olimpiada Matemática de Países del Cono Sur</strong>. En esta competencia para estudiantes de hasta 16 años, Ecuador obtuvo una medalla de bronce y 3 menciones de honor.</p>
-<p class="mt-6">La <strong>medalla de bronce</strong> fue alcanzada por <strong>Maximiliano Alonso Parada</strong> (Colegio IPAC de Samborondón). Los estudiantes <strong>Nicolás Guasgua Izquierdo</strong> (U.E. Atahualpa de Quito), <strong>Leonel Vargas Moreira</strong> (Colegio Interamericano de Guayaquil) y <strong>Juan Coloma Riera</strong> (U.E. San José La Salle de Guayaquil) obtuvieron <strong>mención de honor</strong>, al resolver perfectamente uno de los seis problemas.</p>
-<p class="mt-6"><strong>1 medalla de oro, 3 de plata, 9 de bronce y dos menciones en la Olimpiada de Mayo</strong><br />En agosto también se revelaron los resultados de la <strong>Olimpiada de Mayo</strong>.</p>
-<p class="mt-6">Esta es una competencia internacional, organizada por la Olimpiada Matemática Argentina (OMA), que reúne a estudiantes de América Latina, España y Portugal y representa uno de los primeros escenarios internacionales para jóvenes talentos matemáticos de la región, con categorías sub-15 y sub-13.</p>
-<h3 class="mt-10 text-xl font-semibold text-copy">Nivel 1:</h3>
-<div class="mt-4 overflow-x-auto rounded-md border border-primary/30 bg-white shadow-[4px_4px_0_0_var(--color-primary)]"><table class="w-full min-w-170 border-collapse text-left text-sm leading-6"><thead class="bg-primary text-white"><tr><th class="px-4 py-3 font-semibold">Nombres</th><th class="px-4 py-3 font-semibold">Institución</th><th class="px-4 py-3 font-semibold">Premio</th></tr></thead><tbody class="divide-y divide-primary/15"><tr><td class="px-4 py-3">Ana Isabel Erazo Placencia</td><td class="px-4 py-3">Saint Dominic School (Quito)</td><td class="px-4 py-3">plata</td></tr><tr><td class="px-4 py-3">Henry Eduardo Chica Guadamud</td><td class="px-4 py-3">Unidad Educativa Arco Iris (Portoviejo)</td><td class="px-4 py-3">plata</td></tr><tr><td class="px-4 py-3">Emanuel Javier Vásquez Vela</td><td class="px-4 py-3">Unidad Educativa La Asunción (Guayaquil)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Emilio Thomas Cruz López</td><td class="px-4 py-3">Unidad Educativa Particular Zarán (Quito)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Alejandra América Montenegro Escalante</td><td class="px-4 py-3">Logos Academy (Guayaquil)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Amelie Catalina Castro Galarza</td><td class="px-4 py-3">Unidad Educativa Liceo Cristiano (Guayaquil)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Jesús Moisan Yépez Hidalgo</td><td class="px-4 py-3">Unidad Educativa Liceo Cristiano (Guayaquil)</td><td class="px-4 py-3">mención</td></tr></tbody></table></div>
-<h3 class="mt-10 text-xl font-semibold text-copy">Nivel 2:</h3>
-<div class="mt-4 overflow-x-auto rounded-md border border-primary/30 bg-white shadow-[4px_4px_0_0_var(--color-primary)]"><table class="w-full min-w-170 border-collapse text-left text-sm leading-6"><thead class="bg-primary text-white"><tr><th class="px-4 py-3 font-semibold">Nombres</th><th class="px-4 py-3 font-semibold">Institución</th><th class="px-4 py-3 font-semibold">Premio</th></tr></thead><tbody class="divide-y divide-primary/15"><tr><td class="px-4 py-3">Maximiliano Andrés Alonso Parada</td><td class="px-4 py-3">Instituto Particular Abdón Calderón (Samborondón)</td><td class="px-4 py-3">oro</td></tr><tr><td class="px-4 py-3">Nicolás Mateo Guasgua Izquierdo</td><td class="px-4 py-3">Unidad Educativa Atahualpa (Quito)</td><td class="px-4 py-3">plata</td></tr><tr><td class="px-4 py-3">Eduardo Morales Grandal</td><td class="px-4 py-3"></td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Martín Ezequiel Villacrés Terán</td><td class="px-4 py-3">Unidad Educativa Fiscomisional San Francisco (Ibarra)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Juan Sebastián Coloma Riera</td><td class="px-4 py-3">Unidad Educativa San José La Salle (Guayaquil)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Ezequiel Leandro Soto Estrada</td><td class="px-4 py-3">Unidad Educativa Bilingüe Tejar (Daule)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Ana Zambrano Corredor</td><td class="px-4 py-3">Colegio Interamericano (Guayaquil)</td><td class="px-4 py-3">bronce</td></tr><tr><td class="px-4 py-3">Josué Sebastián Navarrete Romero</td><td class="px-4 py-3">Unidad Educativa Liceo Cristiano (Guayaquil)</td><td class="px-4 py-3">mención</td></tr></tbody></table></div>
-<p class="mt-10"><strong>Olimpiada Matemática de Asia-Pacífico (APMO)</strong><br /><strong>Luis Fernando Zavala Freire</strong> (Colegio IPAC, Samborondón) obtuvo <strong>mención de honor</strong> en la Asian Pacific Mathematical Olympiad (<strong>APMO</strong>).<br />Esta olimpiada por correspondencia tiene un nivel de dificultad comparable al de la Olimpiada Internacional de Matemática (IMO), tanto por la complejidad de sus problemas como por el alto nivel académico de los países que participan.</p>
-<p class="mt-6"><strong>Otros reconocimientos de 2026</strong><br />OMEC también se encargó de la selección y el entrenamiento del equipo de 6 estudiantes que viajó en julio de 2026 a Shanghái, China. En la <strong>67.ª International Mathematical Olympiad</strong> (<strong>IMO</strong>), que es la olimpiada matemática de mayor antigüedad y prestigio mundial, los estudiantes <strong>Ricardo De Blas Camacho</strong> (U.E. Torremar, Daule) y <strong>Maximiliano Alonso Parada</strong> (IPAC, Samborondón) regresaron con <strong>menciones de honor</strong>, al resolver cada uno dos problemas perfectos.</p>
-<p class="mt-6">Asimismo, OMEC coorganizó junto con Binaria Matemática de Perú el <strong>Concurso Binacional de Matemáticas Perú-Ecuador</strong>, que se desarrolló en junio de 2026 en la Universidad de Especialidades Espíritu Santo (UEES). Ecuador obtuvo <strong>2 medallas de oro</strong>, <strong>11 de plata</strong> y <strong>28 de bronce</strong>.</p>
-<p class="mt-6">En marzo de 2026, 20 estudiantes de entre 12 y 16 años, seleccionados por OMEC, viajaron al <strong>6.° Torneo de Jóvenes Matemáticos</strong> (<strong>TJM</strong>), que se desarrolló en Perú. Ecuador volvió de esta competencia con <strong>2 medallas de plata</strong>, <strong>3 de bronce</strong> y <strong>4 menciones de honor</strong> en la modalidad individual; y con <strong>5 medallas de oro</strong> y <strong>5 de plata</strong> en la modalidad grupal.</p>`,
+La Olimpiada Matemática Ecuatoriana (**OMEC**), a través de la Fundación Olimpiadas Ecuatorianas de Ciencias (**FOEC**), organización a cargo de la selección de los equipos que representan al país en olimpiadas matemáticas internacionales, anuncia con orgullo los resultados obtenidos en las más recientes participaciones internacionales.
+
+### Una medalla de bronce y 3 menciones en la Olimpiada del Cono Sur
+
+Del 3 al 8 de agosto de 2026, se celebró en Lima, Perú, la 37.ª **Olimpiada Matemática de Países del Cono Sur**. En esta competencia para estudiantes de hasta 16 años, Ecuador obtuvo una medalla de bronce y 3 menciones de honor.
+
+La **medalla de bronce** fue alcanzada por **Maximiliano Alonso Parada** (Colegio IPAC de Samborondón). Los estudiantes **Nicolás Guasgua Izquierdo** (U.E. Atahualpa de Quito), **Leonel Vargas Moreira** (Colegio Interamericano de Guayaquil) y **Juan Coloma Riera** (U.E. San José La Salle de Guayaquil) obtuvieron **mención de honor**, al resolver perfectamente uno de los seis problemas.
+
+### 1 medalla de oro, 3 de plata, 9 de bronce y dos menciones en la Olimpiada de Mayo
+
+En agosto también se revelaron los resultados de la **Olimpiada de Mayo**.
+
+Esta es una competencia internacional, organizada por la Olimpiada Matemática Argentina (OMA), que reúne a estudiantes de América Latina, España y Portugal y representa uno de los primeros escenarios internacionales para jóvenes talentos matemáticos de la región, con categorías sub-15 y sub-13.
+
+### Nivel 1:
+
+| Nombres | Institución | Premio |
+| --- | --- | --- |
+| Ana Isabel Erazo Placencia | Saint Dominic School (Quito) | plata |
+| Henry Eduardo Chica Guadamud | Unidad Educativa Arco Iris (Portoviejo) | plata |
+| Emanuel Javier Vásquez Vela | Unidad Educativa La Asunción (Guayaquil) | bronce |
+| Emilio Thomas Cruz López | Unidad Educativa Particular Zarán (Quito) | bronce |
+| Alejandra América Montenegro Escalante | Logos Academy (Guayaquil) | bronce |
+| Amelie Catalina Castro Galarza | Unidad Educativa Liceo Cristiano (Guayaquil) | bronce |
+| Jesús Moisan Yépez Hidalgo | Unidad Educativa Liceo Cristiano (Guayaquil) | mención |
+
+### Nivel 2:
+
+| Nombres | Institución | Premio |
+| --- | --- | --- |
+| Maximiliano Andrés Alonso Parada | Instituto Particular Abdón Calderón (Samborondón) | oro |
+| Nicolás Mateo Guasgua Izquierdo | Unidad Educativa Atahualpa (Quito) | plata |
+| Eduardo Morales Grandal |  | bronce |
+| Martín Ezequiel Villacrés Terán | Unidad Educativa Fiscomisional San Francisco (Ibarra) | bronce |
+| Juan Sebastián Coloma Riera | Unidad Educativa San José La Salle (Guayaquil) | bronce |
+| Ezequiel Leandro Soto Estrada | Unidad Educativa Bilingüe Tejar (Daule) | bronce |
+| Ana Zambrano Corredor | Colegio Interamericano (Guayaquil) | bronce |
+| Josué Sebastián Navarrete Romero | Unidad Educativa Liceo Cristiano (Guayaquil) | mención |
+
+### Olimpiada Matemática de Asia-Pacífico (APMO)
+
+**Luis Fernando Zavala Freire** (Colegio IPAC, Samborondón) obtuvo **mención de honor** en la Asian Pacific Mathematical Olympiad (**APMO**). Esta olimpiada por correspondencia tiene un nivel de dificultad comparable al de la Olimpiada Internacional de Matemática (IMO), tanto por la complejidad de sus problemas como por el alto nivel académico de los países que participan.
+
+### Otros reconocimientos de 2026
+
+OMEC también se encargó de la selección y el entrenamiento del equipo de 6 estudiantes que viajó en julio de 2026 a Shanghái, China. En la **67.ª International Mathematical Olympiad** (**IMO**), que es la olimpiada matemática de mayor antigüedad y prestigio mundial, los estudiantes **Ricardo De Blas Camacho** (U.E. Torremar, Daule) y **Maximiliano Alonso Parada** (IPAC, Samborondón) regresaron con **menciones de honor**, al resolver cada uno dos problemas perfectos.
+
+Asimismo, OMEC coorganizó junto con Binaria Matemática de Perú el **Concurso Binacional de Matemáticas Perú-Ecuador**, que se desarrolló en junio de 2026 en la Universidad de Especialidades Espíritu Santo (UEES). Ecuador obtuvo **2 medallas de oro**, **11 de plata** y **28 de bronce**.
+
+En marzo de 2026, 20 estudiantes de entre 12 y 16 años, seleccionados por OMEC, viajaron al **6.° Torneo de Jóvenes Matemáticos** (**TJM**), que se desarrolló en Perú. Ecuador volvió de esta competencia con **2 medallas de plata**, **3 de bronce** y **4 menciones de honor** en la modalidad individual; y con **5 medallas de oro** y **5 de plata** en la modalidad grupal.`,
 	},
 ] as const;
 
-const ARTICLE_SUMMARIES = ARTICLES.map((article) => {
-	const { body_html: article_body_html, ...article_summary } = article;
-	void article_body_html;
+const ARTICLE_SUMMARIES = ARTICLES.map(({ body_markdown, ...article_summary }) => {
+	void body_markdown;
 	return article_summary;
 });
 
@@ -47,5 +83,10 @@ export const get_article = query(v.string(), (slug) => {
 		error(404, "La noticia solicitada no existe.");
 	}
 
-	return article;
+	const { body_markdown, ...article_metadata } = article;
+
+	return {
+		...article_metadata,
+		body_html: renderHtml(body_markdown, { allowHtml: false }),
+	};
 });

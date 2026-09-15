@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
+	import ArticleContent from "#lib/components/article-content.svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
@@ -30,10 +31,6 @@
 	</ContentSection>
 
 	<ContentSection>
-		<!-- This source-controlled HTML is trusted. Future CMS content must be sanitized before it is returned. -->
-		<article class="max-w-[70ch] text-base leading-8 text-copy/80">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html article.body_html}
-		</article>
+		<ArticleContent html={article.body_html} />
 	</ContentSection>
 </PageSectionStack>
