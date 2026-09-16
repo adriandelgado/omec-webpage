@@ -18,4 +18,9 @@ export const variables = defineEnvVars({
 		// Cloudflare provides this Worker variable at runtime, not during the build.
 		schema: building ? v.optional(v.string()) : v.string(),
 	},
+	DATABASE_AUTH_TOKEN: {
+		description: "The authentication token for a remote Turso/libSQL database.",
+		// Local file databases and build-time analysis do not require a token.
+		schema: v.optional(v.string()),
+	},
 });

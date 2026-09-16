@@ -1,17 +1,4 @@
 import { query } from "$app/server";
+import { content_repository } from "#lib/server/content-repository-instance.js";
 
-export const get_content = query(
-	() =>
-		({
-			seo: {
-				title: "Noticias",
-				description: "Noticias y comunicados de la Olimpiada Matemática Ecuatoriana.",
-			},
-			intro: {
-				eyebrow: "OMEC",
-				title: "Noticias",
-				description:
-					"Conoce las últimas noticias y comunicados de la Olimpiada Matemática Ecuatoriana.",
-			},
-		}) as const,
-);
+export const get_content = query(() => content_repository.get_news_content());

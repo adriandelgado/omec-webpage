@@ -6,7 +6,7 @@ This project is a complete rewrite of the official [Olimpiada Matemática Ecuato
 
 - **Framework:** [SvelteKit 3](https://next.svelte.dev/docs/kit) with [Svelte 5](https://svelte.dev/docs/svelte) using Runes
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Database:** SQLite/libSQL through [LibSQL Client](https://github.com/tursodatabase/libsql-client-ts), configured with `DATABASE_URL`
+- **Database:** SQLite/libSQL through [LibSQL Client](https://github.com/tursodatabase/libsql-client-ts), configured with `DATABASE_URL` and `DATABASE_AUTH_TOKEN`
 - **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
 - **UI Components:** [Bits UI](https://www.bits-ui.com/) & [Lucide Svelte](https://lucide.dev/)
 - **Validation:** [Valibot](https://valibot.dev/)
@@ -35,7 +35,7 @@ cp .env.example .env
 pnpm dev
 ```
 
-`DATABASE_URL` is required by both the application and Drizzle. Use `file:local.db` for a local SQLite database, or set it to the URL of a remote libSQL/Turso database. The current application and Drizzle configuration read `DATABASE_URL`; they do not configure a separate database authentication token.
+`DATABASE_URL` is required by both the application and Drizzle. Use `file:local.db` for a local SQLite database, or set it to the URL of a remote libSQL/Turso database. Set `DATABASE_AUTH_TOKEN` when the configured database requires authentication; it may be left empty for a local file database.
 
 ## Scripts
 
@@ -57,7 +57,7 @@ pnpm dev
 
 The application is configured to be deployed on **Cloudflare Workers** using `@sveltejs/adapter-cloudflare`. Configure `DATABASE_URL` as a Worker runtime variable or secret to point to the deployment's SQLite/libSQL database, including a remote [Turso](https://turso.tech/) database when applicable. It does not need to be present in Cloudflare's build environment; the app validates it when the Worker starts handling requests.
 
-- Set `DATABASE_URL` in the Cloudflare Worker environment before deploying or starting the application.
+- Set `DATABASE_URL` and `DATABASE_AUTH_TOKEN` in the Cloudflare Worker environment before deploying or starting the application.
 - Run `pnpm gen` when the Cloudflare Worker type definitions need to be refreshed.
 - Run `pnpm build` to produce the Worker bundle consumed by `pnpm preview` and Wrangler.
 - Keep environment files and database credentials out of version control.
