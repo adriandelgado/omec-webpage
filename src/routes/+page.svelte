@@ -1,4 +1,8 @@
 <script lang="ts">
+	import home_hero from "#lib/assets/home/imo-team-2026.jpeg?enhanced";
+	import home_about from "#lib/assets/home/olympiad-student.jpeg?enhanced";
+	import home_national from "#lib/assets/home/national-olympiad-participants.jpg?enhanced";
+	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
 	import { resolve } from "$app/paths";
 	import { Info, Lightbulb, Newspaper } from "@lucide/svelte";
 	import blocks from "#lib/assets/shared/blocks.svg";
@@ -10,6 +14,8 @@
 	import SectionHeading from "#lib/components/section-heading.svelte";
 	import { get_national_olympiad, get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
+
+	const SPONSOR_IMAGES: Record<string, string> = { "egcs-ucsg": logo_ucsg };
 
 	const INFORMATION_ICONS = { info: Info, lightbulb: Lightbulb, newspaper: Newspaper } as const;
 	const [content, national_olympiad, site_content] = await Promise.all([
@@ -40,7 +46,7 @@
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
 			<enhanced:img
-				src={content.hero.image}
+				src={home_hero}
 				alt={content.hero.image_alt}
 				fetchpriority="high"
 				sizes="(min-width: 1024px) 60vw, 100vw"
@@ -126,7 +132,7 @@
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
 			<enhanced:img
-				src={content.about.image}
+				src={home_about}
 				alt={content.about.image_alt}
 				loading="lazy"
 				decoding="async"
@@ -143,7 +149,7 @@
 			class="mt-8 flex justify-center rounded-md border border-primary/30 bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)]"
 		>
 			<img
-				src={content.sponsor.image}
+				src={SPONSOR_IMAGES[content.sponsor.id]}
 				alt={content.sponsor.image_alt}
 				loading="lazy"
 				decoding="async"
@@ -174,7 +180,7 @@
 	<ContentSection>
 		<div class="relative overflow-hidden rounded-md border border-primary bg-primary">
 			<enhanced:img
-				src={content.national_facts.image}
+				src={home_national}
 				alt={content.national_facts.image_alt}
 				loading="lazy"
 				decoding="async"

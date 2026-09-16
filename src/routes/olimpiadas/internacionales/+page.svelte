@@ -1,9 +1,40 @@
 <script lang="ts">
+	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg?enhanced";
+	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg?enhanced";
+	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg?enhanced";
+	import olympiad_imo from "#lib/assets/olimpiadas/internacionales/olympiad-imo.jpeg?enhanced";
+	import olympiad_pagmo from "#lib/assets/olimpiadas/internacionales/olympiad-pagmo.jpeg?enhanced";
+	import olympiad_tjm from "#lib/assets/olimpiadas/internacionales/olympiad-tjm.jpeg?enhanced";
+	import logo_apmo from "#lib/assets/logos/apmo.svg";
+	import logo_mayo from "#lib/assets/logos/mayo.svg";
+	import logo_igo from "#lib/assets/logos/igo.svg";
+	import logo_usfq from "#lib/assets/logos/usfq.svg";
+	import logo_ucsg from "#lib/assets/logos/ucsg.svg";
+	import logo_sedem from "#lib/assets/logos/sedem.svg";
+	import type { Picture } from "@sveltejs/enhanced-img";
+
 	import { ExternalLink } from "@lucide/svelte";
 	import Card from "#lib/components/card.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import Seo from "#lib/components/seo.svelte";
 	import { get_content } from "./content.remote";
+
+	const OLYMPIAD_IMAGES: Record<string, string | Picture> = {
+		ciim: olympiad_ciim,
+		"cono-sur": olympiad_cono_sur,
+		egmo: olympiad_egmo,
+		imo: olympiad_imo,
+		pagmo: olympiad_pagmo,
+		tjm: olympiad_tjm,
+		apmo: logo_apmo,
+		mayo: logo_mayo,
+		igo: logo_igo,
+	};
+	const SPONSOR_IMAGES: Record<string, string> = {
+		usfq: logo_usfq,
+		"egcs-ucsg": logo_ucsg,
+		sponsor: logo_sedem,
+	};
 
 	const content = await get_content();
 </script>
@@ -29,7 +60,7 @@
 						class="flex h-48 items-center justify-center border-b border-primary/20 bg-foreground p-4"
 					>
 						<enhanced:img
-							src={olympiad.image}
+							src={OLYMPIAD_IMAGES[olympiad.id]}
 							alt={olympiad.image_alt}
 							loading="lazy"
 							decoding="async"
@@ -70,8 +101,8 @@
 				{#each content.sponsors.items as sponsor (sponsor.id)}
 					<div class="flex h-18 items-center justify-center">
 						<img
-							src={sponsor.image}
-							alt={sponsor.name}
+							src={SPONSOR_IMAGES[sponsor.id]}
+							alt={sponsor.image_alt}
 							loading="lazy"
 							decoding="async"
 							class="max-h-full max-w-full object-contain"

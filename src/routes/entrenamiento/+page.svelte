@@ -1,4 +1,7 @@
 <script lang="ts">
+	import logo_omec from "#lib/assets/logos/omec.svg";
+	import logo_egmo from "#lib/assets/logos/egmo.svg";
+
 	import { CalendarDays, ExternalLink, Presentation } from "@lucide/svelte";
 	import Card from "#lib/components/card.svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
@@ -7,6 +10,12 @@
 	import Seo from "#lib/components/seo.svelte";
 	import SectionHeading from "#lib/components/section-heading.svelte";
 	import { get_content } from "./content.remote";
+
+	const MATERIAL_IMAGES: Record<string, string> = {
+		"estudio-a-profundidad": logo_omec,
+		"olimpiada-nacional": logo_omec,
+		"olimpiadas-internacionales": logo_egmo,
+	};
 
 	const MATERIAL_ICONS = { presentation: Presentation, calendar_days: CalendarDays } as const;
 	const content = await get_content();
@@ -32,9 +41,9 @@
 						{#if material.icon}
 							{@const Icon = MATERIAL_ICONS[material.icon]}
 							<Icon aria-hidden="true" class="size-20 text-primary" strokeWidth={1.8} />
-						{:else if material.image}
+						{:else if MATERIAL_IMAGES[material.id]}
 							<img
-								src={material.image}
+								src={MATERIAL_IMAGES[material.id]}
 								alt={material.image_alt}
 								loading="lazy"
 								decoding="async"

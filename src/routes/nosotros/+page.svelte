@@ -1,4 +1,13 @@
 <script lang="ts">
+	import about_imo_2018 from "#lib/assets/nosotros/imo-2018.jpg";
+	import about_imo_2018_enhanced from "#lib/assets/nosotros/imo-2018.jpg?enhanced";
+	import director_fernando_gomez from "#lib/assets/nosotros/fernando-gomez.jpg?enhanced";
+	import director_lucero_llanos from "#lib/assets/nosotros/lucero-llanos.jpg?enhanced";
+	import director_pablo_serrano from "#lib/assets/nosotros/pablo-serrano.jpg?enhanced";
+	import director_pedro_suarez from "#lib/assets/nosotros/pedro-suarez.png?enhanced";
+	import director_valeria_santana from "#lib/assets/nosotros/valeria-santana.jpeg?enhanced";
+	import type { Picture } from "@sveltejs/enhanced-img";
+
 	import { Bell, ShieldAlert } from "@lucide/svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import MembersSection from "#lib/components/members-section.svelte";
@@ -9,13 +18,21 @@
 	import { get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
 
+	const DIRECTOR_IMAGES: Record<string, Picture> = {
+		"fernando-gomez": director_fernando_gomez,
+		"lucero-llanos": director_lucero_llanos,
+		"pablo-serrano": director_pablo_serrano,
+		"pedro-suarez": director_pedro_suarez,
+		"valeria-santana": director_valeria_santana,
+	};
+
 	const [content, site_content] = await Promise.all([get_content(), get_site_content()]);
 </script>
 
 <Seo
 	title={content.seo.title}
 	description={content.seo.description}
-	image={content.seo.image}
+	image={about_imo_2018}
 	image_alt={content.seo.image_alt}
 	include_organization
 	social_links={site_content.social_links}
@@ -75,7 +92,7 @@
 		</div>
 
 		<enhanced:img
-			src={content.labor.image}
+			src={about_imo_2018_enhanced}
 			alt={content.labor.image_alt}
 			sizes="(min-width: 1024px) 60vw, 100vw"
 			class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
@@ -90,7 +107,7 @@
 						{card.number}
 					</p>
 					<h3 class="mt-4 text-lg leading-tight font-semibold text-primary">{card.title}</h3>
-					{#if "description" in card}
+					{#if card.description !== null}
 						<p class="mt-3 text-sm leading-6 text-copy/75 italic">{card.description}</p>
 					{:else}
 						<ul class="mt-3 space-y-1 text-sm leading-6 text-copy/75 italic">
@@ -129,7 +146,13 @@
 			</h2>
 		</div>
 
-		<MembersSection members={content.directors} class="mt-8 sm:grid-cols-2 lg:mt-10" />
+		<MembersSection
+			members={content.directors.map((director) => ({
+				...director,
+				image: DIRECTOR_IMAGES[director.id],
+			}))}
+			class="mt-8 sm:grid-cols-2 lg:mt-10"
+		/>
 	</ContentSection>
 </PageSectionStack>
 

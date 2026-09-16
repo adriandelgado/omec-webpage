@@ -1,4 +1,7 @@
 <script lang="ts">
+	import national_awards from "#lib/assets/olimpiadas/nacionales/onm-2019-awards.jpg?enhanced";
+	import national_video from "#lib/assets/olimpiadas/nacionales/onm-2019-video-thumbnail.jpg?enhanced";
+
 	import { BookOpen, CirclePlay, ExternalLink } from "@lucide/svelte";
 	import Card from "#lib/components/card.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
@@ -139,7 +142,7 @@
 				{content.awards.eyebrow}
 			</p>
 			<enhanced:img
-				src={content.awards.image}
+				src={national_awards}
 				alt={content.awards.image_alt}
 				loading="lazy"
 				decoding="async"
@@ -155,7 +158,7 @@
 			class="group relative block overflow-hidden rounded-2xl border border-primary bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 		>
 			<enhanced:img
-				src={content.video.image}
+				src={national_video}
 				alt={content.video.image_alt}
 				loading="lazy"
 				decoding="async"
