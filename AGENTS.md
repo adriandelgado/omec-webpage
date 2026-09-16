@@ -9,3 +9,7 @@ Use `snake_case` for variable and function names. Use `kebab-case` for filenames
 ## Svelte Tooling
 
 Use the Svelte MCP already globally integrated into the agent harness; do NOT invoke it through `npx @sveltejs/mcp`.
+
+## Styling
+
+Prefer Tailwind CSS utilities over scoped `<style>` blocks. Use scoped styles only when Tailwind cannot express the required styling.

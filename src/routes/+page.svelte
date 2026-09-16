@@ -115,10 +115,11 @@
 				{content.about.title}
 			</h2>
 
-			<p class="mt-6 max-w-150 text-sm leading-6 text-copy/75">
+			<div class="mt-6 max-w-150 text-sm leading-6 text-copy/75 [&>p]:m-0">
+				<!-- The server-side Markdown adapter validates and safely renders this HTML. -->
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html content.about.description_html}
-			</p>
+			</div>
 
 			<a
 				href={resolve(content.about.link_href)}

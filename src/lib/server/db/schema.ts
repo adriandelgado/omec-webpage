@@ -47,7 +47,7 @@ export const home_content = sqliteTable(
 		}).notNull(),
 		about_eyebrow: text("about_eyebrow").notNull(),
 		about_title: text("about_title").notNull(),
-		about_description_html: text("about_description_html").notNull(),
+		about_description_markdown: text("about_description_markdown").notNull(),
 		about_link_label: text("about_link_label").notNull(),
 		about_link_href: text("about_link_href", { enum: ["/nosotros"] }).notNull(),
 		about_image_alt: text("about_image_alt").notNull(),

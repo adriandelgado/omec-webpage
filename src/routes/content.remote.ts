@@ -3,6 +3,7 @@ import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
 import { asc, eq } from "drizzle-orm";
+import { renderHtml } from "@tanstack/markdown";
 
 export const get_content = query(async () => {
 	const [
@@ -65,7 +66,7 @@ export const get_content = query(async () => {
 		about: {
 			eyebrow: row.about_eyebrow,
 			title: row.about_title,
-			description_html: row.about_description_html,
+			description_html: renderHtml(row.about_description_markdown, { allowHtml: false }),
 			link_label: row.about_link_label,
 			link_href: row.about_link_href,
 			image_alt: row.about_image_alt,
