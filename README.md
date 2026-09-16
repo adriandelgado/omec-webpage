@@ -32,10 +32,15 @@ Install dependencies and create a local environment file:
 ```bash
 pnpm install
 cp .env.example .env
+pnpm db:migrate
 pnpm dev
 ```
 
-`DATABASE_URL` is required by both the application and Drizzle. Local development uses `file:./omec-webpage.db`, the downloaded SQLite/libSQL database copy, with an empty `DATABASE_AUTH_TOKEN`. Set the production Cloudflare Worker variables to the remote libSQL/Turso URL and its authentication token.
+`DATABASE_URL` is required by both the application and Drizzle. Local development uses `file:./omec-webpage.db` with an empty `DATABASE_AUTH_TOKEN`. `pnpm db:migrate` creates that database when it does not exist and applies every checked-in migration.
+
+Use `pnpm db:migrate` for local setup and schema upgrades.
+
+Set the production Cloudflare Worker variables to the remote libSQL/Turso URL and its authentication token.
 
 ## Scripts
 
@@ -48,7 +53,7 @@ pnpm dev
 - `pnpm test`: Runs the unit test suite once.
 - `pnpm test:unit`: Starts Vitest in watch mode.
 - `pnpm gen`: Generates Cloudflare Worker types with Wrangler.
-- `pnpm db:push`: Pushes the Drizzle schema to the database in `DATABASE_URL`.
+- `pnpm db:push`: Pushes the Drizzle schema directly to the database in `DATABASE_URL`.
 - `pnpm db:generate`: Generates Drizzle migrations from the schema.
 - `pnpm db:migrate`: Applies pending Drizzle migrations.
 - `pnpm db:studio`: Opens Drizzle Studio for the database in `DATABASE_URL`.
