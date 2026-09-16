@@ -1,14 +1,19 @@
 import { defineConfig } from "drizzle-kit";
+import { loadEnv } from "vite";
 
-if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
+const environment = loadEnv(process.env.NODE_ENV ?? "development", process.cwd(), "");
+const database_url = environment.DATABASE_URL;
+const database_auth_token = environment.DATABASE_AUTH_TOKEN;
+
+if (!database_url) throw new Error("DATABASE_URL is not set");
 
 export default defineConfig({
 	schema: "./src/lib/server/db/schema.ts",
 	out: "./drizzle",
 	dialect: "turso",
 	dbCredentials: {
-		url: process.env.DATABASE_URL,
-		authToken: process.env.DATABASE_AUTH_TOKEN || undefined,
+		url: database_url,
+		authToken: database_auth_token || undefined,
 	},
 	verbose: true,
 	strict: true,

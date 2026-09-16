@@ -35,7 +35,7 @@ cp .env.example .env
 pnpm dev
 ```
 
-`DATABASE_URL` is required by both the application and Drizzle. Use `file:local.db` for a local SQLite database, or set it to the URL of a remote libSQL/Turso database. Set `DATABASE_AUTH_TOKEN` when the configured database requires authentication; it may be left empty for a local file database.
+`DATABASE_URL` is required by both the application and Drizzle. Local development uses `file:./omec-webpage.db`, the downloaded SQLite/libSQL database copy, with an empty `DATABASE_AUTH_TOKEN`. Set the production Cloudflare Worker variables to the remote libSQL/Turso URL and its authentication token.
 
 ## Scripts
 
