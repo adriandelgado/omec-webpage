@@ -98,6 +98,24 @@ export const contact_content = sqliteTable(
 	(table) => [check("contact_content_singleton", sql`${table.id} = 1`)],
 );
 
+export const contact_submission = sqliteTable(
+	"contact_submission",
+	{
+		id: integer("id").primaryKey({ autoIncrement: true }),
+		full_name: text("full_name").notNull(),
+		email: text("email").notNull(),
+		institution: text("institution").notNull(),
+		subject: text("subject").notNull(),
+		message: text("message").notNull(),
+		created_at: created_at(),
+		read_at: integer("read_at", { mode: "timestamp_ms" }),
+	},
+	(table) => [
+		index("contact_submission_email_idx").on(table.email),
+		index("contact_submission_created_at_idx").on(table.created_at),
+	],
+);
+
 export const training_content = sqliteTable(
 	"training_content",
 	{

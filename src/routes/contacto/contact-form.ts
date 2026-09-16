@@ -1,11 +1,14 @@
 import * as v from "valibot";
 
+export const TURNSTILE_ACTION = "contact";
+
 export const CONTACT_FORM_MAX_LENGTHS = {
 	full_name: 120,
 	email: 160,
 	institution: 160,
 	subject: 160,
 	message: 2000,
+	turnstile_token: 2048,
 } as const;
 
 export const contact_form_schema = v.object({
@@ -40,6 +43,15 @@ export const contact_form_schema = v.object({
 		v.nonEmpty("Escribe tu mensaje."),
 		v.minLength(20, "El mensaje debe tener al menos 20 caracteres."),
 		v.maxLength(CONTACT_FORM_MAX_LENGTHS.message, "El mensaje es demasiado largo."),
+	),
+	turnstile_token: v.pipe(
+		v.string(),
+		v.trim(),
+		v.nonEmpty("Completa la verificación de seguridad."),
+		v.maxLength(
+			CONTACT_FORM_MAX_LENGTHS.turnstile_token,
+			"La verificación de seguridad no es válida.",
+		),
 	),
 });
 

@@ -1,15 +1,27 @@
 <script lang="ts">
 	import { Mail, Send } from "@lucide/svelte";
+	import Turnstile from "#lib/components/turnstile.svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
 	import PageSectionStack from "#lib/components/page-section-stack.svelte";
 	import PageIntro from "#lib/components/page-intro.svelte";
 	import Seo from "#lib/components/seo.svelte";
 	import { get_site_content } from "#lib/content.remote.js";
-	import { CONTACT_FORM_MAX_LENGTHS, contact_form_schema } from "./contact-form";
+	import { TURNSTILE_SITE_KEY } from "$app/env/public";
+	import { CONTACT_FORM_MAX_LENGTHS, contact_form_schema, TURNSTILE_ACTION } from "./contact-form";
 	import { get_content } from "./content.remote";
 	import { send_contact_message } from "./contacto.remote";
 
 	const [content, site_content] = await Promise.all([get_content(), get_site_content()]);
+	let turnstile: Turnstile | undefined;
+	let turnstile_token = $state("");
+
+	function handle_turnstile_token(token: string): void {
+		turnstile_token = token;
+	}
+
+	function handle_submit(): void {
+		window.setTimeout(() => turnstile?.reset());
+	}
 </script>
 
 <Seo title={content.seo.title} description={content.seo.description} />
@@ -82,6 +94,7 @@
 				<div class="lg:justify-self-end lg:pt-1">
 					<form
 						{...send_contact_message.preflight(contact_form_schema)}
+						onsubmit={handle_submit}
 						class="rounded-3xl border border-primary bg-white/88 p-5 lg:w-116 lg:p-6"
 					>
 						<div class="flex items-start justify-between gap-4">
@@ -99,6 +112,15 @@
 								class="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-800"
 								role="status"
 								aria-live="polite"
+							>
+								{send_contact_message.result.message}
+							</div>
+						{/if}
+
+						{#if send_contact_message.result && !send_contact_message.result.success}
+							<div
+								class="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-relaxed text-red-800"
+								role="alert"
 							>
 								{send_contact_message.result.message}
 							</div>
@@ -237,6 +259,24 @@
 											0}/{CONTACT_FORM_MAX_LENGTHS.message}
 									</p>
 								</div>
+							</div>
+
+							<div>
+								<input
+									{...send_contact_message.fields.turnstile_token.as("hidden", turnstile_token)}
+								/>
+								<Turnstile
+									bind:this={turnstile}
+									sitekey={TURNSTILE_SITE_KEY}
+									action={TURNSTILE_ACTION}
+									on_token={handle_turnstile_token}
+									class="min-h-16"
+								/>
+								{#if send_contact_message.fields.turnstile_token.issues()?.[0]}
+									<p class="mt-1.5 text-sm text-red-600" role="alert">
+										{send_contact_message.fields.turnstile_token.issues()?.[0]?.message}
+									</p>
+								{/if}
 							</div>
 						</div>
 
