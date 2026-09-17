@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1789446234249,
-      "tag": "0000_chemical_the_phantom",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1789593268207,
-      "tag": "0001_relational_content",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1789598291230,
-      "tag": "0002_flowery_reaper",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1789599655167,
-      "tag": "0003_solid_machine_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1789604750898,
-      "tag": "0004_content-integrity",
+      "when": 1789606673832,
+      "tag": "0000_real_stellaris",
       "breakpoints": true
     }
   ]
