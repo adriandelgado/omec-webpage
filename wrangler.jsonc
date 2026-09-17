@@ -16,6 +16,7 @@
 		},
 	],
 	"workers_dev": true,
+	"r2_buckets": [{ "binding": "MEDIA_BUCKET", "bucket_name": "omec-media" }],
 	"preview_urls": true,
 	"observability": {
 		"logs": {

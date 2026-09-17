@@ -3,6 +3,14 @@ import { building } from "$app/env";
 import * as v from "valibot";
 
 export const variables = defineEnvVars({
+	AUTH_PASSWORD_PEPPERS: {
+		description: "Versioned password peppers: {current, keys}, with 32-byte hex keys.",
+		schema: v.optional(v.string()),
+	},
+	AUTH_TOTP_ENCRYPTION_KEYS: {
+		description: "Versioned AES-GCM keys: {current, keys}, with 32-byte hex keys.",
+		schema: v.optional(v.string()),
+	},
 	SITE_URL: {
 		description: "The canonical public URL for the website.",
 		public: true,

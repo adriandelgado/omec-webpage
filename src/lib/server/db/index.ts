@@ -6,7 +6,7 @@ import { building } from "$app/env";
 
 if (!building && !DATABASE_URL) throw new Error("DATABASE_URL is not set");
 
-const client = createClient({
+export const client = createClient({
 	url: DATABASE_URL || "file::memory:",
 	authToken: DATABASE_AUTH_TOKEN || undefined,
 });

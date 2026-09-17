@@ -7,6 +7,7 @@
 		role: string;
 		contact?: string;
 		image: Picture | undefined;
+		image_url?: string;
 		image_alt: string;
 	}
 
@@ -21,7 +22,13 @@
 <ul class={["grid gap-x-8 gap-y-10", class_name]}>
 	{#each members as member (member.id)}
 		<li class="flex items-center gap-4 md:gap-5">
-			{#if member.image}
+			{#if member.image_url}
+				<img
+					src={member.image_url}
+					alt={member.image_alt}
+					class="size-24 shrink-0 rounded-full object-cover"
+				/>
+			{:else if member.image}
 				<enhanced:img
 					src={member.image}
 					alt={member.image_alt}

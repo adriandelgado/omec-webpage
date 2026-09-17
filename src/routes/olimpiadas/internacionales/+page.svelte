@@ -60,7 +60,11 @@
 					<div
 						class="flex h-48 items-center justify-center border-b border-primary/20 bg-foreground p-4"
 					>
-						{#if content_asset(OLYMPIAD_IMAGES, olympiad.asset_key)}
+						{#if olympiad.image_url}<img
+								src={olympiad.image_url}
+								alt={olympiad.image_alt}
+								class="h-auto w-full object-contain"
+							/>{:else if content_asset(OLYMPIAD_IMAGES, olympiad.asset_key)}
 							{@const asset = content_asset(OLYMPIAD_IMAGES, olympiad.asset_key)!}
 							<enhanced:img
 								src={asset}
@@ -106,7 +110,11 @@
 			<div class="mt-5 grid grid-cols-2 items-center gap-6 sm:grid-cols-3">
 				{#each content.sponsors.items as sponsor (sponsor.id)}
 					<div class="flex h-18 items-center justify-center">
-						{#if content_asset(SPONSOR_IMAGES, sponsor.asset_key)}
+						{#if sponsor.image_url}<img
+								src={sponsor.image_url}
+								alt={sponsor.image_alt}
+								class="h-auto w-full object-contain"
+							/>{:else if content_asset(SPONSOR_IMAGES, sponsor.asset_key)}
 							{@const asset = content_asset(SPONSOR_IMAGES, sponsor.asset_key)!}
 							<img
 								src={asset}

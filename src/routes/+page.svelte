@@ -46,13 +46,18 @@
 		<figure
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
-			<enhanced:img
-				src={home_hero}
-				alt={content.hero.image_alt}
-				fetchpriority="high"
-				sizes="(min-width: 1024px) 60vw, 100vw"
-				class="aspect-[2.7/1] w-full object-cover"
-			/>
+			{#if content.hero.image_url}<img
+					src={content.hero.image_url}
+					alt={content.hero.image_alt}
+					fetchpriority="high"
+					class="aspect-[2.7/1] w-full object-cover"
+				/>{:else}<enhanced:img
+					src={home_hero}
+					alt={content.hero.image_alt}
+					fetchpriority="high"
+					sizes="(min-width: 1024px) 60vw, 100vw"
+					class="aspect-[2.7/1] w-full object-cover"
+				/>{/if}
 		</figure>
 	</ContentSection>
 
@@ -133,14 +138,20 @@
 		<figure
 			class="overflow-hidden rounded-md border border-primary bg-white p-2 shadow-[4px_4px_0_0_var(--color-primary)] lg:p-3"
 		>
-			<enhanced:img
-				src={home_about}
-				alt={content.about.image_alt}
-				loading="lazy"
-				decoding="async"
-				sizes="(min-width: 1024px) 36vw, 100vw"
-				class="aspect-4/5 w-full object-cover object-center"
-			/>
+			{#if content.about.image_url}<img
+					src={content.about.image_url}
+					alt={content.about.image_alt}
+					loading="lazy"
+					decoding="async"
+					class="aspect-4/5 w-full object-cover object-center"
+				/>{:else}<enhanced:img
+					src={home_about}
+					alt={content.about.image_alt}
+					loading="lazy"
+					decoding="async"
+					sizes="(min-width: 1024px) 36vw, 100vw"
+					class="aspect-4/5 w-full object-cover object-center"
+				/>{/if}
 		</figure>
 	</ContentSection>
 
@@ -150,7 +161,11 @@
 		<div
 			class="mt-8 flex justify-center rounded-md border border-primary/30 bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)]"
 		>
-			{#if content_asset(SPONSOR_IMAGES, content.sponsor.asset_key)}
+			{#if content.sponsor.image_url}<img
+					src={content.sponsor.image_url}
+					alt={content.sponsor.image_alt}
+					class="h-auto w-full object-contain"
+				/>{:else if content_asset(SPONSOR_IMAGES, content.sponsor.asset_key)}
 				{@const asset = content_asset(SPONSOR_IMAGES, content.sponsor.asset_key)!}
 				<img
 					src={asset}
@@ -186,14 +201,20 @@
 
 	<ContentSection>
 		<div class="relative overflow-hidden rounded-md border border-primary bg-primary">
-			<enhanced:img
-				src={home_national}
-				alt={content.national_facts.image_alt}
-				loading="lazy"
-				decoding="async"
-				sizes="100vw"
-				class="absolute inset-0 size-full object-cover opacity-25"
-			/>
+			{#if content.national_facts.image_url}<img
+					src={content.national_facts.image_url}
+					alt={content.national_facts.image_alt}
+					loading="lazy"
+					decoding="async"
+					class="absolute inset-0 size-full object-cover opacity-25"
+				/>{:else}<enhanced:img
+					src={home_national}
+					alt={content.national_facts.image_alt}
+					loading="lazy"
+					decoding="async"
+					sizes="100vw"
+					class="absolute inset-0 size-full object-cover opacity-25"
+				/>{/if}
 			<div class="relative px-6 py-10 text-white lg:px-10 lg:py-14">
 				<h2 class="max-w-180 text-3xl leading-none font-semibold tracking-tighter lg:text-5xl">
 					{content.national_facts.title}

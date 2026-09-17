@@ -30,7 +30,10 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		// interface Locals {}
+		interface Locals {
+			admin: import("./lib/server/auth/sessions").AdminIdentity | null;
+			session_digest: string | null;
+		}
 		// interface Error {}
 		// interface PageData {}
 		// interface PageState {}

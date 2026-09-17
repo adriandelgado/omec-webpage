@@ -1,8 +1,9 @@
+import { resolve_media } from "#lib/server/media/resolve.js";
 import { query } from "$app/server";
 import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and, isNull } from "drizzle-orm";
 import { renderHtml } from "@tanstack/markdown";
 
 export const get_content = query(async () => {
@@ -22,7 +23,12 @@ export const get_content = query(async () => {
 				href: schema.home_information_item.href,
 			})
 			.from(schema.home_information_item)
-			.where(eq(schema.home_information_item.content_id, 1))
+			.where(
+				and(
+					eq(schema.home_information_item.content_id, 1),
+					isNull(schema.home_information_item.archived_at),
+				),
+			)
 			.orderBy(asc(schema.home_information_item.sort_order)),
 		db
 			.select({
@@ -33,27 +39,43 @@ export const get_content = query(async () => {
 				link_label: schema.home_olympiad_card.link_label,
 			})
 			.from(schema.home_olympiad_card)
-			.where(eq(schema.home_olympiad_card.content_id, 1))
+			.where(
+				and(
+					eq(schema.home_olympiad_card.content_id, 1),
+					isNull(schema.home_olympiad_card.archived_at),
+				),
+			)
 			.orderBy(asc(schema.home_olympiad_card.sort_order)),
 		db
 			.select()
 			.from(schema.home_national_fact)
-			.where(eq(schema.home_national_fact.content_id, 1))
+			.where(
+				and(
+					eq(schema.home_national_fact.content_id, 1),
+					isNull(schema.home_national_fact.archived_at),
+				),
+			)
 			.orderBy(asc(schema.home_national_fact.sort_order)),
 		db
 			.select({
 				id: schema.sponsor.id,
 				asset_key: schema.sponsor.asset_key,
+				media_id: schema.sponsor.media_id,
 				name: schema.sponsor.name,
 				image_alt: schema.sponsor.image_alt,
 			})
 			.from(schema.sponsor_placement)
 			.innerJoin(schema.sponsor, eq(schema.sponsor.id, schema.sponsor_placement.sponsor_id))
-			.where(eq(schema.sponsor_placement.page_key, "home"))
+			.where(
+				and(
+					eq(schema.sponsor_placement.page_key, "home"),
+					isNull(schema.sponsor.archived_at),
+					isNull(schema.sponsor_placement.archived_at),
+				),
+			)
 			.orderBy(asc(schema.sponsor_placement.sort_order)),
 	]);
 	if (!row) error(500, "Required page content is missing: home");
-	if (!sponsors.length) error(500, "Required sponsor placement is missing: home");
 
 	return {
 		seo: {
@@ -64,6 +86,7 @@ export const get_content = query(async () => {
 			title: row.hero_title,
 			highlight: row.hero_highlight,
 			image_alt: row.hero_image_alt,
+			image_url: await resolve_media(row.hero_media_id),
 		},
 		national_olympiad: {
 			link_label: row.national_olympiad_link_label,
@@ -77,17 +100,20 @@ export const get_content = query(async () => {
 			link_label: row.about_link_label,
 			link_href: row.about_link_href,
 			image_alt: row.about_image_alt,
+			image_url: await resolve_media(row.about_media_id),
 		},
 		sponsor: {
 			title: row.sponsor_title,
-			id: sponsors[0].id,
-			asset_key: sponsors[0].asset_key,
-			image_alt: sponsors[0].image_alt,
+			id: sponsors[0]?.id ?? "",
+			asset_key: sponsors[0]?.asset_key ?? null,
+			image_alt: sponsors[0]?.image_alt ?? "",
+			image_url: await resolve_media(sponsors[0]?.media_id ?? null),
 		},
 		olympiad_cards: home_olympiad_card_rows,
 		national_facts: {
 			title: row.national_facts_title,
 			image_alt: row.national_facts_image_alt,
+			image_url: await resolve_media(row.national_facts_media_id),
 			facts: home_national_fact_rows.map((item) => item.text),
 		},
 		follow: {

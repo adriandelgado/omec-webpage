@@ -1,8 +1,9 @@
+import { resolve_media } from "#lib/server/media/resolve.js";
 import { query } from "$app/server";
 import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and, isNull } from "drizzle-orm";
 
 export const get_content = query(async () => {
 	const [[row], national_prize_paragraph_rows, national_fact_rows, [current]] = await Promise.all([
@@ -10,17 +11,27 @@ export const get_content = query(async () => {
 		db
 			.select()
 			.from(schema.national_prize_paragraph)
-			.where(eq(schema.national_prize_paragraph.content_id, 1))
+			.where(
+				and(
+					eq(schema.national_prize_paragraph.content_id, 1),
+					isNull(schema.national_prize_paragraph.archived_at),
+				),
+			)
 			.orderBy(asc(schema.national_prize_paragraph.sort_order)),
 		db
 			.select({ id: schema.national_fact.id, text: schema.national_fact.text })
 			.from(schema.national_fact)
-			.where(eq(schema.national_fact.content_id, 1))
+			.where(and(eq(schema.national_fact.content_id, 1), isNull(schema.national_fact.archived_at)))
 			.orderBy(asc(schema.national_fact.sort_order)),
 		db
 			.select()
 			.from(schema.national_olympiad)
-			.where(eq(schema.national_olympiad.is_current, true))
+			.where(
+				and(
+					eq(schema.national_olympiad.is_current, true),
+					isNull(schema.national_olympiad.archived_at),
+				),
+			)
 			.limit(1),
 	]);
 	if (!row) error(500, "Required page content is missing: national");
@@ -32,7 +43,12 @@ export const get_content = query(async () => {
 			description: schema.national_olympiad_level.description,
 		})
 		.from(schema.national_olympiad_level)
-		.where(eq(schema.national_olympiad_level.national_olympiad_id, current.id))
+		.where(
+			and(
+				eq(schema.national_olympiad_level.national_olympiad_id, current.id),
+				isNull(schema.national_olympiad_level.archived_at),
+			),
+		)
 		.orderBy(asc(schema.national_olympiad_level.sort_order));
 
 	return {
@@ -73,10 +89,12 @@ export const get_content = query(async () => {
 		awards: {
 			eyebrow: row.awards_eyebrow,
 			image_alt: row.awards_image_alt,
+			image_url: await resolve_media(row.awards_media_id),
 		},
 		video: {
 			href: row.video_href,
 			image_alt: row.video_image_alt,
+			image_url: await resolve_media(row.video_media_id),
 			label: row.video_label,
 		},
 		facts: national_fact_rows,

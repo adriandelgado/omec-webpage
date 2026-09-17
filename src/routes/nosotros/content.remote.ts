@@ -1,8 +1,9 @@
+import { resolve_media } from "#lib/server/media/resolve.js";
 import { query } from "$app/server";
 import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and, isNull } from "drizzle-orm";
 
 export const get_content = query(async () => {
 	const [[row], about_value_card_rows, values, team] = await Promise.all([
@@ -10,7 +11,9 @@ export const get_content = query(async () => {
 		db
 			.select()
 			.from(schema.about_value_card)
-			.where(eq(schema.about_value_card.content_id, 1))
+			.where(
+				and(eq(schema.about_value_card.content_id, 1), isNull(schema.about_value_card.archived_at)),
+			)
 			.orderBy(asc(schema.about_value_card.sort_order)),
 		db
 			.select({ card_number: schema.about_value.card_number, text: schema.about_value.text })
@@ -19,12 +22,19 @@ export const get_content = query(async () => {
 				schema.about_value_card,
 				eq(schema.about_value.card_number, schema.about_value_card.number),
 			)
-			.where(eq(schema.about_value_card.content_id, 1))
+			.where(
+				and(
+					eq(schema.about_value_card.content_id, 1),
+					isNull(schema.about_value.archived_at),
+					isNull(schema.about_value_card.archived_at),
+				),
+			)
 			.orderBy(asc(schema.about_value.card_number), asc(schema.about_value.sort_order)),
 		db
 			.select({
 				id: schema.team_member.id,
 				asset_key: schema.team_member.asset_key,
+				media_id: schema.team_member.media_id,
 				name: schema.team_member.name,
 				role: schema.team_member.role,
 				contact: schema.team_member.contact,
@@ -36,7 +46,13 @@ export const get_content = query(async () => {
 				schema.team_member,
 				eq(schema.team_member.id, schema.team_member_placement.team_member_id),
 			)
-			.where(eq(schema.team_member_placement.page_key, "about"))
+			.where(
+				and(
+					eq(schema.team_member_placement.page_key, "about"),
+					isNull(schema.team_member.archived_at),
+					isNull(schema.team_member_placement.archived_at),
+				),
+			)
 			.orderBy(
 				asc(schema.team_member_placement.placement),
 				asc(schema.team_member_placement.sort_order),
@@ -49,6 +65,7 @@ export const get_content = query(async () => {
 			title: row.seo_title,
 			description: row.seo_description,
 			image_alt: row.seo_image_alt,
+			image_url: await resolve_media(row.seo_media_id),
 		},
 		alert: row.alert,
 		labor: {
@@ -56,6 +73,7 @@ export const get_content = query(async () => {
 			title: row.labor_title,
 			description: row.labor_description,
 			image_alt: row.labor_image_alt,
+			image_url: await resolve_media(row.labor_media_id),
 		},
 		values_cards: about_value_card_rows.map((card) => ({
 			number: card.number,
@@ -71,19 +89,22 @@ export const get_content = query(async () => {
 			title: row.team_title,
 		},
 		members: team.filter((member) => member.placement === "member").map((member) => member.name),
-		directors: team
-			.filter((member) => member.placement === "director")
-			.map((member) => {
-				if (!member.role || !member.image_alt)
-					error(500, `Director content is incomplete: ${member.id}`);
-				return {
-					id: member.id,
-					asset_key: member.asset_key,
-					name: member.name,
-					role: member.role,
-					contact: member.contact ?? undefined,
-					image_alt: member.image_alt,
-				};
-			}),
+		directors: await Promise.all(
+			team
+				.filter((member) => member.placement === "director")
+				.map(async (member) => {
+					if (!member.role || !member.image_alt)
+						error(500, `Director content is incomplete: ${member.id}`);
+					return {
+						id: member.id,
+						asset_key: member.asset_key,
+						image_url: await resolve_media(member.media_id),
+						name: member.name,
+						role: member.role,
+						contact: member.contact ?? undefined,
+						image_alt: member.image_alt,
+					};
+				}),
+		),
 	};
 });

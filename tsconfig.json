@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"rewriteRelativeImportExtensions": true,
 		"sourceMap": true,
+		"checkJs": false,
 		"strict": true,
 		"types": ["$app/types", "./worker-configuration.d.ts"]
 	},

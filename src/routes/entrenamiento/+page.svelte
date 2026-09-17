@@ -38,7 +38,11 @@
 			{#each content.materials as material (material.id)}
 				<Card class="flex min-h-96 flex-col overflow-hidden">
 					<div class="flex h-36 items-center justify-center bg-foreground px-6 py-5">
-						{#if material.icon}
+						{#if material.image_url}<img
+								src={material.image_url}
+								alt={material.image_alt}
+								class="h-16 w-16 object-contain"
+							/>{:else if material.icon}
 							{@const Icon = MATERIAL_ICONS[material.icon]}
 							<Icon aria-hidden="true" class="size-20 text-primary" strokeWidth={1.8} />
 						{:else if content_asset(MATERIAL_IMAGES, material.asset_key)}

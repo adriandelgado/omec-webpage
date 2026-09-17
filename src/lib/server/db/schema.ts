@@ -39,6 +39,9 @@ export const site_content = sqliteTable(
 export const home_content = sqliteTable(
 	"home_content",
 	{
+		hero_media_id: text("hero_media_id").references(() => media_asset.id),
+		about_media_id: text("about_media_id").references(() => media_asset.id),
+		national_facts_media_id: text("national_facts_media_id").references(() => media_asset.id),
 		id: integer("id").primaryKey().default(1),
 		seo_title: text("seo_title").notNull(),
 		seo_description: text("seo_description").notNull(),
@@ -152,6 +155,8 @@ export const training_content = sqliteTable(
 export const about_content = sqliteTable(
 	"about_content",
 	{
+		seo_media_id: text("seo_media_id").references(() => media_asset.id),
+		labor_media_id: text("labor_media_id").references(() => media_asset.id),
 		id: integer("id").primaryKey().default(1),
 		seo_title: text("seo_title").notNull(),
 		seo_description: text("seo_description").notNull(),
@@ -200,6 +205,8 @@ export const olympiads_content = sqliteTable(
 export const national_content = sqliteTable(
 	"national_content",
 	{
+		awards_media_id: text("awards_media_id").references(() => media_asset.id),
+		video_media_id: text("video_media_id").references(() => media_asset.id),
 		id: integer("id").primaryKey().default(1),
 		seo_title: text("seo_title").notNull(),
 		seo_description: text("seo_description").notNull(),
@@ -251,6 +258,10 @@ export const international_content = sqliteTable(
 export const home_information_item = sqliteTable(
 	"home_information_item",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: text("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -264,7 +275,9 @@ export const home_information_item = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("home_information_item_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("home_information_item_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("home_information_item_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -272,6 +285,10 @@ export const home_information_item = sqliteTable(
 export const home_olympiad_card = sqliteTable(
 	"home_olympiad_card",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: text("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -286,7 +303,9 @@ export const home_olympiad_card = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("home_olympiad_card_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("home_olympiad_card_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("home_olympiad_card_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -294,6 +313,10 @@ export const home_olympiad_card = sqliteTable(
 export const home_national_fact = sqliteTable(
 	"home_national_fact",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: integer("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -303,7 +326,9 @@ export const home_national_fact = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("home_national_fact_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("home_national_fact_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("home_national_fact_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -311,6 +336,10 @@ export const home_national_fact = sqliteTable(
 export const about_value_card = sqliteTable(
 	"about_value_card",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		number: text("number").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -321,7 +350,9 @@ export const about_value_card = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("about_value_card_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("about_value_card_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("about_value_card_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -329,6 +360,10 @@ export const about_value_card = sqliteTable(
 export const olympiads_title_line = sqliteTable(
 	"olympiads_title_line",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: integer("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -339,7 +374,9 @@ export const olympiads_title_line = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("olympiads_title_line_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("olympiads_title_line_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("olympiads_title_line_emphasis_valid", sql`${table.emphasis} in (0, 1)`),
 		check("olympiads_title_line_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
@@ -348,6 +385,10 @@ export const olympiads_title_line = sqliteTable(
 export const olympiads_route_card = sqliteTable(
 	"olympiads_route_card",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: integer("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -360,7 +401,9 @@ export const olympiads_route_card = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("olympiads_route_card_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("olympiads_route_card_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("olympiads_route_card_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -368,6 +411,10 @@ export const olympiads_route_card = sqliteTable(
 export const national_prize_paragraph = sqliteTable(
 	"national_prize_paragraph",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: integer("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -377,7 +424,9 @@ export const national_prize_paragraph = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("national_prize_paragraph_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("national_prize_paragraph_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("national_prize_paragraph_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -385,6 +434,10 @@ export const national_prize_paragraph = sqliteTable(
 export const national_fact = sqliteTable(
 	"national_fact",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: text("id").primaryKey(),
 		content_id: integer("content_id")
 			.notNull()
@@ -394,7 +447,9 @@ export const national_fact = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("national_fact_order_unique").on(table.content_id, table.sort_order),
+		uniqueIndex("national_fact_order_unique")
+			.on(table.content_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("national_fact_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -402,6 +457,10 @@ export const national_fact = sqliteTable(
 export const about_value = sqliteTable(
 	"about_value",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		created_at: created_at(),
+		updated_at: updated_at(),
 		id: integer("id").primaryKey(),
 		card_number: text("card_number")
 			.notNull()
@@ -410,7 +469,9 @@ export const about_value = sqliteTable(
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
-		uniqueIndex("about_value_order_unique").on(table.card_number, table.sort_order),
+		uniqueIndex("about_value_order_unique")
+			.on(table.card_number, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("about_value_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -418,6 +479,8 @@ export const about_value = sqliteTable(
 export const social_link = sqliteTable(
 	"social_link",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		id: text("id").primaryKey(),
 		label: text("label").notNull(),
 		href: text("href").notNull(),
@@ -428,7 +491,9 @@ export const social_link = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
-		uniqueIndex("social_link_sort_order_unique").on(table.sort_order),
+		uniqueIndex("social_link_sort_order_unique")
+			.on(table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("social_link_sort_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -436,6 +501,8 @@ export const social_link = sqliteTable(
 export const national_olympiad = sqliteTable(
 	"national_olympiad",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		id: integer("id").primaryKey({ autoIncrement: true }),
 		slug: text("slug").notNull(),
 		edition_year: integer("edition_year").notNull(),
@@ -463,6 +530,8 @@ export const national_olympiad = sqliteTable(
 export const national_olympiad_stage = sqliteTable(
 	"national_olympiad_stage",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		id: integer("id").primaryKey({ autoIncrement: true }),
 		national_olympiad_id: integer("national_olympiad_id")
 			.notNull()
@@ -476,10 +545,9 @@ export const national_olympiad_stage = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
-		uniqueIndex("national_olympiad_stage_order_unique").on(
-			table.national_olympiad_id,
-			table.sort_order,
-		),
+		uniqueIndex("national_olympiad_stage_order_unique")
+			.on(table.national_olympiad_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		uniqueIndex("national_olympiad_stage_label_unique").on(table.national_olympiad_id, table.label),
 		check("national_olympiad_stage_order_nonnegative", sql`${table.sort_order} >= 0`),
 		check(
@@ -504,6 +572,8 @@ export const national_olympiad_stage = sqliteTable(
 export const national_olympiad_level = sqliteTable(
 	"national_olympiad_level",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		id: text("id").notNull(),
 		national_olympiad_id: integer("national_olympiad_id")
 			.notNull()
@@ -516,10 +586,9 @@ export const national_olympiad_level = sqliteTable(
 	},
 	(table) => [
 		primaryKey({ columns: [table.national_olympiad_id, table.id] }),
-		uniqueIndex("national_olympiad_level_order_unique").on(
-			table.national_olympiad_id,
-			table.sort_order,
-		),
+		uniqueIndex("national_olympiad_level_order_unique")
+			.on(table.national_olympiad_id, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("national_olympiad_level_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -527,6 +596,9 @@ export const national_olympiad_level = sqliteTable(
 export const international_olympiad = sqliteTable(
 	"international_olympiad",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		media_id: text("media_id").references(() => media_asset.id),
 		id: text("id").primaryKey(),
 		name: text("name").notNull(),
 		description: text("description").notNull(),
@@ -538,12 +610,17 @@ export const international_olympiad = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
-		uniqueIndex("international_olympiad_sort_order_unique").on(table.sort_order),
+		uniqueIndex("international_olympiad_sort_order_unique")
+			.on(table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("international_olympiad_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
 
 export const sponsor = sqliteTable("sponsor", {
+	archived_at: integer("archived_at"),
+	archived_by: text("archived_by").references(() => admin_user.id),
+	media_id: text("media_id").references(() => media_asset.id),
 	id: text("id").primaryKey(),
 	name: text("name").notNull(),
 	asset_key: text("asset_key"),
@@ -555,6 +632,8 @@ export const sponsor = sqliteTable("sponsor", {
 export const sponsor_placement = sqliteTable(
 	"sponsor_placement",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		sponsor_id: text("sponsor_id")
 			.notNull()
 			.references(() => sponsor.id, { onDelete: "cascade" }),
@@ -565,7 +644,9 @@ export const sponsor_placement = sqliteTable(
 	},
 	(table) => [
 		primaryKey({ columns: [table.sponsor_id, table.page_key] }),
-		uniqueIndex("sponsor_placement_order_unique").on(table.page_key, table.sort_order),
+		uniqueIndex("sponsor_placement_order_unique")
+			.on(table.page_key, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("sponsor_placement_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -573,6 +654,9 @@ export const sponsor_placement = sqliteTable(
 export const team_member = sqliteTable(
 	"team_member",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		media_id: text("media_id").references(() => media_asset.id),
 		id: text("id").primaryKey(),
 		name: text("name").notNull(),
 		role: text("role"),
@@ -588,6 +672,8 @@ export const team_member = sqliteTable(
 export const team_member_placement = sqliteTable(
 	"team_member_placement",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
 		team_member_id: text("team_member_id")
 			.notNull()
 			.references(() => team_member.id, { onDelete: "cascade" }),
@@ -599,11 +685,9 @@ export const team_member_placement = sqliteTable(
 	},
 	(table) => [
 		primaryKey({ columns: [table.team_member_id, table.page_key, table.placement] }),
-		uniqueIndex("team_member_placement_order_unique").on(
-			table.page_key,
-			table.placement,
-			table.sort_order,
-		),
+		uniqueIndex("team_member_placement_order_unique")
+			.on(table.page_key, table.placement, table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("team_member_placement_value_valid", sql`${table.placement} in ('member', 'director')`),
 		check("team_member_placement_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
@@ -612,6 +696,9 @@ export const team_member_placement = sqliteTable(
 export const training_material = sqliteTable(
 	"training_material",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		media_id: text("media_id").references(() => media_asset.id),
 		id: text("id").primaryKey(),
 		title: text("title").notNull(),
 		description: text("description").notNull(),
@@ -624,7 +711,9 @@ export const training_material = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
-		uniqueIndex("training_material_sort_order_unique").on(table.sort_order),
+		uniqueIndex("training_material_sort_order_unique")
+			.on(table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		check("training_material_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -632,10 +721,16 @@ export const training_material = sqliteTable(
 export const news_article = sqliteTable(
 	"news_article",
 	{
+		archived_at: integer("archived_at"),
+		archived_by: text("archived_by").references(() => admin_user.id),
+		owner_id: text("owner_id").references(() => admin_user.id),
+		status: text("status", { enum: ["draft", "published"] })
+			.notNull()
+			.default("draft"),
 		slug: text("slug").primaryKey(),
 		category: text("category").notNull(),
 		date_label: text("date_label"),
-		published_on: text("published_on").notNull(),
+		published_on: text("published_on"),
 		author: text("author").notNull(),
 		title: text("title").notNull(),
 		summary: text("summary").notNull(),
@@ -646,9 +741,96 @@ export const news_article = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
-		uniqueIndex("news_article_sort_order_unique").on(table.sort_order),
+		uniqueIndex("news_article_sort_order_unique")
+			.on(table.sort_order)
+			.where(sql`${table.archived_at} is null`),
 		index("news_article_published_idx").on(table.published_on, table.sort_order),
 		check("news_article_order_nonnegative", sql`${table.sort_order} >= 0`),
-		check("news_article_date_published_iso", iso_date(table.published_on)),
+		check(
+			"news_article_date_published_iso",
+			sql`${table.published_on} is null or (${iso_date(table.published_on)})`,
+		),
+		check(
+			"news_article_status_valid",
+			sql`${table.status} in ('draft', 'published') and (${table.status} != 'published' or ${table.published_on} is not null)`,
+		),
 	],
 );
+
+export const admin_user = sqliteTable(
+	"admin_user",
+	{
+		id: text("id").primaryKey(),
+		email: text("email").notNull().unique(),
+		name: text("name").notNull(),
+		role: text("role", { enum: ["superadmin", "admin", "editor"] }).notNull(),
+		password_hash: text("password_hash").notNull(),
+		must_change_password: integer("must_change_password").notNull().default(1),
+		suspended_at: integer("suspended_at"),
+		totp_secret: text("totp_secret"),
+		totp_last_step: integer("totp_last_step"),
+		created_at: integer("created_at").notNull(),
+		updated_at: integer("updated_at").notNull(),
+	},
+	(t) => [check("admin_role_valid", sql`${t.role} in ('superadmin', 'admin', 'editor')`)],
+);
+export const admin_session = sqliteTable("admin_session", {
+	digest: text("digest").primaryKey(),
+	user_id: text("user_id")
+		.notNull()
+		.references(() => admin_user.id, { onDelete: "cascade" }),
+	created_at: integer("created_at").notNull(),
+	last_seen_at: integer("last_seen_at").notNull(),
+	expires_at: integer("expires_at").notNull(),
+});
+export const admin_login_challenge = sqliteTable("admin_login_challenge", {
+	digest: text("digest").primaryKey(),
+	user_id: text("user_id")
+		.notNull()
+		.references(() => admin_user.id, { onDelete: "cascade" }),
+	expires_at: integer("expires_at").notNull(),
+});
+export const admin_recovery_code = sqliteTable("admin_recovery_code", {
+	digest: text("digest").primaryKey(),
+	user_id: text("user_id")
+		.notNull()
+		.references(() => admin_user.id, { onDelete: "cascade" }),
+});
+export const auth_rate_limit = sqliteTable("auth_rate_limit", {
+	key: text("key").primaryKey(),
+	attempts: integer("attempts").notNull(),
+	resets_at: integer("resets_at").notNull(),
+});
+export const audit_event = sqliteTable("audit_event", {
+	id: integer("id").primaryKey({ autoIncrement: true }),
+	actor_id: text("actor_id"),
+	action: text("action").notNull(),
+	entity_type: text("entity_type").notNull(),
+	entity_id: text("entity_id").notNull(),
+	before_json: text("before_json"),
+	after_json: text("after_json"),
+	created_at: integer("created_at").notNull(),
+});
+export const news_slug_redirect = sqliteTable("news_slug_redirect", {
+	old_slug: text("old_slug").primaryKey(),
+	article_slug: text("article_slug")
+		.notNull()
+		.references(() => news_article.slug, { onUpdate: "cascade" }),
+});
+export const media_asset = sqliteTable("media_asset", {
+	id: text("id").primaryKey(),
+	object_key: text("object_key").notNull().unique(),
+	original_filename: text("original_filename").notNull(),
+	mime_type: text("mime_type").notNull(),
+	size: integer("size").notNull(),
+	width: integer("width"),
+	height: integer("height"),
+	alt_text: text("alt_text").notNull().default(""),
+	uploader_id: text("uploader_id")
+		.notNull()
+		.references(() => admin_user.id),
+	created_at: integer("created_at").notNull(),
+	updated_at: integer("updated_at").notNull(),
+	archived_at: integer("archived_at"),
+	archived_by: text("archived_by").references(() => admin_user.id),
+});

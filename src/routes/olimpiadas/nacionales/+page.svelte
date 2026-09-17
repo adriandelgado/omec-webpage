@@ -141,14 +141,20 @@
 			<p class="text-sm font-semibold tracking-widest text-primary uppercase">
 				{content.awards.eyebrow}
 			</p>
-			<enhanced:img
-				src={national_awards}
-				alt={content.awards.image_alt}
-				loading="lazy"
-				decoding="async"
-				sizes="(min-width: 1024px) 60vw, 100vw"
-				class="mt-5 aspect-4/3 w-full rounded-2xl object-cover"
-			/>
+			{#if content.awards.image_url}<img
+					src={content.awards.image_url}
+					alt={content.awards.image_alt}
+					loading="lazy"
+					decoding="async"
+					class="mt-5 aspect-4/3 w-full rounded-2xl object-cover"
+				/>{:else}<enhanced:img
+					src={national_awards}
+					alt={content.awards.image_alt}
+					loading="lazy"
+					decoding="async"
+					sizes="(min-width: 1024px) 60vw, 100vw"
+					class="mt-5 aspect-4/3 w-full rounded-2xl object-cover"
+				/>{/if}
 		</div>
 
 		<a
@@ -157,14 +163,20 @@
 			rel="noopener noreferrer"
 			class="group relative block overflow-hidden rounded-2xl border border-primary bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 		>
-			<enhanced:img
-				src={national_video}
-				alt={content.video.image_alt}
-				loading="lazy"
-				decoding="async"
-				sizes="(min-width: 1024px) 40vw, 100vw"
-				class="aspect-4/3 w-full object-cover opacity-85 transition-transform duration-300 group-hover:scale-105"
-			/>
+			{#if content.video.image_url}<img
+					src={content.video.image_url}
+					alt={content.video.image_alt}
+					loading="lazy"
+					decoding="async"
+					class="aspect-4/3 w-full object-cover opacity-85 transition-transform duration-300 group-hover:scale-105"
+				/>{:else}<enhanced:img
+					src={national_video}
+					alt={content.video.image_alt}
+					loading="lazy"
+					decoding="async"
+					sizes="(min-width: 1024px) 40vw, 100vw"
+					class="aspect-4/3 w-full object-cover opacity-85 transition-transform duration-300 group-hover:scale-105"
+				/>{/if}
 			<span class="absolute inset-0 flex items-center justify-center bg-primary/25">
 				<span
 					class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-primary shadow-sm"

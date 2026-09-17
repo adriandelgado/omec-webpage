@@ -2,7 +2,7 @@ import { query } from "$app/server";
 import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and, isNull } from "drizzle-orm";
 
 export const get_content = query(async () => {
 	const [[row], olympiads_title_line_rows, olympiads_route_card_rows] = await Promise.all([
@@ -10,12 +10,22 @@ export const get_content = query(async () => {
 		db
 			.select()
 			.from(schema.olympiads_title_line)
-			.where(eq(schema.olympiads_title_line.content_id, 1))
+			.where(
+				and(
+					eq(schema.olympiads_title_line.content_id, 1),
+					isNull(schema.olympiads_title_line.archived_at),
+				),
+			)
 			.orderBy(asc(schema.olympiads_title_line.sort_order)),
 		db
 			.select({ label: schema.olympiads_route_card.label, href: schema.olympiads_route_card.href })
 			.from(schema.olympiads_route_card)
-			.where(eq(schema.olympiads_route_card.content_id, 1))
+			.where(
+				and(
+					eq(schema.olympiads_route_card.content_id, 1),
+					isNull(schema.olympiads_route_card.archived_at),
+				),
+			)
 			.orderBy(asc(schema.olympiads_route_card.sort_order)),
 	]);
 	if (!row) error(500, "Required page content is missing: olympiads");

@@ -3,7 +3,7 @@ import { query } from "$app/server";
 import { error } from "@sveltejs/kit";
 import { db } from "#lib/server/db/index.js";
 import * as schema from "#lib/server/db/schema.js";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and, isNull } from "drizzle-orm";
 
 export const get_site_content = query(async () => {
 	const [[row], social_links] = await Promise.all([
@@ -17,6 +17,7 @@ export const get_site_content = query(async () => {
 				path: schema.social_link.icon_path,
 			})
 			.from(schema.social_link)
+			.where(and(isNull(schema.social_link.archived_at)))
 			.orderBy(asc(schema.social_link.sort_order)),
 	]);
 	if (!row) error(500, "Required page content is missing: site");
@@ -39,7 +40,12 @@ export const get_national_olympiad = query(async () => {
 			announcement: schema.national_olympiad.announcement,
 		})
 		.from(schema.national_olympiad)
-		.where(eq(schema.national_olympiad.is_current, true))
+		.where(
+			and(
+				eq(schema.national_olympiad.is_current, true),
+				isNull(schema.national_olympiad.archived_at),
+			),
+		)
 		.limit(1);
 	if (!olympiad) {
 		error(500, "Required national olympiad is missing: current");
@@ -52,7 +58,12 @@ export const get_national_olympiad = query(async () => {
 			ends_on: schema.national_olympiad_stage.ends_on,
 		})
 		.from(schema.national_olympiad_stage)
-		.where(eq(schema.national_olympiad_stage.national_olympiad_id, olympiad.id))
+		.where(
+			and(
+				eq(schema.national_olympiad_stage.national_olympiad_id, olympiad.id),
+				isNull(schema.national_olympiad_stage.archived_at),
+			),
+		)
 		.orderBy(asc(schema.national_olympiad_stage.sort_order));
 	return {
 		title: olympiad.title,

@@ -33,7 +33,7 @@
 <Seo
 	title={content.seo.title}
 	description={content.seo.description}
-	image={about_imo_2018}
+	image={content.seo.image_url ?? about_imo_2018}
 	image_alt={content.seo.image_alt}
 	include_organization
 	social_links={site_content.social_links}
@@ -92,12 +92,16 @@
 			</p>
 		</div>
 
-		<enhanced:img
-			src={about_imo_2018_enhanced}
-			alt={content.labor.image_alt}
-			sizes="(min-width: 1024px) 60vw, 100vw"
-			class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
-		/>
+		{#if content.labor.image_url}<img
+				src={content.labor.image_url}
+				alt={content.labor.image_alt}
+				class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
+			/>{:else}<enhanced:img
+				src={about_imo_2018_enhanced}
+				alt={content.labor.image_alt}
+				sizes="(min-width: 1024px) 60vw, 100vw"
+				class="mx-auto aspect-4/3 w-full rounded-2xl object-cover"
+			/>{/if}
 	</ContentSection>
 
 	<ContentSection>
@@ -151,6 +155,7 @@
 			members={content.directors.map((director) => ({
 				...director,
 				image: content_asset(DIRECTOR_IMAGES, director.asset_key),
+				image_url: director.image_url,
 			}))}
 			class="mt-8 sm:grid-cols-2 lg:mt-10"
 		/>
