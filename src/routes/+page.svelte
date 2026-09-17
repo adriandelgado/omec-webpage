@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { content_asset } from "#lib/presentation.js";
 	import home_hero from "#lib/assets/home/imo-team-2026.jpeg?enhanced";
 	import home_about from "#lib/assets/home/olympiad-student.jpeg?enhanced";
 	import home_national from "#lib/assets/home/national-olympiad-participants.jpg?enhanced";
@@ -15,7 +16,7 @@
 	import { get_national_olympiad, get_site_content } from "#lib/content.remote.js";
 	import { get_content } from "./content.remote";
 
-	const SPONSOR_IMAGES: Record<string, string> = { "egcs-ucsg": logo_ucsg };
+	const SPONSOR_IMAGES: Record<string, string> = { ucsg: logo_ucsg };
 
 	const INFORMATION_ICONS = { info: Info, lightbulb: Lightbulb, newspaper: Newspaper } as const;
 	const [content, national_olympiad, site_content] = await Promise.all([
@@ -149,13 +150,18 @@
 		<div
 			class="mt-8 flex justify-center rounded-md border border-primary/30 bg-white px-6 py-8 shadow-[4px_4px_0_0_var(--color-primary)]"
 		>
-			<img
-				src={SPONSOR_IMAGES[content.sponsor.id]}
-				alt={content.sponsor.image_alt}
-				loading="lazy"
-				decoding="async"
-				class="h-auto w-full max-w-70 object-contain"
-			/>
+			{#if content_asset(SPONSOR_IMAGES, content.sponsor.asset_key)}
+				{@const asset = content_asset(SPONSOR_IMAGES, content.sponsor.asset_key)!}
+				<img
+					src={asset}
+					alt={content.sponsor.image_alt}
+					loading="lazy"
+					decoding="async"
+					class="h-auto w-full max-w-70 object-contain"
+				/>
+			{:else}
+				<span class="text-center font-semibold text-primary">{content.sponsor.image_alt}</span>
+			{/if}
 		</div>
 	</ContentSection>
 

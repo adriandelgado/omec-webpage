@@ -10,6 +10,7 @@ export const get_content = query(async () => {
 		db
 			.select({
 				id: schema.training_material.id,
+				asset_key: schema.training_material.asset_key,
 				title: schema.training_material.title,
 				description: schema.training_material.description,
 				icon: schema.training_material.icon,

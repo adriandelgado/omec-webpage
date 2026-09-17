@@ -16,6 +16,11 @@ export const send_contact_message = form(contact_form_schema, async (data) => {
 		};
 	}
 
+	const [content] = await db
+		.select({ success_message: contact_content.form_success_message })
+		.from(contact_content)
+		.where(eq(contact_content.id, 1));
+	if (!content) error(500, "Required page content is missing: contact");
 	await db.insert(contact_submission).values({
 		full_name: data.full_name,
 		email: data.email,
@@ -24,10 +29,5 @@ export const send_contact_message = form(contact_form_schema, async (data) => {
 		message: data.message,
 	});
 
-	const [content] = await db
-		.select({ success_message: contact_content.form_success_message })
-		.from(contact_content)
-		.where(eq(contact_content.id, 1));
-	if (!content) error(500, "Required page content is missing: contact");
 	return { success: true as const, message: content.success_message };
 });

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { content_asset } from "#lib/presentation.js";
 	import olympiad_ciim from "#lib/assets/olimpiadas/internacionales/olympiad-ciim.jpg?enhanced";
 	import olympiad_cono_sur from "#lib/assets/olimpiadas/internacionales/olympiad-cono-sur.jpeg?enhanced";
 	import olympiad_egmo from "#lib/assets/olimpiadas/internacionales/olympiad-egmo.jpeg?enhanced";
@@ -32,8 +33,8 @@
 	};
 	const SPONSOR_IMAGES: Record<string, string> = {
 		usfq: logo_usfq,
-		"egcs-ucsg": logo_ucsg,
-		sponsor: logo_sedem,
+		ucsg: logo_ucsg,
+		sedem: logo_sedem,
 	};
 
 	const content = await get_content();
@@ -59,14 +60,19 @@
 					<div
 						class="flex h-48 items-center justify-center border-b border-primary/20 bg-foreground p-4"
 					>
-						<enhanced:img
-							src={OLYMPIAD_IMAGES[olympiad.id]}
-							alt={olympiad.image_alt}
-							loading="lazy"
-							decoding="async"
-							sizes="(min-width: 1280px) 30vw, (min-width: 640px) 50vw, 100vw"
-							class="h-full w-full object-contain"
-						/>
+						{#if content_asset(OLYMPIAD_IMAGES, olympiad.asset_key)}
+							{@const asset = content_asset(OLYMPIAD_IMAGES, olympiad.asset_key)!}
+							<enhanced:img
+								src={asset}
+								alt={olympiad.image_alt}
+								loading="lazy"
+								decoding="async"
+								sizes="(min-width: 1280px) 30vw, (min-width: 640px) 50vw, 100vw"
+								class="h-full w-full object-contain"
+							/>
+						{:else}
+							<span class="text-center font-semibold text-primary">{olympiad.name}</span>
+						{/if}
 					</div>
 
 					<div class="flex flex-1 flex-col p-5">
@@ -100,13 +106,18 @@
 			<div class="mt-5 grid grid-cols-2 items-center gap-6 sm:grid-cols-3">
 				{#each content.sponsors.items as sponsor (sponsor.id)}
 					<div class="flex h-18 items-center justify-center">
-						<img
-							src={SPONSOR_IMAGES[sponsor.id]}
-							alt={sponsor.image_alt}
-							loading="lazy"
-							decoding="async"
-							class="max-h-full max-w-full object-contain"
-						/>
+						{#if content_asset(SPONSOR_IMAGES, sponsor.asset_key)}
+							{@const asset = content_asset(SPONSOR_IMAGES, sponsor.asset_key)!}
+							<img
+								src={asset}
+								alt={sponsor.image_alt}
+								loading="lazy"
+								decoding="async"
+								class="max-h-full max-w-full object-contain"
+							/>
+						{:else}
+							<span class="text-center font-semibold text-primary">{sponsor.name}</span>
+						{/if}
 					</div>
 				{/each}
 			</div>

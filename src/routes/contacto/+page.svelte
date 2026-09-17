@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { social_brand_class } from "#lib/presentation.js";
 	import { Mail, Send } from "@lucide/svelte";
 	import Turnstile from "#lib/components/turnstile.svelte";
 	import ContentSection from "#lib/components/content-section.svelte";
@@ -76,7 +77,7 @@
 									target="_blank"
 									rel="external noreferrer"
 									aria-label={social_link.label}
-									class={`inline-flex size-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_link.class_name}`}
+									class={`inline-flex size-10 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 ${social_brand_class(social_link.brand_key)}`}
 								>
 									<svg viewBox="0 0 24 24" class="size-4 fill-current" aria-hidden="true">
 										<path d={social_link.path}></path>

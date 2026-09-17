@@ -9,6 +9,10 @@ import {
 	uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
+// SQLite CHECK accepts NULL, so use IS to reject unparseable dates as well.
+const iso_date = (column: import("drizzle-orm/sqlite-core").AnySQLiteColumn) =>
+	sql`${column} glob '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' and date(${column}, '+0 days') is ${column}`;
+
 const created_at = () =>
 	integer("created_at", { mode: "timestamp_ms" })
 		.notNull()
@@ -109,10 +113,23 @@ export const contact_submission = sqliteTable(
 		message: text("message").notNull(),
 		created_at: created_at(),
 		read_at: integer("read_at", { mode: "timestamp_ms" }),
+		status: text("status", { enum: ["unread", "read", "archived", "spam"] })
+			.notNull()
+			.default("unread"),
+		updated_at: updated_at(),
 	},
 	(table) => [
 		index("contact_submission_email_idx").on(table.email),
 		index("contact_submission_created_at_idx").on(table.created_at),
+		index("contact_submission_status_created_at_idx").on(table.status, table.created_at),
+		check(
+			"contact_submission_status_valid",
+			sql`${table.status} in ('unread', 'read', 'archived', 'spam')`,
+		),
+		check(
+			"contact_submission_read_state_valid",
+			sql`(${table.status} != 'unread' or ${table.read_at} is null) and (${table.status} != 'read' or ${table.read_at} is not null)`,
+		),
 	],
 );
 
@@ -318,11 +335,12 @@ export const olympiads_title_line = sqliteTable(
 			.default(1)
 			.references(() => olympiads_content.id, { onDelete: "cascade" }),
 		text: text("text").notNull(),
-		class: text("class"),
+		emphasis: integer("emphasis", { mode: "boolean" }).notNull().default(false),
 		sort_order: integer("sort_order").notNull(),
 	},
 	(table) => [
 		uniqueIndex("olympiads_title_line_order_unique").on(table.content_id, table.sort_order),
+		check("olympiads_title_line_emphasis_valid", sql`${table.emphasis} in (0, 1)`),
 		check("olympiads_title_line_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -403,7 +421,7 @@ export const social_link = sqliteTable(
 		id: text("id").primaryKey(),
 		label: text("label").notNull(),
 		href: text("href").notNull(),
-		class_name: text("class_name").notNull(),
+		brand_key: text("brand_key").notNull(),
 		icon_path: text("icon_path").notNull(),
 		sort_order: integer("sort_order").notNull(),
 		created_at: created_at(),
@@ -419,13 +437,27 @@ export const national_olympiad = sqliteTable(
 	"national_olympiad",
 	{
 		id: integer("id").primaryKey({ autoIncrement: true }),
-		key: text("key").notNull(),
+		slug: text("slug").notNull(),
+		edition_year: integer("edition_year").notNull(),
+		is_current: integer("is_current", { mode: "boolean" }).notNull().default(false),
 		title: text("title").notNull(),
 		announcement: text("announcement").notNull(),
 		created_at: created_at(),
 		updated_at: updated_at(),
 	},
-	(table) => [uniqueIndex("national_olympiad_key_unique").on(table.key)],
+	(table) => [
+		uniqueIndex("national_olympiad_slug_unique").on(table.slug),
+		uniqueIndex("national_olympiad_year_unique").on(table.edition_year),
+		uniqueIndex("national_olympiad_current_unique")
+			.on(table.is_current)
+			.where(sql`${table.is_current} = 1`),
+		check("national_olympiad_current_valid", sql`${table.is_current} in (0, 1)`),
+		check(
+			"national_olympiad_year_valid",
+			sql`typeof(${table.edition_year}) = 'integer' and ${table.edition_year} between 1900 and 9999`,
+		),
+		check("national_olympiad_slug_not_empty", sql`length(trim(${table.slug})) > 0`),
+	],
 );
 
 export const national_olympiad_stage = sqliteTable(
@@ -436,7 +468,9 @@ export const national_olympiad_stage = sqliteTable(
 			.notNull()
 			.references(() => national_olympiad.id, { onDelete: "cascade" }),
 		label: text("label").notNull(),
-		date: text("date").notNull(),
+		date_label: text("date_label"),
+		starts_on: text("starts_on"),
+		ends_on: text("ends_on"),
 		sort_order: integer("sort_order").notNull(),
 		created_at: created_at(),
 		updated_at: updated_at(),
@@ -447,15 +481,30 @@ export const national_olympiad_stage = sqliteTable(
 			table.sort_order,
 		),
 		uniqueIndex("national_olympiad_stage_label_unique").on(table.national_olympiad_id, table.label),
-		index("national_olympiad_stage_olympiad_idx").on(table.national_olympiad_id),
 		check("national_olympiad_stage_order_nonnegative", sql`${table.sort_order} >= 0`),
+		check(
+			"national_olympiad_stage_start_iso",
+			sql`${table.starts_on} is null or (${iso_date(table.starts_on)})`,
+		),
+		check(
+			"national_olympiad_stage_end_iso",
+			sql`${table.ends_on} is null or (${iso_date(table.ends_on)})`,
+		),
+		check(
+			"national_olympiad_stage_range_valid",
+			sql`${table.ends_on} is null or (${table.starts_on} is not null and ${table.ends_on} >= ${table.starts_on})`,
+		),
+		check(
+			"national_olympiad_stage_date_required",
+			sql`${table.starts_on} is not null or length(trim(coalesce(${table.date_label}, ''))) > 0`,
+		),
 	],
 );
 
 export const national_olympiad_level = sqliteTable(
 	"national_olympiad_level",
 	{
-		id: text("id").primaryKey(),
+		id: text("id").notNull(),
 		national_olympiad_id: integer("national_olympiad_id")
 			.notNull()
 			.references(() => national_olympiad.id, { onDelete: "cascade" }),
@@ -466,11 +515,11 @@ export const national_olympiad_level = sqliteTable(
 		updated_at: updated_at(),
 	},
 	(table) => [
+		primaryKey({ columns: [table.national_olympiad_id, table.id] }),
 		uniqueIndex("national_olympiad_level_order_unique").on(
 			table.national_olympiad_id,
 			table.sort_order,
 		),
-		index("national_olympiad_level_olympiad_idx").on(table.national_olympiad_id),
 		check("national_olympiad_level_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -481,6 +530,7 @@ export const international_olympiad = sqliteTable(
 		id: text("id").primaryKey(),
 		name: text("name").notNull(),
 		description: text("description").notNull(),
+		asset_key: text("asset_key"),
 		image_alt: text("image_alt").notNull(),
 		href: text("href"),
 		sort_order: integer("sort_order").notNull(),
@@ -496,6 +546,7 @@ export const international_olympiad = sqliteTable(
 export const sponsor = sqliteTable("sponsor", {
 	id: text("id").primaryKey(),
 	name: text("name").notNull(),
+	asset_key: text("asset_key"),
 	image_alt: text("image_alt").notNull(),
 	created_at: created_at(),
 	updated_at: updated_at(),
@@ -515,7 +566,6 @@ export const sponsor_placement = sqliteTable(
 	(table) => [
 		primaryKey({ columns: [table.sponsor_id, table.page_key] }),
 		uniqueIndex("sponsor_placement_order_unique").on(table.page_key, table.sort_order),
-		index("sponsor_placement_page_idx").on(table.page_key),
 		check("sponsor_placement_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
 );
@@ -527,6 +577,7 @@ export const team_member = sqliteTable(
 		name: text("name").notNull(),
 		role: text("role"),
 		contact: text("contact"),
+		asset_key: text("asset_key"),
 		image_alt: text("image_alt"),
 		created_at: created_at(),
 		updated_at: updated_at(),
@@ -553,7 +604,6 @@ export const team_member_placement = sqliteTable(
 			table.placement,
 			table.sort_order,
 		),
-		index("team_member_placement_page_idx").on(table.page_key, table.placement),
 		check("team_member_placement_value_valid", sql`${table.placement} in ('member', 'director')`),
 		check("team_member_placement_order_nonnegative", sql`${table.sort_order} >= 0`),
 	],
@@ -566,6 +616,7 @@ export const training_material = sqliteTable(
 		title: text("title").notNull(),
 		description: text("description").notNull(),
 		icon: text("icon", { enum: ["presentation", "calendar_days"] }),
+		asset_key: text("asset_key"),
 		image_alt: text("image_alt").notNull().default(""),
 		href: text("href").notNull(),
 		sort_order: integer("sort_order").notNull(),
@@ -583,8 +634,8 @@ export const news_article = sqliteTable(
 	{
 		slug: text("slug").primaryKey(),
 		category: text("category").notNull(),
-		date: text("date").notNull(),
-		date_published: text("date_published").notNull(),
+		date_label: text("date_label"),
+		published_on: text("published_on").notNull(),
 		author: text("author").notNull(),
 		title: text("title").notNull(),
 		summary: text("summary").notNull(),
@@ -596,11 +647,8 @@ export const news_article = sqliteTable(
 	},
 	(table) => [
 		uniqueIndex("news_article_sort_order_unique").on(table.sort_order),
-		index("news_article_published_idx").on(table.date_published, table.sort_order),
+		index("news_article_published_idx").on(table.published_on, table.sort_order),
 		check("news_article_order_nonnegative", sql`${table.sort_order} >= 0`),
-		check(
-			"news_article_date_published_iso",
-			sql`${table.date_published} glob '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' and date(${table.date_published}) = ${table.date_published}`,
-		),
+		check("news_article_date_published_iso", iso_date(table.published_on)),
 	],
 );

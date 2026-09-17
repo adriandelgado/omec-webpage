@@ -10,15 +10,17 @@ export const get_content = query(async () => {
 		db
 			.select()
 			.from(schema.national_prize_paragraph)
+			.where(eq(schema.national_prize_paragraph.content_id, 1))
 			.orderBy(asc(schema.national_prize_paragraph.sort_order)),
 		db
 			.select({ id: schema.national_fact.id, text: schema.national_fact.text })
 			.from(schema.national_fact)
+			.where(eq(schema.national_fact.content_id, 1))
 			.orderBy(asc(schema.national_fact.sort_order)),
 		db
 			.select()
 			.from(schema.national_olympiad)
-			.where(eq(schema.national_olympiad.key, "current"))
+			.where(eq(schema.national_olympiad.is_current, true))
 			.limit(1),
 	]);
 	if (!row) error(500, "Required page content is missing: national");

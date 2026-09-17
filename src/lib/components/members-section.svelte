@@ -6,7 +6,7 @@
 		name: string;
 		role: string;
 		contact?: string;
-		image: Picture;
+		image: Picture | undefined;
 		image_alt: string;
 	}
 
@@ -21,12 +21,14 @@
 <ul class={["grid gap-x-8 gap-y-10", class_name]}>
 	{#each members as member (member.id)}
 		<li class="flex items-center gap-4 md:gap-5">
-			<enhanced:img
-				src={member.image}
-				alt={member.image_alt}
-				sizes="96px"
-				class="size-24 shrink-0 rounded-full object-cover"
-			/>
+			{#if member.image}
+				<enhanced:img
+					src={member.image}
+					alt={member.image_alt}
+					sizes="96px"
+					class="size-24 shrink-0 rounded-full object-cover"
+				/>
+			{/if}
 
 			<div class="min-w-0">
 				<h3 class="text-xl leading-none font-semibold tracking-tighter text-primary">

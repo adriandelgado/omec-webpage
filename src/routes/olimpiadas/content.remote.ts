@@ -10,10 +10,12 @@ export const get_content = query(async () => {
 		db
 			.select()
 			.from(schema.olympiads_title_line)
+			.where(eq(schema.olympiads_title_line.content_id, 1))
 			.orderBy(asc(schema.olympiads_title_line.sort_order)),
 		db
 			.select({ label: schema.olympiads_route_card.label, href: schema.olympiads_route_card.href })
 			.from(schema.olympiads_route_card)
+			.where(eq(schema.olympiads_route_card.content_id, 1))
 			.orderBy(asc(schema.olympiads_route_card.sort_order)),
 	]);
 	if (!row) error(500, "Required page content is missing: olympiads");
@@ -22,7 +24,7 @@ export const get_content = query(async () => {
 		intro: {
 			title_lines: olympiads_title_line_rows.map((line) => ({
 				text: line.text,
-				class: line.class ?? undefined,
+				class: line.emphasis ? "text-primary" : undefined,
 			})),
 			description: row.intro_description,
 		},

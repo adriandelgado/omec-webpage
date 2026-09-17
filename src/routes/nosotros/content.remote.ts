@@ -7,14 +7,24 @@ import { asc, eq } from "drizzle-orm";
 export const get_content = query(async () => {
 	const [[row], about_value_card_rows, values, team] = await Promise.all([
 		db.select().from(schema.about_content).where(eq(schema.about_content.id, 1)),
-		db.select().from(schema.about_value_card).orderBy(asc(schema.about_value_card.sort_order)),
 		db
 			.select()
+			.from(schema.about_value_card)
+			.where(eq(schema.about_value_card.content_id, 1))
+			.orderBy(asc(schema.about_value_card.sort_order)),
+		db
+			.select({ card_number: schema.about_value.card_number, text: schema.about_value.text })
 			.from(schema.about_value)
+			.innerJoin(
+				schema.about_value_card,
+				eq(schema.about_value.card_number, schema.about_value_card.number),
+			)
+			.where(eq(schema.about_value_card.content_id, 1))
 			.orderBy(asc(schema.about_value.card_number), asc(schema.about_value.sort_order)),
 		db
 			.select({
 				id: schema.team_member.id,
+				asset_key: schema.team_member.asset_key,
 				name: schema.team_member.name,
 				role: schema.team_member.role,
 				contact: schema.team_member.contact,
@@ -68,6 +78,7 @@ export const get_content = query(async () => {
 					error(500, `Director content is incomplete: ${member.id}`);
 				return {
 					id: member.id,
+					asset_key: member.asset_key,
 					name: member.name,
 					role: member.role,
 					contact: member.contact ?? undefined,

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { content_asset } from "#lib/presentation.js";
 	import about_imo_2018 from "#lib/assets/nosotros/imo-2018.jpg";
 	import about_imo_2018_enhanced from "#lib/assets/nosotros/imo-2018.jpg?enhanced";
 	import director_fernando_gomez from "#lib/assets/nosotros/fernando-gomez.jpg?enhanced";
@@ -149,7 +150,7 @@
 		<MembersSection
 			members={content.directors.map((director) => ({
 				...director,
-				image: DIRECTOR_IMAGES[director.id],
+				image: content_asset(DIRECTOR_IMAGES, director.asset_key),
 			}))}
 			class="mt-8 sm:grid-cols-2 lg:mt-10"
 		/>

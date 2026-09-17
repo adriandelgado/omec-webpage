@@ -22,6 +22,7 @@ export const get_content = query(async () => {
 				href: schema.home_information_item.href,
 			})
 			.from(schema.home_information_item)
+			.where(eq(schema.home_information_item.content_id, 1))
 			.orderBy(asc(schema.home_information_item.sort_order)),
 		db
 			.select({
@@ -32,11 +33,17 @@ export const get_content = query(async () => {
 				link_label: schema.home_olympiad_card.link_label,
 			})
 			.from(schema.home_olympiad_card)
+			.where(eq(schema.home_olympiad_card.content_id, 1))
 			.orderBy(asc(schema.home_olympiad_card.sort_order)),
-		db.select().from(schema.home_national_fact).orderBy(asc(schema.home_national_fact.sort_order)),
+		db
+			.select()
+			.from(schema.home_national_fact)
+			.where(eq(schema.home_national_fact.content_id, 1))
+			.orderBy(asc(schema.home_national_fact.sort_order)),
 		db
 			.select({
 				id: schema.sponsor.id,
+				asset_key: schema.sponsor.asset_key,
 				name: schema.sponsor.name,
 				image_alt: schema.sponsor.image_alt,
 			})
@@ -71,7 +78,12 @@ export const get_content = query(async () => {
 			link_href: row.about_link_href,
 			image_alt: row.about_image_alt,
 		},
-		sponsor: { title: row.sponsor_title, id: sponsors[0].id, image_alt: sponsors[0].image_alt },
+		sponsor: {
+			title: row.sponsor_title,
+			id: sponsors[0].id,
+			asset_key: sponsors[0].asset_key,
+			image_alt: sponsors[0].image_alt,
+		},
 		olympiad_cards: home_olympiad_card_rows,
 		national_facts: {
 			title: row.national_facts_title,

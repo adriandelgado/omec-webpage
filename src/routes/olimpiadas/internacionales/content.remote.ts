@@ -10,6 +10,7 @@ export const get_content = query(async () => {
 		db
 			.select({
 				id: schema.sponsor.id,
+				asset_key: schema.sponsor.asset_key,
 				name: schema.sponsor.name,
 				image_alt: schema.sponsor.image_alt,
 			})
@@ -20,6 +21,7 @@ export const get_content = query(async () => {
 		db
 			.select({
 				id: schema.international_olympiad.id,
+				asset_key: schema.international_olympiad.asset_key,
 				name: schema.international_olympiad.name,
 				description: schema.international_olympiad.description,
 				image_alt: schema.international_olympiad.image_alt,

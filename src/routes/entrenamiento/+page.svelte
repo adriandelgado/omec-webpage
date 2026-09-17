@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { content_asset } from "#lib/presentation.js";
 	import logo_omec from "#lib/assets/logos/omec.svg";
 	import logo_egmo from "#lib/assets/logos/egmo.svg";
 
@@ -12,9 +13,8 @@
 	import { get_content } from "./content.remote";
 
 	const MATERIAL_IMAGES: Record<string, string> = {
-		"estudio-a-profundidad": logo_omec,
-		"olimpiada-nacional": logo_omec,
-		"olimpiadas-internacionales": logo_egmo,
+		omec: logo_omec,
+		egmo: logo_egmo,
 	};
 
 	const MATERIAL_ICONS = { presentation: Presentation, calendar_days: CalendarDays } as const;
@@ -41,9 +41,9 @@
 						{#if material.icon}
 							{@const Icon = MATERIAL_ICONS[material.icon]}
 							<Icon aria-hidden="true" class="size-20 text-primary" strokeWidth={1.8} />
-						{:else if MATERIAL_IMAGES[material.id]}
+						{:else if content_asset(MATERIAL_IMAGES, material.asset_key)}
 							<img
-								src={MATERIAL_IMAGES[material.id]}
+								src={content_asset(MATERIAL_IMAGES, material.asset_key)}
 								alt={material.image_alt}
 								loading="lazy"
 								decoding="async"
